@@ -262,6 +262,81 @@ h3 {
   accent-color: var(--gold);
 }
 
+.switch-control {
+  display: grid;
+  gap: 6px;
+}
+
+.squad-switch {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+
+.switch-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 38px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  padding: 5px 6px 5px 12px;
+  text-align: left;
+}
+
+.switch-button span {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.switch-button i {
+  position: relative;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.56);
+}
+
+.switch-button i::after {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--muted);
+  content: "";
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.switch-button.active {
+  border-color: rgba(214, 173, 90, 0.72);
+  background: rgba(214, 173, 90, 0.13);
+  color: #fff1bd;
+}
+
+.switch-button.active i {
+  border-color: rgba(214, 173, 90, 0.65);
+  background: rgba(214, 173, 90, 0.24);
+}
+
+.switch-button.active i::after {
+  background: var(--gold);
+  transform: translateX(20px);
+}
+
+.switch-control small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
 .field {
   display: grid;
   gap: 7px;
@@ -841,6 +916,31 @@ select:focus,
   padding: 6px 9px;
 }
 
+.squad-detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  border: 1px solid rgba(214, 173, 90, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 10px;
+}
+
+.squad-detail-row span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.squad-detail-row strong {
+  color: #fff1bd;
+  font-size: 12px;
+  text-align: right;
+}
+
 .model-details-panel p {
   margin: 12px 0 0;
   color: var(--muted);
@@ -1083,7 +1183,7 @@ select:focus,
 
   .app-shell {
     padding: 10px;
-    padding-bottom: 66px;
+    padding-bottom: calc(104px + env(safe-area-inset-bottom));
   }
 
   .workspace {
@@ -1399,7 +1499,18 @@ select:focus,
 
   .ai-panel {
     min-height: 0;
-    margin-bottom: 58px;
+  }
+
+  .prediction-grid > :last-child {
+    margin-bottom: calc(82px + env(safe-area-inset-bottom));
+  }
+
+  .model-details-panel {
+    padding-bottom: 22px;
+  }
+
+  .model-details-panel p {
+    line-height: 1.5;
   }
 
   .ai-copy {

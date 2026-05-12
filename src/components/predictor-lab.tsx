@@ -5,6 +5,11 @@ import { useMemo, useState } from "react";
 import { getTeamFlag, isFallbackBadge } from "@/lib/team-flags";
 import { getMLModelDetails, predictMatchWithML } from "@/lib/ml-prediction-model";
 import {
+  applySquadStrengthAdjustment,
+  getSquadStrength,
+  type SquadAdjustmentState
+} from "@/lib/squad-strength-adjustment";
+import {
   formatRecord,
   predictMatch,
   worldCupData,
@@ -21,11 +26,19 @@ type PredictorLabProps = {
   sources: { label: string; url: string }[];
 };
 
+type AnalystSections = {
+  keyTakeaway: string;
+  whyFavorite: string;
+  riskFactor: string;
+  upsetPath: string;
+  modelLimitation: string;
+};
+
 type ExplainState =
   | { status: "idle"; text: ""; meta: "" }
   | { status: "loading"; text: ""; meta: "" }
-  | { status: "ready"; text: string; meta: string }
-  | { status: "error"; text: string; meta: string };
+  | { status: "ready"; text: string; meta: string; sections?: AnalystSections }
+  | { status: "error"; text: string; meta: string; sections?: AnalystSections };
 
 const stages: MatchStage[] = ["Group stage", "Round of 16", "Quarter-final", "Semi-final", "Final"];
 
@@ -53,6 +66,7 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
   const [teamB, setTeamB] = useState("France");
   const [stage, setStage] = useState<MatchStage>("Final");
   const [predictionModel, setPredictionModel] = useState<PredictionModelMode>("historical");
+  const [modernSquadEnabled, setModernSquadEnabled] = useState(false);
   const [activeView, setActiveView] = useState<"prediction" | "data" | "fixtures">("prediction");
   const [explanation, setExplanation] = useState<ExplainState>({ status: "idle", text: "", meta: "" });
   const [whatIf, setWhatIf] = useState<WhatIfState>(defaultWhatIf);
@@ -61,22 +75,60 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
     () => (predictionModel === "ml" ? predictMatchWithML(teamA, teamB, stage) : predictMatch(teamA, teamB, stage)),
     [predictionModel, teamA, teamB, stage]
   );
-  const displayPrediction = useMemo(() => applyWhatIf(prediction, whatIf), [prediction, whatIf]);
+  const squadAdjustedResult = useMemo(
+    () => applySquadStrengthAdjustment(prediction, modernSquadEnabled),
+    [prediction, modernSquadEnabled]
+  );
+  const squadPrediction = squadAdjustedResult.prediction;
+  const displayPrediction = useMemo(() => alignScoreline(applyWhatIf(squadPrediction, whatIf)), [squadPrediction, whatIf]);
   const mlDetails = useMemo(() => getMLModelDetails(), []);
   const sortedTeams = useMemo(() => teams.filter(Boolean), [teams]);
 
   async function explainPrediction() {
     setExplanation({ status: "loading", text: "", meta: "" });
     try {
+      const whatIfActive =
+        whatIf.recentForm > 0 || whatIf.attack > 0 || whatIf.defense > 0 || whatIf.knockoutPressure;
       const response = await fetch("/api/explain", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(displayPrediction)
+        body: JSON.stringify({
+          selectedModel: predictionModel === "ml" ? "Tournament ML" : "Historical Local",
+          prediction: displayPrediction,
+          modelDetails: predictionModel === "ml" ? mlDetails : null,
+          squadProxy: {
+            enabled: modernSquadEnabled,
+            status: squadAdjustedResult.adjustment.status,
+            message: squadAdjustedResult.adjustment.message,
+            teamA:
+              squadAdjustedResult.adjustment.status === "applied"
+                ? {
+                    team: squadAdjustedResult.adjustment.teamA.canonicalTeam,
+                    score: squadAdjustedResult.adjustment.teamA.squadStrengthScore
+                  }
+                : null,
+            teamB:
+              squadAdjustedResult.adjustment.status === "applied"
+                ? {
+                    team: squadAdjustedResult.adjustment.teamB.canonicalTeam,
+                    score: squadAdjustedResult.adjustment.teamB.squadStrengthScore
+                  }
+                : null
+          },
+          whatIf: {
+            active: whatIfActive,
+            recentForm: whatIf.recentForm,
+            attack: whatIf.attack,
+            defense: whatIf.defense,
+            knockoutPressure: whatIf.knockoutPressure
+          }
+        })
       });
       const payload = await response.json();
       setExplanation({
         status: "ready",
         text: payload.text,
+        sections: payload.sections,
         meta: payload.missingKey
           ? "OpenAI key missing"
           : `${payload.cached ? "Cached" : "Generated"} with ${payload.model}`
@@ -166,8 +218,13 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
           />
           <ModelSelector
             value={predictionModel}
+            modernSquadEnabled={modernSquadEnabled}
             onChange={(value) => {
               setPredictionModel(value);
+              clearExplanation();
+            }}
+            onModernSquadChange={(value) => {
+              setModernSquadEnabled(value);
               clearExplanation();
             }}
           />
@@ -225,6 +282,7 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
               displayPrediction={displayPrediction}
               predictionModel={predictionModel}
               mlDetails={mlDetails}
+              squadAdjustment={squadAdjustedResult.adjustment}
               explanation={explanation}
               onExplain={explainPrediction}
             />
@@ -340,10 +398,14 @@ function TeamSelect({
 
 function ModelSelector({
   value,
-  onChange
+  modernSquadEnabled,
+  onChange,
+  onModernSquadChange
 }: {
   value: PredictionModelMode;
+  modernSquadEnabled: boolean;
   onChange: (value: PredictionModelMode) => void;
+  onModernSquadChange: (value: boolean) => void;
 }) {
   return (
     <section className="mini-module model-selector">
@@ -357,6 +419,19 @@ function ModelSelector({
         <button className={value === "ml" ? "active" : ""} type="button" onClick={() => onChange("ml")}>
           Tournament ML
         </button>
+      </div>
+      <div className="switch-control squad-switch">
+        <button
+          className={modernSquadEnabled ? "switch-button active" : "switch-button"}
+          type="button"
+          role="switch"
+          aria-checked={modernSquadEnabled}
+          onClick={() => onModernSquadChange(!modernSquadEnabled)}
+        >
+          <span>Modern squad layer: {modernSquadEnabled ? "On" : "Off"}</span>
+          <i aria-hidden="true" />
+        </button>
+        <small>Optional curated proxy adjustment. Not betting odds.</small>
       </div>
     </section>
   );
@@ -415,14 +490,18 @@ function WhatIfLab({
         value={whatIf.defense}
         onChange={(defense) => setWhatIf({ ...whatIf, defense })}
       />
-      <label className="toggle-row">
-        <span>Knockout pressure</span>
-        <input
-          type="checkbox"
-          checked={whatIf.knockoutPressure}
-          onChange={(event) => setWhatIf({ ...whatIf, knockoutPressure: event.target.checked })}
-        />
-      </label>
+      <div className="switch-control">
+        <button
+          className={whatIf.knockoutPressure ? "switch-button active" : "switch-button"}
+          type="button"
+          role="switch"
+          aria-checked={whatIf.knockoutPressure}
+          onClick={() => setWhatIf({ ...whatIf, knockoutPressure: !whatIf.knockoutPressure })}
+        >
+          <span>Knockout pressure: {whatIf.knockoutPressure ? "On" : "Off"}</span>
+          <i aria-hidden="true" />
+        </button>
+      </div>
     </section>
   );
 }
@@ -452,6 +531,7 @@ function PredictionView({
   displayPrediction,
   predictionModel,
   mlDetails,
+  squadAdjustment,
   explanation,
   onExplain
 }: {
@@ -459,6 +539,7 @@ function PredictionView({
   displayPrediction: Prediction;
   predictionModel: PredictionModelMode;
   mlDetails: ReturnType<typeof getMLModelDetails>;
+  squadAdjustment: SquadAdjustmentState;
   explanation: ExplainState;
   onExplain: () => void;
 }) {
@@ -520,6 +601,12 @@ function PredictionView({
           <Metric label="Confidence" value={displayPrediction.confidence} />
           <Metric label="Model" value={predictionModel === "ml" ? "Tournament ML" : "Historical local"} />
           <Metric label="Match Type" value={displayPrediction.stage} />
+          {squadAdjustment.status !== "disabled" && (
+            <Metric
+              label="Squad layer"
+              value={squadAdjustment.status === "applied" ? squadAdjustment.message : "Unavailable"}
+            />
+          )}
         </div>
       </section>
 
@@ -551,9 +638,11 @@ function PredictionView({
         </div>
         <p className="probability-note">
           {activeProbabilityDetail ||
-            (predictionModel === "ml"
-              ? "Why this matters: these are model-estimated probabilities from exported ML features, not betting odds."
-              : "Why this matters: the bars translate the historical model into a quick match-read before the analyst brief.")}
+            (squadAdjustment.status === "applied"
+              ? "Why this matters: the selected base model is adjusted by a small curated squad-strength proxy. These are not betting odds."
+              : predictionModel === "ml"
+                ? "Why this matters: these are model-estimated probabilities from exported ML features, not betting odds."
+                : "Why this matters: the bars translate the historical model into a quick match-read before the analyst brief.")}
         </p>
       </section>
 
@@ -583,12 +672,18 @@ function PredictionView({
         </button>
       </section>
 
-      {predictionModel === "ml" && <ModelDetailsPanel details={mlDetails} />}
+      {predictionModel === "ml" && <ModelDetailsPanel details={mlDetails} squadAdjustment={squadAdjustment} />}
     </div>
   );
 }
 
-function ModelDetailsPanel({ details }: { details: ReturnType<typeof getMLModelDetails> }) {
+function ModelDetailsPanel({
+  details,
+  squadAdjustment
+}: {
+  details: ReturnType<typeof getMLModelDetails>;
+  squadAdjustment: SquadAdjustmentState;
+}) {
   return (
     <section className="panel model-details-panel">
       <div className="section-heading">
@@ -609,6 +704,16 @@ function ModelDetailsPanel({ details }: { details: ReturnType<typeof getMLModelD
           ))}
         </div>
       </div>
+      {squadAdjustment.status !== "disabled" && (
+        <div className="squad-detail-row">
+          <span>Modern squad layer</span>
+          <strong>
+            {squadAdjustment.status === "applied"
+              ? `${squadAdjustment.teamA.canonicalTeam} ${squadAdjustment.teamA.squadStrengthScore?.toFixed(1)} vs ${squadAdjustment.teamB.canonicalTeam} ${squadAdjustment.teamB.squadStrengthScore?.toFixed(1)}`
+              : squadAdjustment.message}
+          </strong>
+        </div>
+      )}
       <p>{details.probabilityNote}</p>
       <p>{details.limitation}</p>
     </section>
@@ -617,7 +722,11 @@ function ModelDetailsPanel({ details }: { details: ReturnType<typeof getMLModelD
 
 function AnalystBrief({ explanation, prediction }: { explanation: ExplainState; prediction: Prediction }) {
   if (explanation.status === "idle") {
-    return <p className="ai-copy">Generate a compact analyst brief when you want narrative context. The forecast works without OpenAI.</p>;
+    return (
+      <p className="ai-copy">
+        Generate an OpenAI-powered analyst brief explaining the selected model output. OpenAI explains the forecast but does not make the prediction.
+      </p>
+    );
   }
 
   if (explanation.status === "loading") {
@@ -626,11 +735,22 @@ function AnalystBrief({ explanation, prediction }: { explanation: ExplainState; 
 
   const favorite = prediction.favorite === "Toss-up" ? prediction.teamA : prediction.favorite;
   const riskTeam = favorite === prediction.teamA ? prediction.teamB : prediction.teamA;
+  const structured = explanation.sections ?? {
+    keyTakeaway: explanation.text,
+    whyFavorite:
+      favorite === "Toss-up"
+        ? "The model sees a narrow spread, so the stronger match moments matter more than the headline rating."
+        : `${favorite} owns the current edge through the selected model, score projection, and matchup factors.`,
+    riskFactor: `${riskTeam} can keep this close if the game state lowers tempo or turns the forecast into a one-chance match.`,
+    upsetPath: "The underdog route is early defensive control, set-piece pressure, and forcing the favorite away from its normal scoring rhythm.",
+    modelLimitation: "OpenAI explains the selected forecast but does not make the prediction. Probabilities are model-estimated, not betting odds."
+  };
   const sections = [
-    ["Key takeaway", explanation.text],
-    ["Why the favorite wins", favorite === "Toss-up" ? "The model sees a narrow spread, so the stronger match moments matter more than the headline rating." : `${favorite} owns the current edge through the historical rating, score projection, and matchup factors.`],
-    ["Risk factor", `${riskTeam} can keep this close if the game state lowers tempo or turns the forecast into a one-chance match.`],
-    ["Upset path", `The underdog route is early defensive control, set-piece pressure, and forcing the favorite away from its normal scoring rhythm.`]
+    ["Key takeaway", structured.keyTakeaway],
+    ["Why the favorite is favored", structured.whyFavorite],
+    ["Risk factor", structured.riskFactor],
+    ["Upset path", structured.upsetPath],
+    ["Model limitation", structured.modelLimitation]
   ];
 
   return (
@@ -683,6 +803,7 @@ function DataView({
             <Metric label="Recent form index" value={`${Math.round(stats.recentForm * 100)}`} />
             <Metric label="Tournaments played" value={String(teamInsight(stats).tournaments)} />
             <Metric label="Best stage" value={teamInsight(stats).bestStage} />
+            <SquadStrengthMetric team={stats.team} />
           </div>
         </section>
       ))}
@@ -728,6 +849,20 @@ function DataView({
         </div>
       </section>
     </div>
+  );
+}
+
+function SquadStrengthMetric({ team }: { team: string }) {
+  const squad = getSquadStrength(team);
+  if (!squad || squad.squadStrengthScore === null) {
+    return <Metric label="Modern squad proxy" value="Unavailable" />;
+  }
+
+  return (
+    <Metric
+      label="Modern squad proxy"
+      value={`${squad.squadStrengthScore.toFixed(1)} · ${squad.dataQuality.replaceAll("_", " ")}`}
+    />
   );
 }
 
@@ -947,6 +1082,65 @@ function applyWhatIf(prediction: Prediction, whatIf: WhatIfState): Prediction {
   };
 }
 
+function alignScoreline(prediction: Prediction): Prediction {
+  const { teamA, teamB, favorite, likelyScore, probabilities, stage } = prediction;
+  const isKnockout = stage !== "Group stage";
+  const highScore = Math.max(likelyScore.teamA, likelyScore.teamB, isKnockout ? 1 : 0);
+  const lowScore = Math.max(0, Math.min(likelyScore.teamA, likelyScore.teamB));
+
+  if (favorite === "Toss-up") {
+    if (!isKnockout) {
+      const drawScore = Math.max(0, Math.min(highScore, 2));
+      return {
+        ...prediction,
+        likelyScore: {
+          teamA: drawScore,
+          teamB: drawScore
+        }
+      };
+    }
+
+    const edgeTeam =
+      probabilities.teamAWin === probabilities.teamBWin
+        ? likelyScore.teamA >= likelyScore.teamB
+          ? teamA
+          : teamB
+        : probabilities.teamAWin > probabilities.teamBWin
+          ? teamA
+          : teamB;
+    return setOneGoalScore(prediction, edgeTeam, highScore, lowScore);
+  }
+
+  if (favorite === teamA && likelyScore.teamA <= likelyScore.teamB) {
+    return setOneGoalScore(prediction, teamA, highScore, lowScore);
+  }
+
+  if (favorite === teamB && likelyScore.teamB <= likelyScore.teamA) {
+    return setOneGoalScore(prediction, teamB, highScore, lowScore);
+  }
+
+  return prediction;
+}
+
+function setOneGoalScore(prediction: Prediction, winningTeam: string, highScore: number, lowScore: number): Prediction {
+  const winnerScore = Math.max(highScore, lowScore + 1, 1);
+  const loserScore = Math.max(0, Math.min(lowScore, winnerScore - 1));
+
+  return {
+    ...prediction,
+    likelyScore:
+      winningTeam === prediction.teamA
+        ? {
+            teamA: winnerScore,
+            teamB: loserScore
+          }
+        : {
+            teamA: loserScore,
+            teamB: winnerScore
+          }
+  };
+}
+
 function matchStory(displayPrediction: Prediction, basePrediction: Prediction) {
   const adjusted =
     displayPrediction.probabilities.teamAWin !== basePrediction.probabilities.teamAWin ||
@@ -954,7 +1148,7 @@ function matchStory(displayPrediction: Prediction, basePrediction: Prediction) {
   if (displayPrediction.favorite === "Toss-up") {
     return `${displayPrediction.teamA} and ${displayPrediction.teamB} project as a tight ${displayPrediction.stage.toLowerCase()} with little room between them.`;
   }
-  return `${displayPrediction.favorite} carries the edge${adjusted ? " after the what-if boost" : ""}, but the model still leaves a live route for the other side.`;
+  return `${displayPrediction.favorite} carries the edge${adjusted ? " after active scenario adjustments" : ""}, but the model still leaves a live route for the other side.`;
 }
 
 function teamInsight(stats: TeamStats) {

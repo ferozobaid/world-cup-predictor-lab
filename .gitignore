@@ -7,3 +7,4 @@ npm-debug.log*
 *.tsbuildinfo
 .playwright-mcp
 world-cup-predictor-*.png
+.DS_Store
