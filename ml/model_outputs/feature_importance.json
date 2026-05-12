@@ -1,0 +1,150 @@
+{
+  "logistic_regression": [
+    {
+      "feature": "team_a_win_rate",
+      "importance": 0.261211
+    },
+    {
+      "feature": "team_a_goals_for_per_match",
+      "importance": 0.246534
+    },
+    {
+      "feature": "team_b_tournament_experience",
+      "importance": 0.206089
+    },
+    {
+      "feature": "team_b_win_rate",
+      "importance": 0.201718
+    },
+    {
+      "feature": "knockout_match_flag",
+      "importance": 0.178283
+    },
+    {
+      "feature": "goal_balance_difference",
+      "importance": 0.147371
+    },
+    {
+      "feature": "strength_difference",
+      "importance": 0.13331
+    },
+    {
+      "feature": "team_a_goal_difference_per_match",
+      "importance": 0.1302
+    },
+    {
+      "feature": "team_b_recent_form_index",
+      "importance": 0.129861
+    },
+    {
+      "feature": "team_b_goals_for_per_match",
+      "importance": 0.116144
+    },
+    {
+      "feature": "experience_difference",
+      "importance": 0.112802
+    },
+    {
+      "feature": "team_b_goals_against_per_match",
+      "importance": 0.09882
+    },
+    {
+      "feature": "team_a_recent_form_index",
+      "importance": 0.08756
+    },
+    {
+      "feature": "team_a_goals_against_per_match",
+      "importance": 0.084675
+    },
+    {
+      "feature": "team_a_tournament_experience",
+      "importance": 0.074763
+    },
+    {
+      "feature": "form_difference",
+      "importance": 0.06853
+    },
+    {
+      "feature": "team_b_goal_difference_per_match",
+      "importance": 0.062767
+    },
+    {
+      "feature": "final_flag",
+      "importance": 0.026408
+    }
+  ],
+  "random_forest": [
+    {
+      "feature": "team_a_goals_for_per_match",
+      "importance": 0.092518
+    },
+    {
+      "feature": "experience_difference",
+      "importance": 0.091627
+    },
+    {
+      "feature": "strength_difference",
+      "importance": 0.081391
+    },
+    {
+      "feature": "goal_balance_difference",
+      "importance": 0.07897
+    },
+    {
+      "feature": "team_b_tournament_experience",
+      "importance": 0.068111
+    },
+    {
+      "feature": "team_a_goal_difference_per_match",
+      "importance": 0.061911
+    },
+    {
+      "feature": "team_b_goals_for_per_match",
+      "importance": 0.06045
+    },
+    {
+      "feature": "team_b_goal_difference_per_match",
+      "importance": 0.05891
+    },
+    {
+      "feature": "team_a_win_rate",
+      "importance": 0.056757
+    },
+    {
+      "feature": "team_a_goals_against_per_match",
+      "importance": 0.056129
+    },
+    {
+      "feature": "form_difference",
+      "importance": 0.05327
+    },
+    {
+      "feature": "team_b_goals_against_per_match",
+      "importance": 0.051992
+    },
+    {
+      "feature": "team_b_win_rate",
+      "importance": 0.046347
+    },
+    {
+      "feature": "team_a_recent_form_index",
+      "importance": 0.04488
+    },
+    {
+      "feature": "team_b_recent_form_index",
+      "importance": 0.041723
+    },
+    {
+      "feature": "team_a_tournament_experience",
+      "importance": 0.041248
+    },
+    {
+      "feature": "knockout_match_flag",
+      "importance": 0.013704
+    },
+    {
+      "feature": "final_flag",
+      "importance": 6.3e-05
+    }
+  ]
+}

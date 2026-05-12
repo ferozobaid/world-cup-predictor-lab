@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { getTeamFlag, isFallbackBadge } from "@/lib/team-flags";
+import { getMLModelDetails, predictMatchWithML } from "@/lib/ml-prediction-model";
 import {
   formatRecord,
   predictMatch,
@@ -36,6 +37,7 @@ type WhatIfState = {
 };
 
 type ScenarioTab = "Group Stage" | "Round of 32" | "Round of 16" | "Quarter-final" | "Semi-final" | "Final";
+type PredictionModelMode = "historical" | "ml";
 
 const defaultWhatIf: WhatIfState = {
   recentForm: 0,
@@ -50,12 +52,17 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
   const [teamA, setTeamA] = useState("Argentina");
   const [teamB, setTeamB] = useState("France");
   const [stage, setStage] = useState<MatchStage>("Final");
+  const [predictionModel, setPredictionModel] = useState<PredictionModelMode>("historical");
   const [activeView, setActiveView] = useState<"prediction" | "data" | "fixtures">("prediction");
   const [explanation, setExplanation] = useState<ExplainState>({ status: "idle", text: "", meta: "" });
   const [whatIf, setWhatIf] = useState<WhatIfState>(defaultWhatIf);
 
-  const prediction = useMemo(() => predictMatch(teamA, teamB, stage), [teamA, teamB, stage]);
+  const prediction = useMemo(
+    () => (predictionModel === "ml" ? predictMatchWithML(teamA, teamB, stage) : predictMatch(teamA, teamB, stage)),
+    [predictionModel, teamA, teamB, stage]
+  );
   const displayPrediction = useMemo(() => applyWhatIf(prediction, whatIf), [prediction, whatIf]);
+  const mlDetails = useMemo(() => getMLModelDetails(), []);
   const sortedTeams = useMemo(() => teams.filter(Boolean), [teams]);
 
   async function explainPrediction() {
@@ -157,6 +164,13 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
               clearExplanation();
             }}
           />
+          <ModelSelector
+            value={predictionModel}
+            onChange={(value) => {
+              setPredictionModel(value);
+              clearExplanation();
+            }}
+          />
           <QuickScenarios onApply={applyScenario} />
           <WhatIfLab
             whatIf={whatIf}
@@ -209,6 +223,8 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
             <PredictionView
               prediction={prediction}
               displayPrediction={displayPrediction}
+              predictionModel={predictionModel}
+              mlDetails={mlDetails}
               explanation={explanation}
               onExplain={explainPrediction}
             />
@@ -322,6 +338,30 @@ function TeamSelect({
   );
 }
 
+function ModelSelector({
+  value,
+  onChange
+}: {
+  value: PredictionModelMode;
+  onChange: (value: PredictionModelMode) => void;
+}) {
+  return (
+    <section className="mini-module model-selector">
+      <div className="mini-heading">
+        <span>Model</span>
+      </div>
+      <div className="model-toggle" role="group" aria-label="Prediction model">
+        <button className={value === "historical" ? "active" : ""} type="button" onClick={() => onChange("historical")}>
+          Historical Local
+        </button>
+        <button className={value === "ml" ? "active" : ""} type="button" onClick={() => onChange("ml")}>
+          Tournament ML
+        </button>
+      </div>
+    </section>
+  );
+}
+
 function QuickScenarios({ onApply }: { onApply: (scenario: string) => void }) {
   const scenarios = [
     ["random", "Random matchup"],
@@ -410,11 +450,15 @@ function SliderControl({
 function PredictionView({
   prediction,
   displayPrediction,
+  predictionModel,
+  mlDetails,
   explanation,
   onExplain
 }: {
   prediction: Prediction;
   displayPrediction: Prediction;
+  predictionModel: PredictionModelMode;
+  mlDetails: ReturnType<typeof getMLModelDetails>;
   explanation: ExplainState;
   onExplain: () => void;
 }) {
@@ -474,7 +518,7 @@ function PredictionView({
         <div className="metric-strip">
           <Metric label="Favorite" value={displayPrediction.favorite} />
           <Metric label="Confidence" value={displayPrediction.confidence} />
-          <Metric label="Model" value="Historical local" />
+          <Metric label="Model" value={predictionModel === "ml" ? "Tournament ML" : "Historical local"} />
           <Metric label="Match Type" value={displayPrediction.stage} />
         </div>
       </section>
@@ -506,7 +550,10 @@ function PredictionView({
           ))}
         </div>
         <p className="probability-note">
-          {activeProbabilityDetail || "Why this matters: the bars translate the historical model into a quick match-read before the analyst brief."}
+          {activeProbabilityDetail ||
+            (predictionModel === "ml"
+              ? "Why this matters: these are model-estimated probabilities from exported ML features, not betting odds."
+              : "Why this matters: the bars translate the historical model into a quick match-read before the analyst brief.")}
         </p>
       </section>
 
@@ -535,7 +582,36 @@ function PredictionView({
           {explanation.status === "loading" ? "Generating..." : "Generate analyst brief"}
         </button>
       </section>
+
+      {predictionModel === "ml" && <ModelDetailsPanel details={mlDetails} />}
     </div>
+  );
+}
+
+function ModelDetailsPanel({ details }: { details: ReturnType<typeof getMLModelDetails> }) {
+  return (
+    <section className="panel model-details-panel">
+      <div className="section-heading">
+        <h3>Model details</h3>
+        <span>{details.isExperimental ? "Experimental" : "Validated"}</span>
+      </div>
+      <div className="model-metrics">
+        <Metric label="Model type" value={details.modelType} />
+        <Metric label="Accuracy" value={`${Math.round(details.accuracy * 100)}%`} />
+        <Metric label="Macro F1" value={details.macroF1.toFixed(3)} />
+        <Metric label="Historical baseline" value={`${Math.round(details.baselineAccuracy * 100)}% / ${details.baselineMacroF1.toFixed(3)} F1`} />
+      </div>
+      <div className="top-features">
+        <span>Top features</span>
+        <div>
+          {details.topFeatures.map((feature) => (
+            <strong key={feature.feature}>{formatFeatureName(feature.feature)}</strong>
+          ))}
+        </div>
+      </div>
+      <p>{details.probabilityNote}</p>
+      <p>{details.limitation}</p>
+    </section>
   );
 }
 
@@ -910,6 +986,10 @@ function toTitleCase(value: string) {
     .split(" ")
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+function formatFeatureName(value: string) {
+  return toTitleCase(value.replaceAll("_", " "));
 }
 
 function clampPercent(value: number, min: number, max: number) {

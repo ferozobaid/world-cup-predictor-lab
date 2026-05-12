@@ -198,6 +198,7 @@ h3 {
 }
 
 .scenario-strip button,
+.model-toggle button,
 .stage-buttons button {
   min-height: 36px;
   border: 1px solid var(--line);
@@ -209,11 +210,19 @@ h3 {
 }
 
 .scenario-strip button:hover,
+.model-toggle button:hover,
+.model-toggle button.active,
 .stage-buttons button:hover,
 .stage-buttons button.active {
   border-color: rgba(214, 173, 90, 0.7);
   background: rgba(214, 173, 90, 0.12);
   color: #fff1bd;
+}
+
+.model-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .slider-field {
@@ -790,6 +799,55 @@ select:focus,
   line-height: 1.45;
 }
 
+.model-details-panel {
+  grid-column: 1 / -1;
+  border-color: rgba(214, 173, 90, 0.28);
+  background:
+    linear-gradient(135deg, rgba(214, 173, 90, 0.08), transparent 48%),
+    rgba(9, 9, 9, 0.94);
+}
+
+.model-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.top-features {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.top-features > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.top-features div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.top-features strong {
+  border: 1px solid rgba(214, 173, 90, 0.24);
+  border-radius: 999px;
+  background: rgba(214, 173, 90, 0.08);
+  color: #fff1bd;
+  font-size: 12px;
+  padding: 6px 9px;
+}
+
+.model-details-panel p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .match-row {
   display: grid;
   grid-template-columns: 70px minmax(0, 1fr) 160px;
@@ -1275,6 +1333,7 @@ select:focus,
 
   .metric-strip,
   .stat-table,
+  .model-metrics,
   .fixture-grid,
   .match-row {
     grid-template-columns: 1fr;

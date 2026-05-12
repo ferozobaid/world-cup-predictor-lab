@@ -1,0 +1,852 @@
+{
+  "Algeria": {
+    "win_rate": 0.230769,
+    "goals_for_per_match": 1.0,
+    "goals_against_per_match": 1.461538,
+    "goal_difference_per_match": -0.461538,
+    "recent_form_index": 0.2,
+    "tournament_experience": 4.0,
+    "strength": 17.97871,
+    "matches_before": 13.0
+  },
+  "Angola": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.333333,
+    "goals_against_per_match": 0.666667,
+    "goal_difference_per_match": -0.333333,
+    "recent_form_index": 0.222222,
+    "tournament_experience": 1.0,
+    "strength": 4.82555,
+    "matches_before": 3.0
+  },
+  "Argentina": {
+    "win_rate": 0.534091,
+    "goals_for_per_match": 1.727273,
+    "goals_against_per_match": 1.147727,
+    "goal_difference_per_match": 0.579545,
+    "recent_form_index": 0.566667,
+    "tournament_experience": 18.0,
+    "strength": 55.097727,
+    "matches_before": 88.0
+  },
+  "Australia": {
+    "win_rate": 0.2,
+    "goals_for_per_match": 0.85,
+    "goals_against_per_match": 1.85,
+    "goal_difference_per_match": -1.0,
+    "recent_form_index": 0.233333,
+    "tournament_experience": 6.0,
+    "strength": 12.933567,
+    "matches_before": 20.0
+  },
+  "Austria": {
+    "win_rate": 0.413793,
+    "goals_for_per_match": 1.482759,
+    "goals_against_per_match": 1.62069,
+    "goal_difference_per_match": -0.137931,
+    "recent_form_index": 0.3,
+    "tournament_experience": 7.0,
+    "strength": 34.086351,
+    "matches_before": 29.0
+  },
+  "Belgium": {
+    "win_rate": 0.411765,
+    "goals_for_per_match": 1.352941,
+    "goals_against_per_match": 1.45098,
+    "goal_difference_per_match": -0.098039,
+    "recent_form_index": 0.733333,
+    "tournament_experience": 14.0,
+    "strength": 43.838045,
+    "matches_before": 51.0
+  },
+  "Bolivia": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.166667,
+    "goals_against_per_match": 3.333333,
+    "goal_difference_per_match": -3.166667,
+    "recent_form_index": 0.055556,
+    "tournament_experience": 3.0,
+    "strength": -24.828936,
+    "matches_before": 6.0
+  },
+  "Bosnia and Herzegovina": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 1.333333,
+    "goals_against_per_match": 1.333333,
+    "goal_difference_per_match": 0.0,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 1.0,
+    "strength": 26.158883,
+    "matches_before": 3.0
+  },
+  "Brazil": {
+    "win_rate": 0.666667,
+    "goals_for_per_match": 2.078947,
+    "goals_against_per_match": 0.947368,
+    "goal_difference_per_match": 1.131579,
+    "recent_form_index": 0.666667,
+    "tournament_experience": 22.0,
+    "strength": 69.550586,
+    "matches_before": 114.0
+  },
+  "Bulgaria": {
+    "win_rate": 0.115385,
+    "goals_for_per_match": 0.846154,
+    "goals_against_per_match": 2.038462,
+    "goal_difference_per_match": -1.192308,
+    "recent_form_index": 0.366667,
+    "tournament_experience": 7.0,
+    "strength": 10.102895,
+    "matches_before": 26.0
+  },
+  "Cameroon": {
+    "win_rate": 0.192308,
+    "goals_for_per_match": 0.846154,
+    "goals_against_per_match": 1.807692,
+    "goal_difference_per_match": -0.961538,
+    "recent_form_index": 0.133333,
+    "tournament_experience": 8.0,
+    "strength": 11.902895,
+    "matches_before": 26.0
+  },
+  "Canada": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.333333,
+    "goals_against_per_match": 2.0,
+    "goal_difference_per_match": -1.666667,
+    "recent_form_index": 0.0,
+    "tournament_experience": 2.0,
+    "strength": -10.828936,
+    "matches_before": 6.0
+  },
+  "Chile": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 1.212121,
+    "goals_against_per_match": 1.484848,
+    "goal_difference_per_match": -0.272727,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 9.0,
+    "strength": 32.251809,
+    "matches_before": 33.0
+  },
+  "China": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.0,
+    "goals_against_per_match": 3.0,
+    "goal_difference_per_match": -3.0,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -25.841117,
+    "matches_before": 3.0
+  },
+  "Colombia": {
+    "win_rate": 0.409091,
+    "goals_for_per_match": 1.454545,
+    "goals_against_per_match": 1.363636,
+    "goal_difference_per_match": 0.090909,
+    "recent_form_index": 0.633333,
+    "tournament_experience": 6.0,
+    "strength": 41.351937,
+    "matches_before": 22.0
+  },
+  "Costa Rica": {
+    "win_rate": 0.285714,
+    "goals_for_per_match": 1.047619,
+    "goals_against_per_match": 1.857143,
+    "goal_difference_per_match": -0.809524,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 6.0,
+    "strength": 20.892175,
+    "matches_before": 21.0
+  },
+  "Croatia": {
+    "win_rate": 0.433333,
+    "goals_for_per_match": 1.433333,
+    "goals_against_per_match": 1.1,
+    "goal_difference_per_match": 0.333333,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 6.0,
+    "strength": 42.835295,
+    "matches_before": 30.0
+  },
+  "Cuba": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 1.666667,
+    "goals_against_per_match": 4.0,
+    "goal_difference_per_match": -2.333333,
+    "recent_form_index": 0.444444,
+    "tournament_experience": 1.0,
+    "strength": 4.82555,
+    "matches_before": 3.0
+  },
+  "Czech Republic": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 1.0,
+    "goals_against_per_match": 1.333333,
+    "goal_difference_per_match": -0.333333,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 1.0,
+    "strength": 22.82555,
+    "matches_before": 3.0
+  },
+  "Czechoslovakia": {
+    "win_rate": 0.366667,
+    "goals_for_per_match": 1.466667,
+    "goals_against_per_match": 1.5,
+    "goal_difference_per_match": -0.033333,
+    "recent_form_index": 0.366667,
+    "tournament_experience": 8.0,
+    "strength": 34.168628,
+    "matches_before": 30.0
+  },
+  "Denmark": {
+    "win_rate": 0.391304,
+    "goals_for_per_match": 1.347826,
+    "goals_against_per_match": 1.26087,
+    "goal_difference_per_match": 0.086957,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 6.0,
+    "strength": 35.186335,
+    "matches_before": 23.0
+  },
+  "Dutch East Indies": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.0,
+    "goals_against_per_match": 6.0,
+    "goal_difference_per_match": -6.0,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -57.920558,
+    "matches_before": 1.0
+  },
+  "East Germany": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 0.833333,
+    "goals_against_per_match": 0.833333,
+    "goal_difference_per_match": 0.0,
+    "recent_form_index": 0.444444,
+    "tournament_experience": 1.0,
+    "strength": 29.83773,
+    "matches_before": 6.0
+  },
+  "Ecuador": {
+    "win_rate": 0.384615,
+    "goals_for_per_match": 1.076923,
+    "goals_against_per_match": 1.076923,
+    "goal_difference_per_match": 0.0,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 4.0,
+    "strength": 34.77871,
+    "matches_before": 13.0
+  },
+  "Egypt": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.714286,
+    "goals_against_per_match": 1.714286,
+    "goal_difference_per_match": -1.0,
+    "recent_form_index": 0.095238,
+    "tournament_experience": 3.0,
+    "strength": -2.04739,
+    "matches_before": 7.0
+  },
+  "El Salvador": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.166667,
+    "goals_against_per_match": 3.666667,
+    "goal_difference_per_match": -3.5,
+    "recent_form_index": 0.0,
+    "tournament_experience": 2.0,
+    "strength": -29.16227,
+    "matches_before": 6.0
+  },
+  "England": {
+    "win_rate": 0.432432,
+    "goals_for_per_match": 1.405405,
+    "goals_against_per_match": 0.918919,
+    "goal_difference_per_match": 0.486486,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 16.0,
+    "strength": 46.974086,
+    "matches_before": 74.0
+  },
+  "France": {
+    "win_rate": 0.534247,
+    "goals_for_per_match": 1.863014,
+    "goals_against_per_match": 1.164384,
+    "goal_difference_per_match": 0.69863,
+    "recent_form_index": 0.833333,
+    "tournament_experience": 16.0,
+    "strength": 60.542332,
+    "matches_before": 73.0
+  },
+  "Germany": {
+    "win_rate": 0.64,
+    "goals_for_per_match": 2.02,
+    "goals_against_per_match": 1.06,
+    "goal_difference_per_match": 0.96,
+    "recent_form_index": 0.633333,
+    "tournament_experience": 10.0,
+    "strength": 63.515477,
+    "matches_before": 50.0
+  },
+  "Ghana": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 1.2,
+    "goals_against_per_match": 1.533333,
+    "goal_difference_per_match": -0.333333,
+    "recent_form_index": 0.3,
+    "tournament_experience": 4.0,
+    "strength": 26.384433,
+    "matches_before": 15.0
+  },
+  "Greece": {
+    "win_rate": 0.2,
+    "goals_for_per_match": 0.5,
+    "goals_against_per_match": 2.0,
+    "goal_difference_per_match": -1.5,
+    "recent_form_index": 0.266667,
+    "tournament_experience": 3.0,
+    "strength": 6.593686,
+    "matches_before": 10.0
+  },
+  "Haiti": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.666667,
+    "goals_against_per_match": 4.666667,
+    "goal_difference_per_match": -4.0,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -35.841117,
+    "matches_before": 3.0
+  },
+  "Honduras": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.333333,
+    "goals_against_per_match": 1.555556,
+    "goal_difference_per_match": -1.222222,
+    "recent_form_index": 0.111111,
+    "tournament_experience": 3.0,
+    "strength": -3.314467,
+    "matches_before": 9.0
+  },
+  "Hungary": {
+    "win_rate": 0.46875,
+    "goals_for_per_match": 2.71875,
+    "goals_against_per_match": 1.78125,
+    "goal_difference_per_match": 0.9375,
+    "recent_form_index": 0.233333,
+    "tournament_experience": 9.0,
+    "strength": 46.564523,
+    "matches_before": 32.0
+  },
+  "Iceland": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.666667,
+    "goals_against_per_match": 1.666667,
+    "goal_difference_per_match": -1.0,
+    "recent_form_index": 0.111111,
+    "tournament_experience": 1.0,
+    "strength": -3.841117,
+    "matches_before": 3.0
+  },
+  "Iran": {
+    "win_rate": 0.166667,
+    "goals_for_per_match": 0.722222,
+    "goals_against_per_match": 1.722222,
+    "goal_difference_per_match": -1.0,
+    "recent_form_index": 0.3,
+    "tournament_experience": 6.0,
+    "strength": 12.233317,
+    "matches_before": 18.0
+  },
+  "Iraq": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.333333,
+    "goals_against_per_match": 1.333333,
+    "goal_difference_per_match": -1.0,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -5.841117,
+    "matches_before": 3.0
+  },
+  "Israel": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.333333,
+    "goals_against_per_match": 1.0,
+    "goal_difference_per_match": -0.666667,
+    "recent_form_index": 0.222222,
+    "tournament_experience": 1.0,
+    "strength": 1.492216,
+    "matches_before": 3.0
+  },
+  "Italy": {
+    "win_rate": 0.542169,
+    "goals_for_per_match": 1.542169,
+    "goals_against_per_match": 0.927711,
+    "goal_difference_per_match": 0.614458,
+    "recent_form_index": 0.5,
+    "tournament_experience": 18.0,
+    "strength": 54.461125,
+    "matches_before": 83.0
+  },
+  "Ivory Coast": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 1.444444,
+    "goals_against_per_match": 1.555556,
+    "goal_difference_per_match": -0.111111,
+    "recent_form_index": 0.37037,
+    "tournament_experience": 3.0,
+    "strength": 28.463311,
+    "matches_before": 9.0
+  },
+  "Jamaica": {
+    "win_rate": 0.333333,
+    "goals_for_per_match": 1.0,
+    "goals_against_per_match": 3.0,
+    "goal_difference_per_match": -2.0,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 1.0,
+    "strength": 6.158883,
+    "matches_before": 3.0
+  },
+  "Japan": {
+    "win_rate": 0.28,
+    "goals_for_per_match": 1.0,
+    "goals_against_per_match": 1.32,
+    "goal_difference_per_match": -0.32,
+    "recent_form_index": 0.4,
+    "tournament_experience": 7.0,
+    "strength": 27.21429,
+    "matches_before": 25.0
+  },
+  "Kuwait": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.666667,
+    "goals_against_per_match": 2.0,
+    "goal_difference_per_match": -1.333333,
+    "recent_form_index": 0.111111,
+    "tournament_experience": 1.0,
+    "strength": -7.17445,
+    "matches_before": 3.0
+  },
+  "Mexico": {
+    "win_rate": 0.283333,
+    "goals_for_per_match": 1.033333,
+    "goals_against_per_match": 1.683333,
+    "goal_difference_per_match": -0.65,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 17.0,
+    "strength": 27.832622,
+    "matches_before": 60.0
+  },
+  "Morocco": {
+    "win_rate": 0.217391,
+    "goals_for_per_match": 0.869565,
+    "goals_against_per_match": 1.173913,
+    "goal_difference_per_match": -0.304348,
+    "recent_form_index": 0.4,
+    "tournament_experience": 6.0,
+    "strength": 24.125466,
+    "matches_before": 23.0
+  },
+  "Netherlands": {
+    "win_rate": 0.545455,
+    "goals_for_per_match": 1.745455,
+    "goals_against_per_match": 0.945455,
+    "goal_difference_per_match": 0.8,
+    "recent_form_index": 0.733333,
+    "tournament_experience": 11.0,
+    "strength": 59.457873,
+    "matches_before": 55.0
+  },
+  "New Zealand": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.666667,
+    "goals_against_per_match": 2.333333,
+    "goal_difference_per_match": -1.666667,
+    "recent_form_index": 0.166667,
+    "tournament_experience": 2.0,
+    "strength": -7.828936,
+    "matches_before": 6.0
+  },
+  "Nigeria": {
+    "win_rate": 0.285714,
+    "goals_for_per_match": 1.095238,
+    "goals_against_per_match": 1.428571,
+    "goal_difference_per_match": -0.333333,
+    "recent_form_index": 0.266667,
+    "tournament_experience": 6.0,
+    "strength": 24.45408,
+    "matches_before": 21.0
+  },
+  "North Korea": {
+    "win_rate": 0.142857,
+    "goals_for_per_match": 0.857143,
+    "goals_against_per_match": 3.0,
+    "goal_difference_per_match": -2.142857,
+    "recent_form_index": 0.190476,
+    "tournament_experience": 2.0,
+    "strength": -4.904533,
+    "matches_before": 7.0
+  },
+  "Northern Ireland": {
+    "win_rate": 0.230769,
+    "goals_for_per_match": 1.0,
+    "goals_against_per_match": 1.769231,
+    "goal_difference_per_match": -0.769231,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 3.0,
+    "strength": 17.301787,
+    "matches_before": 13.0
+  },
+  "Norway": {
+    "win_rate": 0.25,
+    "goals_for_per_match": 0.875,
+    "goals_against_per_match": 1.0,
+    "goal_difference_per_match": -0.125,
+    "recent_form_index": 0.375,
+    "tournament_experience": 3.0,
+    "strength": 24.091674,
+    "matches_before": 8.0
+  },
+  "Panama": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.666667,
+    "goals_against_per_match": 3.666667,
+    "goal_difference_per_match": -3.0,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -25.841117,
+    "matches_before": 3.0
+  },
+  "Paraguay": {
+    "win_rate": 0.259259,
+    "goals_for_per_match": 1.111111,
+    "goals_against_per_match": 1.407407,
+    "goal_difference_per_match": -0.296296,
+    "recent_form_index": 0.4,
+    "tournament_experience": 8.0,
+    "strength": 26.678095,
+    "matches_before": 27.0
+  },
+  "Peru": {
+    "win_rate": 0.277778,
+    "goals_for_per_match": 1.166667,
+    "goals_against_per_match": 1.833333,
+    "goal_difference_per_match": -0.666667,
+    "recent_form_index": 0.266667,
+    "tournament_experience": 5.0,
+    "strength": 20.299984,
+    "matches_before": 18.0
+  },
+  "Poland": {
+    "win_rate": 0.447368,
+    "goals_for_per_match": 1.289474,
+    "goals_against_per_match": 1.315789,
+    "goal_difference_per_match": -0.026316,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 9.0,
+    "strength": 38.201211,
+    "matches_before": 38.0
+  },
+  "Portugal": {
+    "win_rate": 0.485714,
+    "goals_for_per_match": 1.742857,
+    "goals_against_per_match": 1.171429,
+    "goal_difference_per_match": 0.571429,
+    "recent_form_index": 0.566667,
+    "tournament_experience": 8.0,
+    "strength": 49.979128,
+    "matches_before": 35.0
+  },
+  "Qatar": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.333333,
+    "goals_against_per_match": 2.333333,
+    "goal_difference_per_match": -2.0,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -15.841117,
+    "matches_before": 3.0
+  },
+  "Republic of Ireland": {
+    "win_rate": 0.153846,
+    "goals_for_per_match": 0.769231,
+    "goals_against_per_match": 0.769231,
+    "goal_difference_per_match": 0.0,
+    "recent_form_index": 0.366667,
+    "tournament_experience": 3.0,
+    "strength": 21.901787,
+    "matches_before": 13.0
+  },
+  "Romania": {
+    "win_rate": 0.380952,
+    "goals_for_per_match": 1.428571,
+    "goals_against_per_match": 1.52381,
+    "goal_difference_per_match": -0.095238,
+    "recent_form_index": 0.6,
+    "tournament_experience": 7.0,
+    "strength": 37.406461,
+    "matches_before": 21.0
+  },
+  "Russia": {
+    "win_rate": 0.285714,
+    "goals_for_per_match": 1.714286,
+    "goals_against_per_match": 1.428571,
+    "goal_difference_per_match": 0.285714,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 4.0,
+    "strength": 30.695579,
+    "matches_before": 14.0
+  },
+  "Saudi Arabia": {
+    "win_rate": 0.210526,
+    "goals_for_per_match": 0.736842,
+    "goals_against_per_match": 2.315789,
+    "goal_difference_per_match": -1.578947,
+    "recent_form_index": 0.233333,
+    "tournament_experience": 6.0,
+    "strength": 7.502986,
+    "matches_before": 19.0
+  },
+  "Scotland": {
+    "win_rate": 0.173913,
+    "goals_for_per_match": 1.086957,
+    "goals_against_per_match": 1.782609,
+    "goal_difference_per_match": -0.695652,
+    "recent_form_index": 0.2,
+    "tournament_experience": 8.0,
+    "strength": 14.525466,
+    "matches_before": 23.0
+  },
+  "Senegal": {
+    "win_rate": 0.416667,
+    "goals_for_per_match": 1.333333,
+    "goals_against_per_match": 1.416667,
+    "goal_difference_per_match": -0.083333,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 3.0,
+    "strength": 35.261515,
+    "matches_before": 12.0
+  },
+  "Serbia": {
+    "win_rate": 0.222222,
+    "goals_for_per_match": 1.0,
+    "goals_against_per_match": 1.666667,
+    "goal_difference_per_match": -0.666667,
+    "recent_form_index": 0.259259,
+    "tournament_experience": 3.0,
+    "strength": 15.574422,
+    "matches_before": 9.0
+  },
+  "Serbia and Montenegro": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.666667,
+    "goals_against_per_match": 3.333333,
+    "goal_difference_per_match": -2.666667,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -22.507784,
+    "matches_before": 3.0
+  },
+  "Slovakia": {
+    "win_rate": 0.25,
+    "goals_for_per_match": 1.25,
+    "goals_against_per_match": 1.75,
+    "goal_difference_per_match": -0.5,
+    "recent_form_index": 0.333333,
+    "tournament_experience": 1.0,
+    "strength": 17.828314,
+    "matches_before": 4.0
+  },
+  "Slovenia": {
+    "win_rate": 0.166667,
+    "goals_for_per_match": 0.833333,
+    "goals_against_per_match": 1.666667,
+    "goal_difference_per_match": -0.833333,
+    "recent_form_index": 0.222222,
+    "tournament_experience": 2.0,
+    "strength": 9.504397,
+    "matches_before": 6.0
+  },
+  "South Africa": {
+    "win_rate": 0.222222,
+    "goals_for_per_match": 1.222222,
+    "goals_against_per_match": 1.777778,
+    "goal_difference_per_match": -0.555556,
+    "recent_form_index": 0.37037,
+    "tournament_experience": 3.0,
+    "strength": 18.685533,
+    "matches_before": 9.0
+  },
+  "South Korea": {
+    "win_rate": 0.184211,
+    "goals_for_per_match": 1.026316,
+    "goals_against_per_match": 2.052632,
+    "goal_difference_per_match": -1.026316,
+    "recent_form_index": 0.266667,
+    "tournament_experience": 11.0,
+    "strength": 14.369632,
+    "matches_before": 38.0
+  },
+  "Soviet Union": {
+    "win_rate": 0.483871,
+    "goals_for_per_match": 1.709677,
+    "goals_against_per_match": 1.096774,
+    "goal_difference_per_match": 0.612903,
+    "recent_form_index": 0.5,
+    "tournament_experience": 7.0,
+    "strength": 48.752046,
+    "matches_before": 31.0
+  },
+  "Spain": {
+    "win_rate": 0.462687,
+    "goals_for_per_match": 1.61194,
+    "goals_against_per_match": 1.119403,
+    "goal_difference_per_match": 0.492537,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 16.0,
+    "strength": 48.192851,
+    "matches_before": 67.0
+  },
+  "Sweden": {
+    "win_rate": 0.372549,
+    "goals_for_per_match": 1.568627,
+    "goals_against_per_match": 1.431373,
+    "goal_difference_per_match": 0.137255,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 12.0,
+    "strength": 39.508633,
+    "matches_before": 51.0
+  },
+  "Switzerland": {
+    "win_rate": 0.341463,
+    "goals_for_per_match": 1.341463,
+    "goals_against_per_match": 1.780488,
+    "goal_difference_per_match": -0.439024,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 12.0,
+    "strength": 31.613009,
+    "matches_before": 41.0
+  },
+  "Togo": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.333333,
+    "goals_against_per_match": 2.0,
+    "goal_difference_per_match": -1.666667,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -12.507784,
+    "matches_before": 3.0
+  },
+  "Trinidad and Tobago": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.0,
+    "goals_against_per_match": 1.333333,
+    "goal_difference_per_match": -1.333333,
+    "recent_form_index": 0.111111,
+    "tournament_experience": 1.0,
+    "strength": -7.17445,
+    "matches_before": 3.0
+  },
+  "Tunisia": {
+    "win_rate": 0.166667,
+    "goals_for_per_match": 0.777778,
+    "goals_against_per_match": 1.444444,
+    "goal_difference_per_match": -0.666667,
+    "recent_form_index": 0.266667,
+    "tournament_experience": 6.0,
+    "strength": 14.96665,
+    "matches_before": 18.0
+  },
+  "Turkey": {
+    "win_rate": 0.5,
+    "goals_for_per_match": 2.0,
+    "goals_against_per_match": 1.7,
+    "goal_difference_per_match": 0.3,
+    "recent_form_index": 0.533333,
+    "tournament_experience": 2.0,
+    "strength": 43.793686,
+    "matches_before": 10.0
+  },
+  "Ukraine": {
+    "win_rate": 0.4,
+    "goals_for_per_match": 1.0,
+    "goals_against_per_match": 1.4,
+    "goal_difference_per_match": -0.4,
+    "recent_form_index": 0.466667,
+    "tournament_experience": 1.0,
+    "strength": 28.975278,
+    "matches_before": 5.0
+  },
+  "United Arab Emirates": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.666667,
+    "goals_against_per_match": 3.666667,
+    "goal_difference_per_match": -3.0,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -25.841117,
+    "matches_before": 3.0
+  },
+  "United States": {
+    "win_rate": 0.243243,
+    "goals_for_per_match": 1.081081,
+    "goals_against_per_match": 1.783784,
+    "goal_difference_per_match": -0.702703,
+    "recent_form_index": 0.4,
+    "tournament_experience": 11.0,
+    "strength": 22.761407,
+    "matches_before": 37.0
+  },
+  "Uruguay": {
+    "win_rate": 0.423729,
+    "goals_for_per_match": 1.508475,
+    "goals_against_per_match": 1.288136,
+    "goal_difference_per_match": 0.220339,
+    "recent_form_index": 0.633333,
+    "tournament_experience": 14.0,
+    "strength": 46.225407,
+    "matches_before": 59.0
+  },
+  "Wales": {
+    "win_rate": 0.125,
+    "goals_for_per_match": 0.625,
+    "goals_against_per_match": 1.25,
+    "goal_difference_per_match": -0.625,
+    "recent_form_index": 0.291667,
+    "tournament_experience": 2.0,
+    "strength": 11.591674,
+    "matches_before": 8.0
+  },
+  "West Germany": {
+    "win_rate": 0.580645,
+    "goals_for_per_match": 2.112903,
+    "goals_against_per_match": 1.241935,
+    "goal_difference_per_match": 0.870968,
+    "recent_form_index": 0.7,
+    "tournament_experience": 10.0,
+    "strength": 61.610049,
+    "matches_before": 62.0
+  },
+  "Yugoslavia": {
+    "win_rate": 0.432432,
+    "goals_for_per_match": 1.621622,
+    "goals_against_per_match": 1.243243,
+    "goal_difference_per_match": 0.378378,
+    "recent_form_index": 0.666667,
+    "tournament_experience": 9.0,
+    "strength": 47.453299,
+    "matches_before": 37.0
+  },
+  "Zaire": {
+    "win_rate": 0.0,
+    "goals_for_per_match": 0.0,
+    "goals_against_per_match": 4.666667,
+    "goal_difference_per_match": -4.666667,
+    "recent_form_index": 0.0,
+    "tournament_experience": 1.0,
+    "strength": -42.507784,
+    "matches_before": 3.0
+  }
+}

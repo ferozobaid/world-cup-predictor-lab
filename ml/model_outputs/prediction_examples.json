@@ -1,0 +1,148 @@
+{
+  "examples": [
+    {
+      "match_id": "M-2014-01",
+      "year": 2014,
+      "teamA": "Brazil",
+      "teamB": "Croatia",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.4575,
+        "teamA_win": 0.4376,
+        "teamB_win": 0.1049
+      }
+    },
+    {
+      "match_id": "M-2014-02",
+      "year": 2014,
+      "teamA": "Mexico",
+      "teamB": "Cameroon",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.5433,
+        "teamA_win": 0.2146,
+        "teamB_win": 0.2421
+      }
+    },
+    {
+      "match_id": "M-2014-03",
+      "year": 2014,
+      "teamA": "Spain",
+      "teamB": "Netherlands",
+      "actual": "teamB_win",
+      "probabilities": {
+        "draw": 0.5086,
+        "teamA_win": 0.1235,
+        "teamB_win": 0.368
+      }
+    },
+    {
+      "match_id": "M-2014-04",
+      "year": 2014,
+      "teamA": "Chile",
+      "teamB": "Australia",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.4219,
+        "teamA_win": 0.3005,
+        "teamB_win": 0.2776
+      }
+    },
+    {
+      "match_id": "M-2014-05",
+      "year": 2014,
+      "teamA": "Colombia",
+      "teamB": "Greece",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.4765,
+        "teamA_win": 0.3339,
+        "teamB_win": 0.1897
+      }
+    },
+    {
+      "match_id": "M-2014-06",
+      "year": 2014,
+      "teamA": "Uruguay",
+      "teamB": "Costa Rica",
+      "actual": "teamB_win",
+      "probabilities": {
+        "draw": 0.4443,
+        "teamA_win": 0.4049,
+        "teamB_win": 0.1508
+      }
+    },
+    {
+      "match_id": "M-2014-07",
+      "year": 2014,
+      "teamA": "England",
+      "teamB": "Italy",
+      "actual": "teamB_win",
+      "probabilities": {
+        "draw": 0.4531,
+        "teamA_win": 0.0401,
+        "teamB_win": 0.5068
+      }
+    },
+    {
+      "match_id": "M-2014-08",
+      "year": 2014,
+      "teamA": "Ivory Coast",
+      "teamB": "Japan",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.416,
+        "teamA_win": 0.2214,
+        "teamB_win": 0.3627
+      }
+    },
+    {
+      "match_id": "M-2022-61",
+      "year": 2022,
+      "teamA": "Argentina",
+      "teamB": "Croatia",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.263,
+        "teamA_win": 0.4471,
+        "teamB_win": 0.2899
+      }
+    },
+    {
+      "match_id": "M-2022-62",
+      "year": 2022,
+      "teamA": "France",
+      "teamB": "Morocco",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.3595,
+        "teamA_win": 0.3286,
+        "teamB_win": 0.3119
+      }
+    },
+    {
+      "match_id": "M-2022-63",
+      "year": 2022,
+      "teamA": "Croatia",
+      "teamB": "Morocco",
+      "actual": "teamA_win",
+      "probabilities": {
+        "draw": 0.207,
+        "teamA_win": 0.2491,
+        "teamB_win": 0.5439
+      }
+    },
+    {
+      "match_id": "M-2022-64",
+      "year": 2022,
+      "teamA": "Argentina",
+      "teamB": "France",
+      "actual": "draw",
+      "probabilities": {
+        "draw": 0.255,
+        "teamA_win": 0.117,
+        "teamB_win": 0.6279
+      }
+    }
+  ]
+}
