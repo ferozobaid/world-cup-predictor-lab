@@ -1,0 +1,9 @@
+.next
+node_modules
+.env
+.env.local
+.env*.local
+npm-debug.log*
+*.tsbuildinfo
+.playwright-mcp
+world-cup-predictor-*.png
