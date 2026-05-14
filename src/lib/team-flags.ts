@@ -22,6 +22,7 @@ const flagMap: Record<string, string> = {
   Curaçao: "🇨🇼",
   "Czech Republic": "🇨🇿",
   Denmark: "🇩🇰",
+  "DR Congo": "🇨🇩",
   Ecuador: "🇪🇨",
   Egypt: "🇪🇬",
   "El Salvador": "🇸🇻",

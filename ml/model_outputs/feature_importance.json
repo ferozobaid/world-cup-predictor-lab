@@ -1,150 +1,1344 @@
 {
-  "logistic_regression": [
-    {
-      "feature": "team_a_win_rate",
-      "importance": 0.261211
-    },
-    {
-      "feature": "team_a_goals_for_per_match",
-      "importance": 0.246534
-    },
-    {
-      "feature": "team_b_tournament_experience",
-      "importance": 0.206089
-    },
-    {
-      "feature": "team_b_win_rate",
-      "importance": 0.201718
-    },
-    {
-      "feature": "knockout_match_flag",
-      "importance": 0.178283
-    },
-    {
-      "feature": "goal_balance_difference",
-      "importance": 0.147371
-    },
-    {
-      "feature": "strength_difference",
-      "importance": 0.13331
-    },
-    {
-      "feature": "team_a_goal_difference_per_match",
-      "importance": 0.1302
-    },
-    {
-      "feature": "team_b_recent_form_index",
-      "importance": 0.129861
-    },
-    {
-      "feature": "team_b_goals_for_per_match",
-      "importance": 0.116144
-    },
-    {
-      "feature": "experience_difference",
-      "importance": 0.112802
-    },
-    {
-      "feature": "team_b_goals_against_per_match",
-      "importance": 0.09882
-    },
-    {
-      "feature": "team_a_recent_form_index",
-      "importance": 0.08756
-    },
-    {
-      "feature": "team_a_goals_against_per_match",
-      "importance": 0.084675
-    },
-    {
-      "feature": "team_a_tournament_experience",
-      "importance": 0.074763
-    },
-    {
-      "feature": "form_difference",
-      "importance": 0.06853
-    },
-    {
-      "feature": "team_b_goal_difference_per_match",
-      "importance": 0.062767
-    },
-    {
-      "feature": "final_flag",
-      "importance": 0.026408
+  "metadata": {
+    "schema_version": "1.0.0",
+    "model_version": "ml-pipeline-v1",
+    "generated_at": "2026-05-13T23:01:50.320036+00:00",
+    "artifact": "feature_importance.json",
+    "source": {
+      "evaluation": "offline-ml-pipeline/outputs/metrics/evaluation.json"
     }
-  ],
-  "random_forest": [
-    {
-      "feature": "team_a_goals_for_per_match",
-      "importance": 0.092518
-    },
-    {
-      "feature": "experience_difference",
-      "importance": 0.091627
-    },
-    {
-      "feature": "strength_difference",
-      "importance": 0.081391
-    },
-    {
-      "feature": "goal_balance_difference",
-      "importance": 0.07897
-    },
-    {
-      "feature": "team_b_tournament_experience",
-      "importance": 0.068111
-    },
-    {
-      "feature": "team_a_goal_difference_per_match",
-      "importance": 0.061911
-    },
-    {
-      "feature": "team_b_goals_for_per_match",
-      "importance": 0.06045
-    },
-    {
-      "feature": "team_b_goal_difference_per_match",
-      "importance": 0.05891
-    },
-    {
-      "feature": "team_a_win_rate",
-      "importance": 0.056757
-    },
-    {
-      "feature": "team_a_goals_against_per_match",
-      "importance": 0.056129
-    },
-    {
-      "feature": "form_difference",
-      "importance": 0.05327
-    },
-    {
-      "feature": "team_b_goals_against_per_match",
-      "importance": 0.051992
-    },
-    {
-      "feature": "team_b_win_rate",
-      "importance": 0.046347
-    },
-    {
-      "feature": "team_a_recent_form_index",
-      "importance": 0.04488
-    },
-    {
-      "feature": "team_b_recent_form_index",
-      "importance": 0.041723
-    },
-    {
-      "feature": "team_a_tournament_experience",
-      "importance": 0.041248
-    },
-    {
-      "feature": "knockout_match_flag",
-      "importance": 0.013704
-    },
-    {
-      "feature": "final_flag",
-      "importance": 6.3e-05
-    }
-  ]
+  },
+  "data": {
+    "logistic_regression": [
+      {
+        "feature": "elo_difference",
+        "importance": 0.41716648477806556
+      },
+      {
+        "feature": "home_rolling_expected_points",
+        "importance": 0.15978447500876614
+      },
+      {
+        "feature": "home_elo",
+        "importance": 0.15844650204579233
+      },
+      {
+        "feature": "home_expected_goals_proxy",
+        "importance": 0.14453934222082346
+      },
+      {
+        "feature": "away_rolling_expected_points",
+        "importance": 0.12079738937154211
+      },
+      {
+        "feature": "away_expected_goals_proxy",
+        "importance": 0.10485110883776037
+      },
+      {
+        "feature": "expected_goals_against_proxy",
+        "importance": 0.10485110883776037
+      },
+      {
+        "feature": "tournament_importance",
+        "importance": 0.10439875837492339
+      },
+      {
+        "feature": "away_weighted_recent_form",
+        "importance": 0.09473938324596844
+      },
+      {
+        "feature": "away_rolling_goals_conceded",
+        "importance": 0.09217378168054063
+      },
+      {
+        "feature": "away_conceding_rate",
+        "importance": 0.09217378168054063
+      },
+      {
+        "feature": "away_defensive_strength",
+        "importance": 0.07354531500002054
+      },
+      {
+        "feature": "home_weighted_recent_form",
+        "importance": 0.06362106176754552
+      },
+      {
+        "feature": "match_pressure_index",
+        "importance": 0.06093744917173458
+      },
+      {
+        "feature": "away_rolling_clean_sheet_rate",
+        "importance": 0.052248561306950075
+      },
+      {
+        "feature": "home_rolling_goals_conceded",
+        "importance": 0.05074235711631777
+      },
+      {
+        "feature": "home_conceding_rate",
+        "importance": 0.05074235711631777
+      },
+      {
+        "feature": "away_elo",
+        "importance": 0.05067690369984296
+      },
+      {
+        "feature": "away_offensive_elo",
+        "importance": 0.05049597979414552
+      },
+      {
+        "feature": "conceding_rate",
+        "importance": 0.0486162045068971
+      },
+      {
+        "feature": "home_rolling_clean_sheet_rate",
+        "importance": 0.04755795860433087
+      },
+      {
+        "feature": "home_rolling_goals_scored",
+        "importance": 0.04336388722267203
+      },
+      {
+        "feature": "home_scoring_rate",
+        "importance": 0.04336388722267203
+      },
+      {
+        "feature": "away_last_5_match_win_rate",
+        "importance": 0.04279119799028066
+      },
+      {
+        "feature": "rolling_elo_delta",
+        "importance": 0.04223751901032316
+      },
+      {
+        "feature": "away_attack_strength",
+        "importance": 0.04134653913253323
+      },
+      {
+        "feature": "expected_goals_proxy",
+        "importance": 0.04081355483146022
+      },
+      {
+        "feature": "home_last_3_match_win_rate",
+        "importance": 0.0396766271466522
+      },
+      {
+        "feature": "away_rolling_goals_scored",
+        "importance": 0.03965440307987828
+      },
+      {
+        "feature": "away_scoring_rate",
+        "importance": 0.03965440307987828
+      },
+      {
+        "feature": "away_defensive_elo",
+        "importance": 0.039592541863750365
+      },
+      {
+        "feature": "away_rolling_goal_difference",
+        "importance": 0.03948113678475291
+      },
+      {
+        "feature": "home_defensive_elo",
+        "importance": 0.03930200893321658
+      },
+      {
+        "feature": "home_defensive_strength",
+        "importance": 0.03740360903108935
+      },
+      {
+        "feature": "home_attack_strength",
+        "importance": 0.037262371939167725
+      },
+      {
+        "feature": "defensive_strength",
+        "importance": 0.03543457498422383
+      },
+      {
+        "feature": "continental_matchup",
+        "importance": 0.03359715256247041
+      },
+      {
+        "feature": "away_last_3_match_win_rate",
+        "importance": 0.030056056323760027
+      },
+      {
+        "feature": "offensive_elo",
+        "importance": 0.029194104963824342
+      },
+      {
+        "feature": "derby_flag",
+        "importance": 0.02888025463761351
+      },
+      {
+        "feature": "rest_days",
+        "importance": 0.023794154024863994
+      },
+      {
+        "feature": "home_offensive_elo",
+        "importance": 0.02329509003664225
+      },
+      {
+        "feature": "away_last_10_match_win_rate",
+        "importance": 0.021817787283791825
+      },
+      {
+        "feature": "host_advantage",
+        "importance": 0.02087979144987609
+      },
+      {
+        "feature": "home_rolling_goal_difference",
+        "importance": 0.019076336330771382
+      },
+      {
+        "feature": "home_last_10_match_win_rate",
+        "importance": 0.01838159893210235
+      },
+      {
+        "feature": "home_rest_days",
+        "importance": 0.017821847117223507
+      },
+      {
+        "feature": "travel_proxy",
+        "importance": 0.01627458723834958
+      },
+      {
+        "feature": "scoring_rate",
+        "importance": 0.012708496164134631
+      },
+      {
+        "feature": "defensive_elo",
+        "importance": 0.012148549670314826
+      },
+      {
+        "feature": "attack_strength",
+        "importance": 0.009117499546347494
+      },
+      {
+        "feature": "home_last_5_match_win_rate",
+        "importance": 0.00726527070776099
+      },
+      {
+        "feature": "away_rest_days",
+        "importance": 0.005192073151046081
+      },
+      {
+        "feature": "home_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_rank_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_points_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "external_elo_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "market_value_ratio",
+        "importance": 0.0
+      },
+      {
+        "feature": "knockout_flag",
+        "importance": 0.0
+      }
+    ],
+    "random_forest": [
+      {
+        "feature": "elo_difference",
+        "importance": 0.06510263615092757
+      },
+      {
+        "feature": "defensive_elo",
+        "importance": 0.04615112601701019
+      },
+      {
+        "feature": "home_elo",
+        "importance": 0.0358667517158247
+      },
+      {
+        "feature": "offensive_elo",
+        "importance": 0.035550499337966716
+      },
+      {
+        "feature": "away_elo",
+        "importance": 0.03296112461366947
+      },
+      {
+        "feature": "home_offensive_elo",
+        "importance": 0.03266873160776682
+      },
+      {
+        "feature": "away_offensive_elo",
+        "importance": 0.03236075555897525
+      },
+      {
+        "feature": "rolling_elo_delta",
+        "importance": 0.032001849894796854
+      },
+      {
+        "feature": "home_defensive_elo",
+        "importance": 0.03146112117759653
+      },
+      {
+        "feature": "away_defensive_elo",
+        "importance": 0.030718488719239108
+      },
+      {
+        "feature": "expected_goals_proxy",
+        "importance": 0.028845167496925152
+      },
+      {
+        "feature": "home_weighted_recent_form",
+        "importance": 0.028439775396541276
+      },
+      {
+        "feature": "away_weighted_recent_form",
+        "importance": 0.02731433676360155
+      },
+      {
+        "feature": "attack_strength",
+        "importance": 0.02593922519834638
+      },
+      {
+        "feature": "defensive_strength",
+        "importance": 0.025639129668592525
+      },
+      {
+        "feature": "conceding_rate",
+        "importance": 0.020874090526670393
+      },
+      {
+        "feature": "away_expected_goals_proxy",
+        "importance": 0.02013223687522752
+      },
+      {
+        "feature": "expected_goals_against_proxy",
+        "importance": 0.020084038846066646
+      },
+      {
+        "feature": "scoring_rate",
+        "importance": 0.019732389168847207
+      },
+      {
+        "feature": "home_expected_goals_proxy",
+        "importance": 0.019663665532379464
+      },
+      {
+        "feature": "home_attack_strength",
+        "importance": 0.018900994374769147
+      },
+      {
+        "feature": "away_attack_strength",
+        "importance": 0.018640641910013106
+      },
+      {
+        "feature": "away_rolling_goal_difference",
+        "importance": 0.017608610756853094
+      },
+      {
+        "feature": "home_rolling_goal_difference",
+        "importance": 0.017504151399966805
+      },
+      {
+        "feature": "home_rest_days",
+        "importance": 0.01723912011221799
+      },
+      {
+        "feature": "away_rest_days",
+        "importance": 0.015594227431547581
+      },
+      {
+        "feature": "away_rolling_expected_points",
+        "importance": 0.014818901667172509
+      },
+      {
+        "feature": "home_rolling_expected_points",
+        "importance": 0.014230309435322315
+      },
+      {
+        "feature": "away_last_10_match_win_rate",
+        "importance": 0.014066595003311085
+      },
+      {
+        "feature": "away_conceding_rate",
+        "importance": 0.01395343752478935
+      },
+      {
+        "feature": "home_conceding_rate",
+        "importance": 0.013853220634245923
+      },
+      {
+        "feature": "home_last_10_match_win_rate",
+        "importance": 0.013651749241045466
+      },
+      {
+        "feature": "rest_days",
+        "importance": 0.013552023055752262
+      },
+      {
+        "feature": "away_defensive_strength",
+        "importance": 0.013551002641168939
+      },
+      {
+        "feature": "home_scoring_rate",
+        "importance": 0.013311035711392702
+      },
+      {
+        "feature": "home_rolling_goals_conceded",
+        "importance": 0.013185558567714029
+      },
+      {
+        "feature": "home_defensive_strength",
+        "importance": 0.013136432159615834
+      },
+      {
+        "feature": "away_rolling_goals_conceded",
+        "importance": 0.01313589446781078
+      },
+      {
+        "feature": "away_rolling_goals_scored",
+        "importance": 0.01296285265368579
+      },
+      {
+        "feature": "home_rolling_goals_scored",
+        "importance": 0.012896090149841725
+      },
+      {
+        "feature": "away_scoring_rate",
+        "importance": 0.01246574836640572
+      },
+      {
+        "feature": "match_pressure_index",
+        "importance": 0.01172498182957068
+      },
+      {
+        "feature": "tournament_importance",
+        "importance": 0.01149623470860524
+      },
+      {
+        "feature": "home_rolling_clean_sheet_rate",
+        "importance": 0.010109241141133714
+      },
+      {
+        "feature": "away_rolling_clean_sheet_rate",
+        "importance": 0.009826887410480545
+      },
+      {
+        "feature": "away_last_5_match_win_rate",
+        "importance": 0.007789488013911504
+      },
+      {
+        "feature": "home_last_5_match_win_rate",
+        "importance": 0.007566202345237895
+      },
+      {
+        "feature": "away_last_3_match_win_rate",
+        "importance": 0.007194909132744598
+      },
+      {
+        "feature": "home_last_3_match_win_rate",
+        "importance": 0.006662154692015733
+      },
+      {
+        "feature": "host_advantage",
+        "importance": 0.004766500434211989
+      },
+      {
+        "feature": "derby_flag",
+        "importance": 0.001629010629597743
+      },
+      {
+        "feature": "continental_matchup",
+        "importance": 0.0012106096383605637
+      },
+      {
+        "feature": "travel_proxy",
+        "importance": 0.00025804249251643453
+      },
+      {
+        "feature": "home_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_rank_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_points_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "external_elo_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "market_value_ratio",
+        "importance": 0.0
+      },
+      {
+        "feature": "knockout_flag",
+        "importance": 0.0
+      }
+    ],
+    "xgboost": [
+      {
+        "feature": "elo_difference",
+        "importance": 0.10267523676156998
+      },
+      {
+        "feature": "expected_goals_proxy",
+        "importance": 0.05420120432972908
+      },
+      {
+        "feature": "defensive_elo",
+        "importance": 0.028927594423294067
+      },
+      {
+        "feature": "tournament_importance",
+        "importance": 0.023557735607028008
+      },
+      {
+        "feature": "expected_goals_against_proxy",
+        "importance": 0.02271125651896
+      },
+      {
+        "feature": "conceding_rate",
+        "importance": 0.021861054003238678
+      },
+      {
+        "feature": "home_elo",
+        "importance": 0.021762680262327194
+      },
+      {
+        "feature": "offensive_elo",
+        "importance": 0.021281098946928978
+      },
+      {
+        "feature": "attack_strength",
+        "importance": 0.020706171169877052
+      },
+      {
+        "feature": "home_expected_goals_proxy",
+        "importance": 0.019879741594195366
+      },
+      {
+        "feature": "home_scoring_rate",
+        "importance": 0.019426576793193817
+      },
+      {
+        "feature": "home_rolling_goal_difference",
+        "importance": 0.019164880737662315
+      },
+      {
+        "feature": "home_last_5_match_win_rate",
+        "importance": 0.019129889085888863
+      },
+      {
+        "feature": "home_attack_strength",
+        "importance": 0.018709057942032814
+      },
+      {
+        "feature": "away_expected_goals_proxy",
+        "importance": 0.018577992916107178
+      },
+      {
+        "feature": "home_rolling_goals_conceded",
+        "importance": 0.01835722103714943
+      },
+      {
+        "feature": "home_defensive_strength",
+        "importance": 0.018296699970960617
+      },
+      {
+        "feature": "away_elo",
+        "importance": 0.018228799104690552
+      },
+      {
+        "feature": "away_offensive_elo",
+        "importance": 0.017876701429486275
+      },
+      {
+        "feature": "home_offensive_elo",
+        "importance": 0.017211172729730606
+      },
+      {
+        "feature": "match_pressure_index",
+        "importance": 0.0170415248721838
+      },
+      {
+        "feature": "away_last_3_match_win_rate",
+        "importance": 0.016908662393689156
+      },
+      {
+        "feature": "defensive_strength",
+        "importance": 0.016795093193650246
+      },
+      {
+        "feature": "away_defensive_strength",
+        "importance": 0.016535166651010513
+      },
+      {
+        "feature": "away_last_10_match_win_rate",
+        "importance": 0.016459159553050995
+      },
+      {
+        "feature": "derby_flag",
+        "importance": 0.01637519896030426
+      },
+      {
+        "feature": "away_rolling_goals_conceded",
+        "importance": 0.01633310504257679
+      },
+      {
+        "feature": "home_weighted_recent_form",
+        "importance": 0.016332626342773438
+      },
+      {
+        "feature": "home_defensive_elo",
+        "importance": 0.01632028818130493
+      },
+      {
+        "feature": "away_rest_days",
+        "importance": 0.01620781049132347
+      },
+      {
+        "feature": "away_attack_strength",
+        "importance": 0.015919262543320656
+      },
+      {
+        "feature": "away_defensive_elo",
+        "importance": 0.015877211466431618
+      },
+      {
+        "feature": "home_rolling_clean_sheet_rate",
+        "importance": 0.01586098223924637
+      },
+      {
+        "feature": "rolling_elo_delta",
+        "importance": 0.01586074009537697
+      },
+      {
+        "feature": "away_weighted_recent_form",
+        "importance": 0.0158206969499588
+      },
+      {
+        "feature": "home_last_10_match_win_rate",
+        "importance": 0.015817008912563324
+      },
+      {
+        "feature": "home_rolling_expected_points",
+        "importance": 0.015736635774374008
+      },
+      {
+        "feature": "scoring_rate",
+        "importance": 0.015520581044256687
+      },
+      {
+        "feature": "away_rolling_expected_points",
+        "importance": 0.015417207032442093
+      },
+      {
+        "feature": "away_scoring_rate",
+        "importance": 0.015245920978486538
+      },
+      {
+        "feature": "away_rolling_goal_difference",
+        "importance": 0.01523734349757433
+      },
+      {
+        "feature": "home_rest_days",
+        "importance": 0.014948599971830845
+      },
+      {
+        "feature": "away_last_5_match_win_rate",
+        "importance": 0.014903530478477478
+      },
+      {
+        "feature": "away_rolling_goals_scored",
+        "importance": 0.014762016013264656
+      },
+      {
+        "feature": "continental_matchup",
+        "importance": 0.014704769477248192
+      },
+      {
+        "feature": "rest_days",
+        "importance": 0.01457455288618803
+      },
+      {
+        "feature": "home_rolling_goals_scored",
+        "importance": 0.014057125896215439
+      },
+      {
+        "feature": "home_last_3_match_win_rate",
+        "importance": 0.013774780556559563
+      },
+      {
+        "feature": "host_advantage",
+        "importance": 0.013210825622081757
+      },
+      {
+        "feature": "away_rolling_clean_sheet_rate",
+        "importance": 0.012678911909461021
+      },
+      {
+        "feature": "travel_proxy",
+        "importance": 0.012219974771142006
+      },
+      {
+        "feature": "home_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_rank_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_points_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "external_elo_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "market_value_ratio",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_conceding_rate",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_conceding_rate",
+        "importance": 0.0
+      },
+      {
+        "feature": "knockout_flag",
+        "importance": 0.0
+      }
+    ],
+    "lightgbm": [
+      {
+        "feature": "elo_difference",
+        "importance": 841.0
+      },
+      {
+        "feature": "away_defensive_elo",
+        "importance": 656.0
+      },
+      {
+        "feature": "rolling_elo_delta",
+        "importance": 606.0
+      },
+      {
+        "feature": "away_offensive_elo",
+        "importance": 598.0
+      },
+      {
+        "feature": "defensive_elo",
+        "importance": 579.0
+      },
+      {
+        "feature": "home_defensive_elo",
+        "importance": 563.0
+      },
+      {
+        "feature": "away_elo",
+        "importance": 556.0
+      },
+      {
+        "feature": "home_offensive_elo",
+        "importance": 553.0
+      },
+      {
+        "feature": "home_elo",
+        "importance": 523.0
+      },
+      {
+        "feature": "defensive_strength",
+        "importance": 487.0
+      },
+      {
+        "feature": "home_weighted_recent_form",
+        "importance": 478.0
+      },
+      {
+        "feature": "away_weighted_recent_form",
+        "importance": 452.0
+      },
+      {
+        "feature": "offensive_elo",
+        "importance": 409.0
+      },
+      {
+        "feature": "attack_strength",
+        "importance": 382.0
+      },
+      {
+        "feature": "expected_goals_proxy",
+        "importance": 337.0
+      },
+      {
+        "feature": "rest_days",
+        "importance": 321.0
+      },
+      {
+        "feature": "home_rolling_goal_difference",
+        "importance": 309.0
+      },
+      {
+        "feature": "away_expected_goals_proxy",
+        "importance": 282.0
+      },
+      {
+        "feature": "home_attack_strength",
+        "importance": 258.0
+      },
+      {
+        "feature": "away_rolling_goal_difference",
+        "importance": 253.0
+      },
+      {
+        "feature": "home_rest_days",
+        "importance": 242.0
+      },
+      {
+        "feature": "tournament_importance",
+        "importance": 224.0
+      },
+      {
+        "feature": "conceding_rate",
+        "importance": 220.0
+      },
+      {
+        "feature": "home_expected_goals_proxy",
+        "importance": 195.0
+      },
+      {
+        "feature": "away_rest_days",
+        "importance": 186.0
+      },
+      {
+        "feature": "away_last_10_match_win_rate",
+        "importance": 184.0
+      },
+      {
+        "feature": "away_attack_strength",
+        "importance": 176.0
+      },
+      {
+        "feature": "scoring_rate",
+        "importance": 164.0
+      },
+      {
+        "feature": "home_last_10_match_win_rate",
+        "importance": 142.0
+      },
+      {
+        "feature": "away_rolling_expected_points",
+        "importance": 128.0
+      },
+      {
+        "feature": "home_rolling_expected_points",
+        "importance": 126.0
+      },
+      {
+        "feature": "away_rolling_goals_scored",
+        "importance": 121.0
+      },
+      {
+        "feature": "home_rolling_goals_scored",
+        "importance": 118.0
+      },
+      {
+        "feature": "home_rolling_clean_sheet_rate",
+        "importance": 118.0
+      },
+      {
+        "feature": "home_rolling_goals_conceded",
+        "importance": 108.0
+      },
+      {
+        "feature": "away_rolling_goals_conceded",
+        "importance": 106.0
+      },
+      {
+        "feature": "away_last_3_match_win_rate",
+        "importance": 98.0
+      },
+      {
+        "feature": "away_rolling_clean_sheet_rate",
+        "importance": 86.0
+      },
+      {
+        "feature": "home_last_5_match_win_rate",
+        "importance": 73.0
+      },
+      {
+        "feature": "away_last_5_match_win_rate",
+        "importance": 55.0
+      },
+      {
+        "feature": "away_defensive_strength",
+        "importance": 53.0
+      },
+      {
+        "feature": "home_last_3_match_win_rate",
+        "importance": 45.0
+      },
+      {
+        "feature": "home_defensive_strength",
+        "importance": 40.0
+      },
+      {
+        "feature": "match_pressure_index",
+        "importance": 39.0
+      },
+      {
+        "feature": "continental_matchup",
+        "importance": 33.0
+      },
+      {
+        "feature": "derby_flag",
+        "importance": 30.0
+      },
+      {
+        "feature": "host_advantage",
+        "importance": 24.0
+      },
+      {
+        "feature": "travel_proxy",
+        "importance": 23.0
+      },
+      {
+        "feature": "home_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_rank_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_points_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "external_elo_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "market_value_ratio",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_scoring_rate",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_scoring_rate",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_conceding_rate",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_conceding_rate",
+        "importance": 0.0
+      },
+      {
+        "feature": "expected_goals_against_proxy",
+        "importance": 0.0
+      },
+      {
+        "feature": "knockout_flag",
+        "importance": 0.0
+      }
+    ],
+    "catboost": [
+      {
+        "feature": "elo_difference",
+        "importance": 25.143602452637325
+      },
+      {
+        "feature": "defensive_elo",
+        "importance": 5.8074020435690255
+      },
+      {
+        "feature": "home_offensive_elo",
+        "importance": 4.300588812122648
+      },
+      {
+        "feature": "home_elo",
+        "importance": 3.924105614164397
+      },
+      {
+        "feature": "away_elo",
+        "importance": 3.665684429976486
+      },
+      {
+        "feature": "expected_goals_proxy",
+        "importance": 3.443563840607554
+      },
+      {
+        "feature": "away_offensive_elo",
+        "importance": 2.9366473152678245
+      },
+      {
+        "feature": "offensive_elo",
+        "importance": 2.8864924636566
+      },
+      {
+        "feature": "home_defensive_elo",
+        "importance": 2.8391553592257153
+      },
+      {
+        "feature": "tournament_importance",
+        "importance": 2.8114617529937656
+      },
+      {
+        "feature": "conceding_rate",
+        "importance": 2.338399998848329
+      },
+      {
+        "feature": "attack_strength",
+        "importance": 2.2784352150778338
+      },
+      {
+        "feature": "rolling_elo_delta",
+        "importance": 2.2385915648983037
+      },
+      {
+        "feature": "away_defensive_elo",
+        "importance": 1.8662799207269198
+      },
+      {
+        "feature": "defensive_strength",
+        "importance": 1.708972475870579
+      },
+      {
+        "feature": "match_pressure_index",
+        "importance": 1.5517086844423928
+      },
+      {
+        "feature": "home_weighted_recent_form",
+        "importance": 1.544537174367993
+      },
+      {
+        "feature": "away_expected_goals_proxy",
+        "importance": 1.4394224971760032
+      },
+      {
+        "feature": "home_expected_goals_proxy",
+        "importance": 1.4040468188235717
+      },
+      {
+        "feature": "scoring_rate",
+        "importance": 1.3957367555049256
+      },
+      {
+        "feature": "away_rolling_goal_difference",
+        "importance": 1.3474589198646163
+      },
+      {
+        "feature": "away_attack_strength",
+        "importance": 1.2542083442902714
+      },
+      {
+        "feature": "away_last_10_match_win_rate",
+        "importance": 1.2021864099751636
+      },
+      {
+        "feature": "away_weighted_recent_form",
+        "importance": 1.1683084962254158
+      },
+      {
+        "feature": "rest_days",
+        "importance": 1.1620283002267557
+      },
+      {
+        "feature": "home_rolling_goal_difference",
+        "importance": 1.1571211411588351
+      },
+      {
+        "feature": "away_last_3_match_win_rate",
+        "importance": 1.1034576127877265
+      },
+      {
+        "feature": "home_rest_days",
+        "importance": 1.0841254784648775
+      },
+      {
+        "feature": "away_rolling_goals_conceded",
+        "importance": 1.0241562772773374
+      },
+      {
+        "feature": "home_attack_strength",
+        "importance": 0.987539020550321
+      },
+      {
+        "feature": "home_rolling_clean_sheet_rate",
+        "importance": 0.9191932523176309
+      },
+      {
+        "feature": "expected_goals_against_proxy",
+        "importance": 0.8995370969998627
+      },
+      {
+        "feature": "home_rolling_goals_conceded",
+        "importance": 0.8223031926096181
+      },
+      {
+        "feature": "home_rolling_goals_scored",
+        "importance": 0.7672917330378493
+      },
+      {
+        "feature": "away_conceding_rate",
+        "importance": 0.7368039231852564
+      },
+      {
+        "feature": "away_last_5_match_win_rate",
+        "importance": 0.7367145790761805
+      },
+      {
+        "feature": "host_advantage",
+        "importance": 0.7192679191453679
+      },
+      {
+        "feature": "home_last_10_match_win_rate",
+        "importance": 0.7144689731792419
+      },
+      {
+        "feature": "away_rolling_expected_points",
+        "importance": 0.6923632785421509
+      },
+      {
+        "feature": "away_defensive_strength",
+        "importance": 0.6904709720528852
+      },
+      {
+        "feature": "away_rest_days",
+        "importance": 0.6851193935783182
+      },
+      {
+        "feature": "derby_flag",
+        "importance": 0.5345609478127298
+      },
+      {
+        "feature": "home_last_5_match_win_rate",
+        "importance": 0.5315422657289556
+      },
+      {
+        "feature": "home_scoring_rate",
+        "importance": 0.5240021567048626
+      },
+      {
+        "feature": "away_rolling_clean_sheet_rate",
+        "importance": 0.47615023235390036
+      },
+      {
+        "feature": "home_rolling_expected_points",
+        "importance": 0.4483964770543616
+      },
+      {
+        "feature": "away_scoring_rate",
+        "importance": 0.42600911622948917
+      },
+      {
+        "feature": "away_rolling_goals_scored",
+        "importance": 0.40906326770212775
+      },
+      {
+        "feature": "home_conceding_rate",
+        "importance": 0.359460100167993
+      },
+      {
+        "feature": "home_defensive_strength",
+        "importance": 0.35671041380648216
+      },
+      {
+        "feature": "continental_matchup",
+        "importance": 0.31028700437297274
+      },
+      {
+        "feature": "home_last_3_match_win_rate",
+        "importance": 0.19764766122052288
+      },
+      {
+        "feature": "travel_proxy",
+        "importance": 0.027210852341793944
+      },
+      {
+        "feature": "home_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_rank",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_rank_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_fifa_points",
+        "importance": 0.0
+      },
+      {
+        "feature": "fifa_points_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_external_elo",
+        "importance": 0.0
+      },
+      {
+        "feature": "external_elo_diff",
+        "importance": 0.0
+      },
+      {
+        "feature": "home_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "away_market_value_eur",
+        "importance": 0.0
+      },
+      {
+        "feature": "market_value_ratio",
+        "importance": 0.0
+      },
+      {
+        "feature": "knockout_flag",
+        "importance": 0.0
+      }
+    ],
+    "elo_poisson": []
+  }
 }

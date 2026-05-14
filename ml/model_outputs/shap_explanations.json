@@ -1,0 +1,2674 @@
+{
+  "metadata": {
+    "schema_version": "1.0.0",
+    "model_version": "ml-pipeline-v1",
+    "generated_at": "2026-05-13T23:01:52.621417+00:00",
+    "artifact": "shap_explanations.json",
+    "source": {
+      "model_manifest": "offline-ml-pipeline/models/training_manifest.json"
+    }
+  },
+  "data": {
+    "status": "complete",
+    "model": "catboost",
+    "class_labels": [
+      "H",
+      "D",
+      "A"
+    ],
+    "global_feature_importance": [
+      {
+        "feature": "elo_difference",
+        "mean_abs_shap": 0.1856261560803653
+      },
+      {
+        "feature": "home_elo",
+        "mean_abs_shap": 0.06427511845465911
+      },
+      {
+        "feature": "defensive_elo",
+        "mean_abs_shap": 0.0618641666001333
+      },
+      {
+        "feature": "away_elo",
+        "mean_abs_shap": 0.04952473829181941
+      },
+      {
+        "feature": "away_offensive_elo",
+        "mean_abs_shap": 0.045423221409221365
+      },
+      {
+        "feature": "home_offensive_elo",
+        "mean_abs_shap": 0.03468438801298933
+      },
+      {
+        "feature": "expected_goals_proxy",
+        "mean_abs_shap": 0.0326582449146139
+      },
+      {
+        "feature": "tournament_importance",
+        "mean_abs_shap": 0.024939064820215948
+      },
+      {
+        "feature": "offensive_elo",
+        "mean_abs_shap": 0.019386220302817232
+      },
+      {
+        "feature": "conceding_rate",
+        "mean_abs_shap": 0.018946672537757954
+      },
+      {
+        "feature": "attack_strength",
+        "mean_abs_shap": 0.017895158446338592
+      },
+      {
+        "feature": "away_last_10_match_win_rate",
+        "mean_abs_shap": 0.017846529318406034
+      },
+      {
+        "feature": "match_pressure_index",
+        "mean_abs_shap": 0.015531606661111797
+      },
+      {
+        "feature": "scoring_rate",
+        "mean_abs_shap": 0.015033676015062654
+      },
+      {
+        "feature": "home_defensive_elo",
+        "mean_abs_shap": 0.014300410532456231
+      },
+      {
+        "feature": "home_rest_days",
+        "mean_abs_shap": 0.013626485736859572
+      },
+      {
+        "feature": "defensive_strength",
+        "mean_abs_shap": 0.013268641519097029
+      },
+      {
+        "feature": "home_rolling_goal_difference",
+        "mean_abs_shap": 0.012455665726824822
+      },
+      {
+        "feature": "rolling_elo_delta",
+        "mean_abs_shap": 0.011396106681549787
+      },
+      {
+        "feature": "away_expected_goals_proxy",
+        "mean_abs_shap": 0.01102116522543586
+      },
+      {
+        "feature": "home_expected_goals_proxy",
+        "mean_abs_shap": 0.010097568723595084
+      },
+      {
+        "feature": "home_rolling_goals_conceded",
+        "mean_abs_shap": 0.009987530100479253
+      },
+      {
+        "feature": "derby_flag",
+        "mean_abs_shap": 0.009485217856316333
+      },
+      {
+        "feature": "home_weighted_recent_form",
+        "mean_abs_shap": 0.008901793869578845
+      },
+      {
+        "feature": "rest_days",
+        "mean_abs_shap": 0.008530076958795511
+      },
+      {
+        "feature": "away_last_5_match_win_rate",
+        "mean_abs_shap": 0.00784085918498376
+      },
+      {
+        "feature": "away_defensive_elo",
+        "mean_abs_shap": 0.007685487529884013
+      },
+      {
+        "feature": "host_advantage",
+        "mean_abs_shap": 0.00768346842861527
+      },
+      {
+        "feature": "expected_goals_against_proxy",
+        "mean_abs_shap": 0.007672942395026644
+      },
+      {
+        "feature": "away_rest_days",
+        "mean_abs_shap": 0.007037150732908165
+      },
+      {
+        "feature": "away_rolling_goal_difference",
+        "mean_abs_shap": 0.006767606478597293
+      },
+      {
+        "feature": "home_rolling_clean_sheet_rate",
+        "mean_abs_shap": 0.0067342028257144325
+      },
+      {
+        "feature": "away_last_3_match_win_rate",
+        "mean_abs_shap": 0.006607332052155914
+      },
+      {
+        "feature": "away_rolling_clean_sheet_rate",
+        "mean_abs_shap": 0.00587840655457847
+      },
+      {
+        "feature": "home_rolling_goals_scored",
+        "mean_abs_shap": 0.00549138845472848
+      },
+      {
+        "feature": "home_attack_strength",
+        "mean_abs_shap": 0.005343045031334362
+      },
+      {
+        "feature": "home_conceding_rate",
+        "mean_abs_shap": 0.005120030532812647
+      },
+      {
+        "feature": "home_last_10_match_win_rate",
+        "mean_abs_shap": 0.005108141649534579
+      },
+      {
+        "feature": "away_rolling_expected_points",
+        "mean_abs_shap": 0.0051041826558302535
+      },
+      {
+        "feature": "away_weighted_recent_form",
+        "mean_abs_shap": 0.004945153332739488
+      },
+      {
+        "feature": "away_rolling_goals_conceded",
+        "mean_abs_shap": 0.004745854811401412
+      },
+      {
+        "feature": "away_attack_strength",
+        "mean_abs_shap": 0.00469645316005218
+      },
+      {
+        "feature": "away_conceding_rate",
+        "mean_abs_shap": 0.004464282332314392
+      },
+      {
+        "feature": "home_last_5_match_win_rate",
+        "mean_abs_shap": 0.004435256752496072
+      },
+      {
+        "feature": "away_rolling_goals_scored",
+        "mean_abs_shap": 0.0037392003941981227
+      },
+      {
+        "feature": "away_defensive_strength",
+        "mean_abs_shap": 0.0037171235825071937
+      },
+      {
+        "feature": "away_scoring_rate",
+        "mean_abs_shap": 0.0035747169745674054
+      },
+      {
+        "feature": "home_defensive_strength",
+        "mean_abs_shap": 0.0035274989306654475
+      },
+      {
+        "feature": "home_rolling_expected_points",
+        "mean_abs_shap": 0.002853463105695522
+      },
+      {
+        "feature": "home_scoring_rate",
+        "mean_abs_shap": 0.002696315079667873
+      }
+    ],
+    "local_match_explanations": [
+      {
+        "match_id": "match_006075",
+        "date": "2025-01-18",
+        "home_team": "United States",
+        "away_team": "Venezuela",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.289620150663972,
+            "class_contributions": {
+              "H": 0.4344302259959609,
+              "D": -0.04681197579576321,
+              "A": -0.387618250200192
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.08766884778062382,
+            "class_contributions": {
+              "H": 0.12472665600241471,
+              "D": 0.0067766156685217195,
+              "A": -0.13150327167093506
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07438583689559532,
+            "class_contributions": {
+              "H": 0.08826189797984368,
+              "D": 0.023316857363550134,
+              "A": -0.11157875534339216
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.04619028676459883,
+            "class_contributions": {
+              "H": -0.0692854301468975,
+              "D": 0.004848278717699738,
+              "A": 0.06443715142919924
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.0453684940007277,
+            "class_contributions": {
+              "H": 0.06805274100109274,
+              "D": -0.02315265136028741,
+              "A": -0.044900089640802957
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.04348450644879742,
+            "class_contributions": {
+              "H": 0.06522675967319576,
+              "D": -0.013338736390914792,
+              "A": -0.05188802328228173
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.02667286511299302,
+            "class_contributions": {
+              "H": -0.04000929766948949,
+              "D": 0.012909801250050156,
+              "A": 0.02709949641943942
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.022135814370531057,
+            "class_contributions": {
+              "H": -0.03320372155579727,
+              "D": 0.02895733910760459,
+              "A": 0.0042463824481913225
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.02209308212389514,
+            "class_contributions": {
+              "H": 0.033139623185842876,
+              "D": -0.022271869530929696,
+              "A": -0.010867753654912852
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.021477099996298248,
+            "class_contributions": {
+              "H": 0.03221564999444692,
+              "D": -0.011566231359320434,
+              "A": -0.020649418635127384
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006076",
+        "date": "2025-01-22",
+        "home_team": "United States",
+        "away_team": "Costa Rica",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.10684588903422713,
+            "class_contributions": {
+              "H": 0.16026883355134303,
+              "D": -0.017336250528843185,
+              "A": -0.14293258302249515
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.09079436699092291,
+            "class_contributions": {
+              "H": 0.13619155048638526,
+              "D": -0.0010002874919715409,
+              "A": -0.13519126299441198
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07515837450685693,
+            "class_contributions": {
+              "H": 0.09241384550194637,
+              "D": 0.02032371625833966,
+              "A": -0.1127375617602848
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.07380081639419335,
+            "class_contributions": {
+              "H": -0.1107012245912905,
+              "D": 0.022925988610263324,
+              "A": 0.08777523598102625
+            }
+          },
+          {
+            "feature": "derby_flag",
+            "mean_abs_shap": 0.06823522117774031,
+            "class_contributions": {
+              "H": -0.04714657551052974,
+              "D": 0.10235283176661061,
+              "A": -0.05520625625608059
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.0400697540807567,
+            "class_contributions": {
+              "H": 0.06010463112113619,
+              "D": -0.01273763444908692,
+              "A": -0.047366996672047
+            }
+          },
+          {
+            "feature": "rest_days",
+            "mean_abs_shap": 0.033425313554980136,
+            "class_contributions": {
+              "H": 0.010737702171460743,
+              "D": -0.05013797033247031,
+              "A": 0.03940026816100937
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.028336000554163788,
+            "class_contributions": {
+              "H": 0.042504000831245975,
+              "D": -0.02073768748064387,
+              "A": -0.021766313350601526
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.023388910513034197,
+            "class_contributions": {
+              "H": -0.03508336576955184,
+              "D": 0.025978334401994697,
+              "A": 0.009105031367556058
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.019193734650020614,
+            "class_contributions": {
+              "H": 0.02879060197503084,
+              "D": -0.01647455268762505,
+              "A": -0.012316049287405949
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006077",
+        "date": "2025-01-22",
+        "home_team": "Uzbekistan",
+        "away_team": "Jordan",
+        "top_features": [
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.07784232770765039,
+            "class_contributions": {
+              "H": -0.11676349156147466,
+              "D": 0.027771255076049113,
+              "A": 0.08899223648542741
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.06872994338177706,
+            "class_contributions": {
+              "H": 0.08062945471509232,
+              "D": 0.022465460357573613,
+              "A": -0.10309491507266523
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.04753964683667259,
+            "class_contributions": {
+              "H": -0.04702669406894643,
+              "D": -0.024282776186062623,
+              "A": 0.07130947025500872
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.04095154027520113,
+            "class_contributions": {
+              "H": 0.04743953871340531,
+              "D": 0.013987771699397272,
+              "A": -0.06142731041280081
+            }
+          },
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.03554931840599643,
+            "class_contributions": {
+              "H": -0.05332397760899841,
+              "D": 0.020997468507984597,
+              "A": 0.03232650910100627
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.028495688715945044,
+            "class_contributions": {
+              "H": -0.042743533073917456,
+              "D": 0.026070599921812543,
+              "A": 0.016672933152105135
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.020720558531059734,
+            "class_contributions": {
+              "H": 0.031080837796589558,
+              "D": -0.015481268305254134,
+              "A": -0.015599569491335508
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.020599776549451873,
+            "class_contributions": {
+              "H": -0.007282076797570028,
+              "D": 0.030899664824176717,
+              "A": -0.02361758802660888
+            }
+          },
+          {
+            "feature": "home_rest_days",
+            "mean_abs_shap": 0.013969257252511066,
+            "class_contributions": {
+              "H": 0.013203441063855618,
+              "D": 0.0077504448149108025,
+              "A": -0.020953885878766777
+            }
+          },
+          {
+            "feature": "match_pressure_index",
+            "mean_abs_shap": 0.012809587935336158,
+            "class_contributions": {
+              "H": -0.003638033140642462,
+              "D": 0.019214381903004497,
+              "A": -0.015576348762361516
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006078",
+        "date": "2025-02-07",
+        "home_team": "Jamaica",
+        "away_team": "Trinidad and Tobago",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.09481397546788876,
+            "class_contributions": {
+              "H": 0.128821604514532,
+              "D": 0.013399358687296652,
+              "A": -0.14222096320183764
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.07460328415276353,
+            "class_contributions": {
+              "H": -0.11190492622914544,
+              "D": 0.012993219974967832,
+              "A": 0.0989117062541773
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.06812706109141027,
+            "class_contributions": {
+              "H": 0.09066913615108634,
+              "D": 0.011521455486029264,
+              "A": -0.1021905916371152
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.052648357750666674,
+            "class_contributions": {
+              "H": 0.06113816373063188,
+              "D": 0.01783437289536897,
+              "A": -0.07897253662599919
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.05172690947607048,
+            "class_contributions": {
+              "H": -0.04941587483222621,
+              "D": -0.028174489381879667,
+              "A": 0.07759036421410556
+            }
+          },
+          {
+            "feature": "scoring_rate",
+            "mean_abs_shap": 0.034298472490205574,
+            "class_contributions": {
+              "H": -0.05034842482074255,
+              "D": -0.00109928391456517,
+              "A": 0.05144770873530899
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.026914283637175403,
+            "class_contributions": {
+              "H": -0.04037142545576313,
+              "D": 0.011361627061739144,
+              "A": 0.02900979839402393
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.026108712496752562,
+            "class_contributions": {
+              "H": -0.03916306874512866,
+              "D": 0.019840360037390464,
+              "A": 0.01932270870773855
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.023323542484436507,
+            "class_contributions": {
+              "H": -0.015814689587841383,
+              "D": 0.03498531372665429,
+              "A": -0.01917062413881385
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.022516233212450516,
+            "class_contributions": {
+              "H": 0.033774349818676414,
+              "D": -0.005635939892897575,
+              "A": -0.028138409925777562
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006079",
+        "date": "2025-02-08",
+        "home_team": "Chile",
+        "away_team": "Panama",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.3200692264171163,
+            "class_contributions": {
+              "H": -0.480103839625669,
+              "D": 0.048745289412972036,
+              "A": 0.4313585502127079
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.0910475902618358,
+            "class_contributions": {
+              "H": -0.13657138539275324,
+              "D": 0.05343785075848389,
+              "A": 0.0831335346342703
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.0786770370576293,
+            "class_contributions": {
+              "H": -0.11801555558644275,
+              "D": 0.0021936993387950037,
+              "A": 0.11582185624765014
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.04968038468115612,
+            "class_contributions": {
+              "H": -0.05286245545891238,
+              "D": -0.021658121562822204,
+              "A": 0.07452057702173377
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.03670104774181096,
+            "class_contributions": {
+              "H": -0.011629055357990477,
+              "D": 0.05505157161271545,
+              "A": -0.043422516254726956
+            }
+          },
+          {
+            "feature": "match_pressure_index",
+            "mean_abs_shap": 0.035538090849879356,
+            "class_contributions": {
+              "H": 0.015716632063957403,
+              "D": 0.037590504210862095,
+              "A": -0.05330713627481857
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.029228034386261873,
+            "class_contributions": {
+              "H": -0.04384205157939317,
+              "D": 0.0018332227400080668,
+              "A": 0.042008828839384386
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.022671684866400133,
+            "class_contributions": {
+              "H": -0.029236541783797313,
+              "D": -0.004770985515803184,
+              "A": 0.03400752729959991
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.02057479114491373,
+            "class_contributions": {
+              "H": 0.030862186717370274,
+              "D": -0.007145937178468952,
+              "A": -0.023716249538901956
+            }
+          },
+          {
+            "feature": "home_rest_days",
+            "mean_abs_shap": 0.019270373601464424,
+            "class_contributions": {
+              "H": -0.00813980650010898,
+              "D": 0.028905560402196547,
+              "A": -0.020765753902087743
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006080",
+        "date": "2025-02-10",
+        "home_team": "Jamaica",
+        "away_team": "Trinidad and Tobago",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.07329695817927707,
+            "class_contributions": {
+              "H": 0.10114006306201838,
+              "D": 0.008805374206892001,
+              "A": -0.10994543726892085
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07133115770445035,
+            "class_contributions": {
+              "H": 0.0815597738199509,
+              "D": 0.025436962736724935,
+              "A": -0.10699673655667519
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.05740628626089708,
+            "class_contributions": {
+              "H": -0.08610942939134514,
+              "D": 0.03954297483269447,
+              "A": 0.04656645455865164
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.048198272297735156,
+            "class_contributions": {
+              "H": -0.051032770961298976,
+              "D": -0.021264637485303942,
+              "A": 0.07229740844660255
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.04773537489539174,
+            "class_contributions": {
+              "H": 0.0562134214968206,
+              "D": 0.015389640846268076,
+              "A": -0.07160306234308655
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.02475116976353794,
+            "class_contributions": {
+              "H": -0.020315037635033683,
+              "D": 0.03712675464530629,
+              "A": -0.016811717010273838
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.023864979105281892,
+            "class_contributions": {
+              "H": -0.03579746865792229,
+              "D": 0.012999404810969952,
+              "A": 0.022798063846953445
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.02249776812370553,
+            "class_contributions": {
+              "H": 0.033746652185558966,
+              "D": -0.008507275452253823,
+              "A": -0.025239376733303804
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.02086718755269028,
+            "class_contributions": {
+              "H": 0.031300781329035424,
+              "D": -0.011474131249076983,
+              "A": -0.019826650079958444
+            }
+          },
+          {
+            "feature": "rolling_elo_delta",
+            "mean_abs_shap": 0.018517700945575418,
+            "class_contributions": {
+              "H": 0.008524779617646987,
+              "D": -0.02777655141836329,
+              "A": 0.019251771800715974
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006081",
+        "date": "2025-02-13",
+        "home_team": "Oman",
+        "away_team": "Sudan",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.13797336155454312,
+            "class_contributions": {
+              "H": 0.20696004233181675,
+              "D": -0.02559971266152089,
+              "A": -0.18136032967029173
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.10020588254377283,
+            "class_contributions": {
+              "H": 0.14072335193090568,
+              "D": 0.009585471884753439,
+              "A": -0.15030882381565933
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07113133183036276,
+            "class_contributions": {
+              "H": 0.08641567862678302,
+              "D": 0.020281319118761257,
+              "A": -0.106696997745544
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.04753518328016504,
+            "class_contributions": {
+              "H": 0.033045129749624036,
+              "D": 0.03825764517062399,
+              "A": -0.07130277492024707
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.03043955338165393,
+            "class_contributions": {
+              "H": 0.04565933007248079,
+              "D": -0.011297883086032539,
+              "A": -0.03436144698644847
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.025122407347385533,
+            "class_contributions": {
+              "H": 0.03768361102107784,
+              "D": -0.021650127684105812,
+              "A": -0.016033483336972937
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.020472240352903216,
+            "class_contributions": {
+              "H": 0.03070836052935507,
+              "D": -0.019251706267505306,
+              "A": -0.011456654261849268
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.019554221568517372,
+            "class_contributions": {
+              "H": -0.01657504442191046,
+              "D": 0.02933133235277585,
+              "A": -0.01275628793086581
+            }
+          },
+          {
+            "feature": "home_defensive_elo",
+            "mean_abs_shap": 0.017486022932576974,
+            "class_contributions": {
+              "H": 0.012576041395023607,
+              "D": 0.01365299300384123,
+              "A": -0.026229034398866088
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.015987544946455767,
+            "class_contributions": {
+              "H": 0.013610050771515843,
+              "D": -0.023981317419683557,
+              "A": 0.010371266648167898
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006082",
+        "date": "2025-03-09",
+        "home_team": "Saint Vincent and the Grenadines",
+        "away_team": "Grenada",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.1029592040631615,
+            "class_contributions": {
+              "H": 0.14077064609149365,
+              "D": 0.013668160003245083,
+              "A": -0.15443880609474575
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.07522703342896281,
+            "class_contributions": {
+              "H": -0.11284055014344319,
+              "D": 0.01906607999912682,
+              "A": 0.09377447014431842
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.05224242692544617,
+            "class_contributions": {
+              "H": -0.06329365008110119,
+              "D": -0.015069990307067982,
+              "A": 0.07836364038816936
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.046876120458914705,
+            "class_contributions": {
+              "H": 0.07031418068837116,
+              "D": -0.01203968827296413,
+              "A": -0.05827449241540883
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.03882648948785992,
+            "class_contributions": {
+              "H": 0.05823973423179029,
+              "D": -0.005391570340549598,
+              "A": -0.052848163891239884
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.031741008104330386,
+            "class_contributions": {
+              "H": 0.041778517976787125,
+              "D": 0.00583299417970913,
+              "A": -0.04761151215649491
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.026959903799694426,
+            "class_contributions": {
+              "H": 0.025569484535947786,
+              "D": 0.014870371163594298,
+              "A": -0.040439855699541186
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.023327335965191875,
+            "class_contributions": {
+              "H": -0.021230360777852904,
+              "D": 0.0349910039477877,
+              "A": -0.013760643169935024
+            }
+          },
+          {
+            "feature": "match_pressure_index",
+            "mean_abs_shap": 0.018568560430457723,
+            "class_contributions": {
+              "H": 0.006139512580025257,
+              "D": 0.02171332806566176,
+              "A": -0.027852840645686154
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.016341978192098344,
+            "class_contributions": {
+              "H": 0.02451296728814734,
+              "D": -0.0038438183646575005,
+              "A": -0.020669148923490196
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006083",
+        "date": "2025-03-13",
+        "home_team": "Oman",
+        "away_team": "Sudan",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.10384852263450702,
+            "class_contributions": {
+              "H": 0.15577278395176225,
+              "D": -0.019348227285237357,
+              "A": -0.13642455666652145
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.09211787536334028,
+            "class_contributions": {
+              "H": 0.1346853942368716,
+              "D": 0.003491418808139797,
+              "A": -0.13817681304500945
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.0709974694533791,
+            "class_contributions": {
+              "H": 0.07937867087644528,
+              "D": 0.02711753330362343,
+              "A": -0.10649620418006862
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.046604954059208746,
+            "class_contributions": {
+              "H": 0.03311051782337371,
+              "D": 0.03679691326543996,
+              "A": -0.06990743108881257
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.027466976108356606,
+            "class_contributions": {
+              "H": 0.04120046416253482,
+              "D": -0.007988239673674045,
+              "A": -0.03321222448886096
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.023674402275317964,
+            "class_contributions": {
+              "H": 0.03551160341297652,
+              "D": -0.02135173884804821,
+              "A": -0.014159864564929162
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.019676584593209024,
+            "class_contributions": {
+              "H": 0.029514876889813833,
+              "D": -0.018818131275941515,
+              "A": -0.010696745613871728
+            }
+          },
+          {
+            "feature": "away_rolling_clean_sheet_rate",
+            "mean_abs_shap": 0.01962196241133501,
+            "class_contributions": {
+              "H": -0.005805517768589292,
+              "D": -0.023627425848412785,
+              "A": 0.02943294361700296
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.017352125289129976,
+            "class_contributions": {
+              "H": -0.013717552349617749,
+              "D": 0.02602818793369466,
+              "A": -0.012310635584077523
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.015375172712438013,
+            "class_contributions": {
+              "H": 0.008220430602765571,
+              "D": -0.02306275906865692,
+              "A": 0.014842328465891551
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006084",
+        "date": "2025-03-14",
+        "home_team": "Jordan",
+        "away_team": "North Korea",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.33013927555843114,
+            "class_contributions": {
+              "H": 0.49520891333764927,
+              "D": -0.07265233067784821,
+              "A": -0.4225565826597959
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.0785124787136184,
+            "class_contributions": {
+              "H": 0.0996095513518981,
+              "D": 0.01815916671853014,
+              "A": -0.11776871807042694
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.054304118605219366,
+            "class_contributions": {
+              "H": 0.08145617790783005,
+              "D": -0.004185857134897084,
+              "A": -0.07727032077293096
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.04878047831840027,
+            "class_contributions": {
+              "H": 0.07317071747760145,
+              "D": -0.029566717453369834,
+              "A": -0.04360400002422951
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.04029360788579018,
+            "class_contributions": {
+              "H": 0.06044041182868527,
+              "D": -0.02013830471819666,
+              "A": -0.040302107110488615
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.033789401600851594,
+            "class_contributions": {
+              "H": 0.05068410240127711,
+              "D": -0.006121725239547935,
+              "A": -0.04456237716172973
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.02330097071724811,
+            "class_contributions": {
+              "H": 0.023249076449891538,
+              "D": 0.011702379625981044,
+              "A": -0.03495145607587175
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.02288229895627959,
+            "class_contributions": {
+              "H": -0.034323448434420076,
+              "D": 0.024710572631402077,
+              "A": 0.009612875803016608
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.019594508864729774,
+            "class_contributions": {
+              "H": 0.02939176329709478,
+              "D": -0.017865368408205757,
+              "A": -0.011526394888888795
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.017646664008932684,
+            "class_contributions": {
+              "H": -0.026469996013399135,
+              "D": 0.011708368605601783,
+              "A": 0.014761627407797134
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006085",
+        "date": "2025-03-16",
+        "home_team": "Honduras",
+        "away_team": "Guatemala",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.2205490535800035,
+            "class_contributions": {
+              "H": -0.33082358037000176,
+              "D": 0.037489823538295455,
+              "A": 0.29333375683171325
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.09063256930551883,
+            "class_contributions": {
+              "H": -0.1029698318915958,
+              "D": -0.03297902206668242,
+              "A": 0.13594885395827827
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.07524927551538504,
+            "class_contributions": {
+              "H": -0.06721750948384503,
+              "D": -0.04565640378923271,
+              "A": 0.11287391327307739
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.0572008287905314,
+            "class_contributions": {
+              "H": -0.08580124318579684,
+              "D": 0.02341554474687858,
+              "A": 0.06238569843891878
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.053592557412182766,
+            "class_contributions": {
+              "H": 0.08038883611827434,
+              "D": -0.0043207898378319586,
+              "A": -0.07606804628044199
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.04319108270864825,
+            "class_contributions": {
+              "H": 0.03378229122581827,
+              "D": 0.031004332837153106,
+              "A": -0.06478662406297338
+            }
+          },
+          {
+            "feature": "match_pressure_index",
+            "mean_abs_shap": 0.02975481016609315,
+            "class_contributions": {
+              "H": 0.020450149424377558,
+              "D": 0.02418206582476271,
+              "A": -0.04463221524913919
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.02135853044717215,
+            "class_contributions": {
+              "H": -0.03203779567075798,
+              "D": 0.012181251923030767,
+              "A": 0.01985654374772771
+            }
+          },
+          {
+            "feature": "host_advantage",
+            "mean_abs_shap": 0.01948136515472046,
+            "class_contributions": {
+              "H": -0.026804581992515758,
+              "D": -0.0024174657395649793,
+              "A": 0.02922204773208064
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.017701909638242412,
+            "class_contributions": {
+              "H": -0.026552864457362806,
+              "D": 0.009333306197397874,
+              "A": 0.017219558259966558
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006086",
+        "date": "2025-03-19",
+        "home_team": "Central African Republic",
+        "away_team": "Madagascar",
+        "top_features": [
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.06384838668423524,
+            "class_contributions": {
+              "H": -0.07994467884594078,
+              "D": -0.01582790118040949,
+              "A": 0.09577258002635547
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.052695354481447444,
+            "class_contributions": {
+              "H": -0.06744349958168411,
+              "D": -0.011599532140486795,
+              "A": 0.07904303172217145
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.05103711172531539,
+            "class_contributions": {
+              "H": 0.02338086365351806,
+              "D": 0.05317480393445581,
+              "A": -0.0765556675879723
+            }
+          },
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.049478631136390366,
+            "class_contributions": {
+              "H": -0.07421794670458404,
+              "D": 0.031031878964864257,
+              "A": 0.043186067739722805
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.04258644399271557,
+            "class_contributions": {
+              "H": -0.06260199335842698,
+              "D": -0.001277672630645807,
+              "A": 0.06387966598907392
+            }
+          },
+          {
+            "feature": "home_rolling_goal_difference",
+            "mean_abs_shap": 0.03757718925111521,
+            "class_contributions": {
+              "H": -0.025847656884707408,
+              "D": -0.030518126991966137,
+              "A": 0.056365783876672085
+            }
+          },
+          {
+            "feature": "conceding_rate",
+            "mean_abs_shap": 0.034755591171977136,
+            "class_contributions": {
+              "H": -0.04325651916060688,
+              "D": -0.008876867597357042,
+              "A": 0.0521333867579675
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.03347748637064641,
+            "class_contributions": {
+              "H": 0.05021622955596959,
+              "D": -0.015280406348888501,
+              "A": -0.03493582320708115
+            }
+          },
+          {
+            "feature": "home_rolling_goals_conceded",
+            "mean_abs_shap": 0.03134019428334503,
+            "class_contributions": {
+              "H": -0.019425510026305194,
+              "D": -0.027584781398712684,
+              "A": 0.04701029142501722
+            }
+          },
+          {
+            "feature": "scoring_rate",
+            "mean_abs_shap": 0.031181718807313092,
+            "class_contributions": {
+              "H": -0.04641696510576679,
+              "D": -0.0003556131052028966,
+              "A": 0.04677257821096959
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006087",
+        "date": "2025-03-19",
+        "home_team": "Eswatini",
+        "away_team": "Cameroon",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.328303924183915,
+            "class_contributions": {
+              "H": -0.49245588627587195,
+              "D": 0.002827975760846514,
+              "A": 0.4896279105150266
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.0909627901396987,
+            "class_contributions": {
+              "H": -0.13644418520954782,
+              "D": 0.04371034154778429,
+              "A": 0.09273384366176399
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07389153616969178,
+            "class_contributions": {
+              "H": -0.08776701774852234,
+              "D": -0.0230702865060152,
+              "A": 0.11083730425453782
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.07139387548004666,
+            "class_contributions": {
+              "H": -0.08255822182673682,
+              "D": -0.024532591393333306,
+              "A": 0.10709081322006987
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.05991038234482051,
+            "class_contributions": {
+              "H": -0.06339533332353499,
+              "D": -0.026470240193694882,
+              "A": 0.08986557351723166
+            }
+          },
+          {
+            "feature": "conceding_rate",
+            "mean_abs_shap": 0.05441013739598144,
+            "class_contributions": {
+              "H": -0.03495895379143327,
+              "D": -0.04665625230253863,
+              "A": 0.08161520609397241
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.05208589479189902,
+            "class_contributions": {
+              "H": -0.07812884218784824,
+              "D": 0.020454761319162955,
+              "A": 0.057674080868685855
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.04883542761919705,
+            "class_contributions": {
+              "H": -0.07325314142879497,
+              "D": 0.005832248159226551,
+              "A": 0.06742089326956964
+            }
+          },
+          {
+            "feature": "home_defensive_elo",
+            "mean_abs_shap": 0.04183540986414196,
+            "class_contributions": {
+              "H": -0.014375835144847676,
+              "D": -0.04837727965136455,
+              "A": 0.06275311479621366
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.037632907504663665,
+            "class_contributions": {
+              "H": -0.0496343910258987,
+              "D": -0.0068149702310961405,
+              "A": 0.05644936125699615
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006088",
+        "date": "2025-03-19",
+        "home_team": "Hong Kong",
+        "away_team": "Macau",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.16854569906394054,
+            "class_contributions": {
+              "H": 0.25281854859591324,
+              "D": -0.02480845908718363,
+              "A": -0.22801008950872464
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.07136536230776945,
+            "class_contributions": {
+              "H": 0.10704804346165361,
+              "D": -0.031124084843993365,
+              "A": -0.07592395861766135
+            }
+          },
+          {
+            "feature": "home_expected_goals_proxy",
+            "mean_abs_shap": 0.060185361506858055,
+            "class_contributions": {
+              "H": 0.09027804226028734,
+              "D": -0.051666435096771594,
+              "A": -0.03861160716351525
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.058045970248486733,
+            "class_contributions": {
+              "H": -0.06902530095434181,
+              "D": -0.01804365441838825,
+              "A": 0.08706895537273014
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.0535362233532287,
+            "class_contributions": {
+              "H": 0.02092228747344133,
+              "D": 0.059382047556402154,
+              "A": -0.08030433502984262
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.04023783036803665,
+            "class_contributions": {
+              "H": 0.05460202544762818,
+              "D": 0.005754720104426994,
+              "A": -0.060356745552054766
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.037316710984762906,
+            "class_contributions": {
+              "H": -0.047644276371250696,
+              "D": 0.05597506647714402,
+              "A": -0.00833079010589401
+            }
+          },
+          {
+            "feature": "conceding_rate",
+            "mean_abs_shap": 0.03627099606909808,
+            "class_contributions": {
+              "H": 0.05440649410364593,
+              "D": -0.01498287460250185,
+              "A": -0.039423619501146444
+            }
+          },
+          {
+            "feature": "defensive_strength",
+            "mean_abs_shap": 0.03419198153314402,
+            "class_contributions": {
+              "H": 0.05128797229971651,
+              "D": -0.02171794246324693,
+              "A": -0.0295700298364686
+            }
+          },
+          {
+            "feature": "away_rolling_goal_difference",
+            "mean_abs_shap": 0.03217026778367103,
+            "class_contributions": {
+              "H": 0.04825540167550562,
+              "D": -0.02894244980724666,
+              "A": -0.01931295186826082
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006089",
+        "date": "2025-03-19",
+        "home_team": "India",
+        "away_team": "Maldives",
+        "top_features": [
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.0499461875672134,
+            "class_contributions": {
+              "H": -0.06455012854613766,
+              "D": -0.01036915280468231,
+              "A": 0.07491928135082021
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.03726968846022572,
+            "class_contributions": {
+              "H": -0.055034942170446945,
+              "D": -0.0008695905198918664,
+              "A": 0.05590453269033836
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.030791315745153064,
+            "class_contributions": {
+              "H": -0.000927129563963405,
+              "D": 0.04618697361772902,
+              "A": -0.04525984405376676
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.02931470444978877,
+            "class_contributions": {
+              "H": 0.04397205667468306,
+              "D": -0.01457407116067732,
+              "A": -0.029397985514005916
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.028797094067597423,
+            "class_contributions": {
+              "H": -0.04319564110139605,
+              "D": 0.02595236475209067,
+              "A": 0.01724327634930554
+            }
+          },
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.024967839660667318,
+            "class_contributions": {
+              "H": 0.015284825691539283,
+              "D": 0.02216693379945641,
+              "A": -0.037451759491006265
+            }
+          },
+          {
+            "feature": "match_pressure_index",
+            "mean_abs_shap": 0.017282344388841697,
+            "class_contributions": {
+              "H": -0.0055050366014971356,
+              "D": 0.025923516583263,
+              "A": -0.02041847998176495
+            }
+          },
+          {
+            "feature": "home_weighted_recent_form",
+            "mean_abs_shap": 0.01713221034930185,
+            "class_contributions": {
+              "H": -0.020484754931224015,
+              "D": -0.005213560592728658,
+              "A": 0.025698315523952884
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.016310980234950583,
+            "class_contributions": {
+              "H": 0.02446647035242603,
+              "D": -0.013428978511747494,
+              "A": -0.011037491840678223
+            }
+          },
+          {
+            "feature": "home_rest_days",
+            "mean_abs_shap": 0.013076096463891207,
+            "class_contributions": {
+              "H": 0.0012707063357954198,
+              "D": 0.018343438360041146,
+              "A": -0.019614144695837058
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006090",
+        "date": "2025-03-19",
+        "home_team": "Kazakhstan",
+        "away_team": "Cura\u00e7ao",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.2799955233348908,
+            "class_contributions": {
+              "H": -0.4199932850023354,
+              "D": 0.018777766063597778,
+              "A": 0.4012155189387392
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.09674729800393655,
+            "class_contributions": {
+              "H": -0.10658095652461413,
+              "D": -0.038539990481291066,
+              "A": 0.14512094700590447
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.07883377328657665,
+            "class_contributions": {
+              "H": 0.04226896723571586,
+              "D": 0.07598169269414831,
+              "A": -0.11825065992986576
+            }
+          },
+          {
+            "feature": "conceding_rate",
+            "mean_abs_shap": 0.07777307680922906,
+            "class_contributions": {
+              "H": -0.04709214094830235,
+              "D": -0.06956747426554089,
+              "A": 0.11665961521384391
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.06855447194468557,
+            "class_contributions": {
+              "H": -0.06675940815437967,
+              "D": -0.03607229976264912,
+              "A": 0.10283170791702792
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.051239353574348306,
+            "class_contributions": {
+              "H": -0.06607910600476617,
+              "D": -0.010779924356756294,
+              "A": 0.07685903036152245
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.04744283275424909,
+            "class_contributions": {
+              "H": -0.053592711400622065,
+              "D": -0.01757153773075117,
+              "A": 0.07116424913137404
+            }
+          },
+          {
+            "feature": "scoring_rate",
+            "mean_abs_shap": 0.04602932616338475,
+            "class_contributions": {
+              "H": -0.05896643253634085,
+              "D": -0.010077556708735832,
+              "A": 0.06904398924507756
+            }
+          },
+          {
+            "feature": "attack_strength",
+            "mean_abs_shap": 0.045978274732916935,
+            "class_contributions": {
+              "H": -0.06896741209937496,
+              "D": 0.020210139643411305,
+              "A": 0.04875727245596453
+            }
+          },
+          {
+            "feature": "match_pressure_index",
+            "mean_abs_shap": 0.044785505716675666,
+            "class_contributions": {
+              "H": 0.0105823715983581,
+              "D": 0.05659588697665564,
+              "A": -0.06717825857501325
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006091",
+        "date": "2025-03-19",
+        "home_team": "Liberia",
+        "away_team": "Tunisia",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.33700300345933326,
+            "class_contributions": {
+              "H": -0.5055045051889994,
+              "D": 0.004515801317043144,
+              "A": 0.5009887038719573
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.07349723417641542,
+            "class_contributions": {
+              "H": -0.11024585126462258,
+              "D": 0.029411491633365216,
+              "A": 0.0808343596312585
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.0625814668369088,
+            "class_contributions": {
+              "H": -0.08957922441236538,
+              "D": -0.004292975842997645,
+              "A": 0.09387220025536334
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.061207798455727415,
+            "class_contributions": {
+              "H": -0.09181169768359071,
+              "D": 0.015428921331878306,
+              "A": 0.07638277635171323
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.05877584788994528,
+            "class_contributions": {
+              "H": -0.044110021679630504,
+              "D": -0.04405375015528745,
+              "A": 0.0881637718349179
+            }
+          },
+          {
+            "feature": "home_defensive_elo",
+            "mean_abs_shap": 0.04007339334486188,
+            "class_contributions": {
+              "H": -0.011964344783137877,
+              "D": -0.048145745234154144,
+              "A": 0.06011009001729362
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.03928561730489361,
+            "class_contributions": {
+              "H": -0.0589284259573389,
+              "D": 0.0034202295940205566,
+              "A": 0.055508196363321376
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.03298182052995921,
+            "class_contributions": {
+              "H": -0.049472730794938295,
+              "D": 0.00253044357836874,
+              "A": 0.046942287216570594
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.03152926733535651,
+            "class_contributions": {
+              "H": -0.025887822166783092,
+              "D": -0.021406078836252156,
+              "A": 0.04729390100303428
+            }
+          },
+          {
+            "feature": "conceding_rate",
+            "mean_abs_shap": 0.028101480448114793,
+            "class_contributions": {
+              "H": -0.04215222067217226,
+              "D": 0.006983347947890264,
+              "A": 0.03516887272428186
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006092",
+        "date": "2025-03-19",
+        "home_team": "Russia",
+        "away_team": "Grenada",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.31821140265229036,
+            "class_contributions": {
+              "H": 0.477317103978438,
+              "D": -0.02892880894687298,
+              "A": -0.44838829503156014
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07402918110142523,
+            "class_contributions": {
+              "H": 0.09862138591959434,
+              "D": 0.012422385732543817,
+              "A": -0.11104377165213754
+            }
+          },
+          {
+            "feature": "home_expected_goals_proxy",
+            "mean_abs_shap": 0.0624097932804337,
+            "class_contributions": {
+              "H": 0.09361468992065161,
+              "D": -0.07135411560670335,
+              "A": -0.02226057431394616
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.062135364544269815,
+            "class_contributions": {
+              "H": 0.09320304681640425,
+              "D": -0.0387211025872738,
+              "A": -0.05448194422913138
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.0549762028166457,
+            "class_contributions": {
+              "H": 0.08246430422496957,
+              "D": -0.025545145794354244,
+              "A": -0.05691915843061327
+            }
+          },
+          {
+            "feature": "rest_days",
+            "mean_abs_shap": 0.052678062422601486,
+            "class_contributions": {
+              "H": 0.07901709363390215,
+              "D": -0.05137400579343739,
+              "A": -0.02764308784046494
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.04704623197530352,
+            "class_contributions": {
+              "H": 0.07056934796295591,
+              "D": -0.008435698879032382,
+              "A": -0.06213364908392224
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.04198783413836819,
+            "class_contributions": {
+              "H": 0.06298175120755237,
+              "D": -0.005144461422320449,
+              "A": -0.05783728978523175
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.03065745005819631,
+            "class_contributions": {
+              "H": 0.04598617508729484,
+              "D": -0.014704490735935626,
+              "A": -0.03128168435135846
+            }
+          },
+          {
+            "feature": "defensive_strength",
+            "mean_abs_shap": 0.028616752955998387,
+            "class_contributions": {
+              "H": 0.042925129433997976,
+              "D": -0.017983920873037542,
+              "A": -0.024941208560959643
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006093",
+        "date": "2025-03-19",
+        "home_team": "Vietnam",
+        "away_team": "Cambodia",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.165057476097159,
+            "class_contributions": {
+              "H": 0.24758621414573906,
+              "D": -0.03892931189722851,
+              "A": -0.2086569022485094
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.05599793084045648,
+            "class_contributions": {
+              "H": 0.028021997351570172,
+              "D": 0.055974898909115084,
+              "A": -0.08399689626068416
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.047335963433470796,
+            "class_contributions": {
+              "H": -0.06258873919611571,
+              "D": -0.008415205954090234,
+              "A": 0.07100394515020644
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.031820894228114995,
+            "class_contributions": {
+              "H": -0.04773134134217198,
+              "D": 0.02553033456430468,
+              "A": 0.022201006777868303
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.027296656311853726,
+            "class_contributions": {
+              "H": 0.040944984467781,
+              "D": -0.011141727994668064,
+              "A": -0.029803256473112116
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.025819695229274683,
+            "class_contributions": {
+              "H": -0.020007092748404957,
+              "D": 0.03872954284391181,
+              "A": -0.01872245009550728
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.024787617383848326,
+            "class_contributions": {
+              "H": 0.03718142607577279,
+              "D": -0.0007645347132711396,
+              "A": -0.03641689136250104
+            }
+          },
+          {
+            "feature": "home_weighted_recent_form",
+            "mean_abs_shap": 0.024694662458216766,
+            "class_contributions": {
+              "H": -0.01829523705744103,
+              "D": -0.018746756629883964,
+              "A": 0.0370419936873253
+            }
+          },
+          {
+            "feature": "home_rest_days",
+            "mean_abs_shap": 0.01931866844968413,
+            "class_contributions": {
+              "H": 0.003410964662103116,
+              "D": 0.025567038012422664,
+              "A": -0.028978002674526607
+            }
+          },
+          {
+            "feature": "match_pressure_index",
+            "mean_abs_shap": 0.019212472063427268,
+            "class_contributions": {
+              "H": -0.003246785404026449,
+              "D": 0.028818708095141046,
+              "A": -0.025571922691114305
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006094",
+        "date": "2025-03-20",
+        "home_team": "Armenia",
+        "away_team": "Georgia",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.29262492999103196,
+            "class_contributions": {
+              "H": -0.4389373949865461,
+              "D": 0.012378374351482698,
+              "A": 0.42655902063506707
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.10186588572194788,
+            "class_contributions": {
+              "H": -0.1356839504371043,
+              "D": -0.017114878145816564,
+              "A": 0.1527988285829228
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07461561745836444,
+            "class_contributions": {
+              "H": -0.07563306249123967,
+              "D": -0.036290363696307046,
+              "A": 0.11192342618754661
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.061438670337772006,
+            "class_contributions": {
+              "H": -0.04882510592992608,
+              "D": -0.043332899576732205,
+              "A": 0.09215800550665773
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.04076251534173525,
+            "class_contributions": {
+              "H": -0.06114377301260247,
+              "D": 0.02533562014463176,
+              "A": 0.03580815286797151
+            }
+          },
+          {
+            "feature": "conceding_rate",
+            "mean_abs_shap": 0.02403117104266439,
+            "class_contributions": {
+              "H": -0.0360467565639959,
+              "D": 0.015377919502382646,
+              "A": 0.020668837061614632
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.023698008761713758,
+            "class_contributions": {
+              "H": -0.035547013142570735,
+              "D": 0.0069939195003369935,
+              "A": 0.028553093642233553
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.02245818146247057,
+            "class_contributions": {
+              "H": -0.033687272193705466,
+              "D": 0.017528649893910793,
+              "A": 0.016158622299795446
+            }
+          },
+          {
+            "feature": "home_rolling_goal_difference",
+            "mean_abs_shap": 0.01874059617632662,
+            "class_contributions": {
+              "H": -0.01869370513116708,
+              "D": -0.009417189133322772,
+              "A": 0.02811089426449001
+            }
+          },
+          {
+            "feature": "home_rest_days",
+            "mean_abs_shap": 0.01724225573371935,
+            "class_contributions": {
+              "H": -0.00770848443747624,
+              "D": 0.025863383600578823,
+              "A": -0.018154899163102995
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006095",
+        "date": "2025-03-20",
+        "home_team": "Australia",
+        "away_team": "Indonesia",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.3295113921576421,
+            "class_contributions": {
+              "H": 0.4942670882364659,
+              "D": -0.053168519138371256,
+              "A": -0.441098569098089
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.08225942652329332,
+            "class_contributions": {
+              "H": 0.09819768982805765,
+              "D": 0.02519144995688284,
+              "A": -0.12338913978493946
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.047854324030042285,
+            "class_contributions": {
+              "H": -0.047607461984451954,
+              "D": -0.024174024060611372,
+              "A": 0.07178148604506353
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.0451336129410489,
+            "class_contributions": {
+              "H": 0.06770041941157497,
+              "D": -0.008220717044852204,
+              "A": -0.05947970236671953
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.04322725055322204,
+            "class_contributions": {
+              "H": 0.06484087582983178,
+              "D": -0.0024693754620479344,
+              "A": -0.06237150036778641
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.039119664594350095,
+            "class_contributions": {
+              "H": 0.05867949689152485,
+              "D": -0.00534163669850844,
+              "A": -0.053337860193017
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.0291739533266961,
+            "class_contributions": {
+              "H": 0.04376092999004448,
+              "D": -0.020840450556441827,
+              "A": -0.022920479433601988
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.028889950696520617,
+            "class_contributions": {
+              "H": 0.04029500175294393,
+              "D": 0.0030399242918366493,
+              "A": -0.043334926044781265
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.021162618809101336,
+            "class_contributions": {
+              "H": -0.0317439282136521,
+              "D": 0.013355953703795671,
+              "A": 0.01838797450985623
+            }
+          },
+          {
+            "feature": "defensive_strength",
+            "mean_abs_shap": 0.0203582277164692,
+            "class_contributions": {
+              "H": 0.030537341574704193,
+              "D": -0.007954059011991605,
+              "A": -0.022583282562711804
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006096",
+        "date": "2025-03-20",
+        "home_team": "Austria",
+        "away_team": "Serbia",
+        "top_features": [
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.11760317254803294,
+            "class_contributions": {
+              "H": -0.17640475882204887,
+              "D": 0.03930822231155968,
+              "A": 0.13709653651049028
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.09191501281012877,
+            "class_contributions": {
+              "H": -0.13787251921519347,
+              "D": 0.006295853788564737,
+              "A": 0.13157666542662813
+            }
+          },
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.0696224243797882,
+            "class_contributions": {
+              "H": 0.09199545322314681,
+              "D": 0.012438183346531488,
+              "A": -0.10443363656968628
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.0693727137679042,
+            "class_contributions": {
+              "H": -0.08290305155182633,
+              "D": -0.021156019100029764,
+              "A": 0.10405907065185649
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.06643159687282682,
+            "class_contributions": {
+              "H": 0.07889409729776865,
+              "D": 0.020753298011472063,
+              "A": -0.09964739530923974
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.05311472620632316,
+            "class_contributions": {
+              "H": 0.07967208930948401,
+              "D": -0.012484026926755617,
+              "A": -0.06718806238272988
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.04537423102674093,
+            "class_contributions": {
+              "H": 0.05055010915228946,
+              "D": 0.017511237387823234,
+              "A": -0.06806134654011008
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.03412364829039079,
+            "class_contributions": {
+              "H": 0.048440190788242514,
+              "D": 0.00274528164734413,
+              "A": -0.051185472435585716
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.02631215081259172,
+            "class_contributions": {
+              "H": -0.0367663705452837,
+              "D": -0.0027018556736038424,
+              "A": 0.03946822621888761
+            }
+          },
+          {
+            "feature": "scoring_rate",
+            "mean_abs_shap": 0.025953912896906423,
+            "class_contributions": {
+              "H": 0.0389308693453597,
+              "D": -0.0076368623437176805,
+              "A": -0.0312940070016419
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006097",
+        "date": "2025-03-20",
+        "home_team": "Brazil",
+        "away_team": "Colombia",
+        "top_features": [
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.0822392058282171,
+            "class_contributions": {
+              "H": -0.12209206140824333,
+              "D": -0.0012667473340822089,
+              "A": 0.12335880874232577
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07285009316944567,
+            "class_contributions": {
+              "H": 0.09303519475716357,
+              "D": 0.016239944997005398,
+              "A": -0.10927513975416803
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.06630670309520996,
+            "class_contributions": {
+              "H": 0.0988762628899343,
+              "D": 0.0005837917528818124,
+              "A": -0.09946005464281374
+            }
+          },
+          {
+            "feature": "derby_flag",
+            "mean_abs_shap": 0.05949064592253039,
+            "class_contributions": {
+              "H": -0.01723608710200332,
+              "D": 0.08923596888379533,
+              "A": -0.07199988178179251
+            }
+          },
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.05613403359133756,
+            "class_contributions": {
+              "H": 0.07749971678489583,
+              "D": 0.006701333602107297,
+              "A": -0.08420105038700958
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.05458529964386318,
+            "class_contributions": {
+              "H": -0.058166045866541484,
+              "D": -0.023711903599252918,
+              "A": 0.08187794946579513
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.04676519299072036,
+            "class_contributions": {
+              "H": 0.07014778948608232,
+              "D": -0.0008437363832565886,
+              "A": -0.06930405310282217
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.025831013593945087,
+            "class_contributions": {
+              "H": 0.03874652039091804,
+              "D": -0.02382787063204434,
+              "A": -0.014918649758872875
+            }
+          },
+          {
+            "feature": "rolling_elo_delta",
+            "mean_abs_shap": 0.022330039456980432,
+            "class_contributions": {
+              "H": -0.006611129762713243,
+              "D": -0.026883929422757767,
+              "A": 0.03349505918547029
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.017003249451106688,
+            "class_contributions": {
+              "H": 0.025504874176659968,
+              "D": -0.01985818471017824,
+              "A": -0.0056466894664818565
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006098",
+        "date": "2025-03-20",
+        "home_team": "Bulgaria",
+        "away_team": "Republic of Ireland",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.20429286069569141,
+            "class_contributions": {
+              "H": -0.3064392910435334,
+              "D": 0.04293626199718994,
+              "A": 0.2635030290463509
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.05988465900111508,
+            "class_contributions": {
+              "H": 0.028930882851510662,
+              "D": 0.0608961056501626,
+              "A": -0.08982698850167195
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.053540028803429375,
+            "class_contributions": {
+              "H": -0.06814265928068476,
+              "D": -0.012167383924459207,
+              "A": 0.08031004320514416
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.032202054565212586,
+            "class_contributions": {
+              "H": -0.04506376290250369,
+              "D": -0.0032393189453157147,
+              "A": 0.048303081847818355
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.02910747351820982,
+            "class_contributions": {
+              "H": 0.04366121027731447,
+              "D": -0.00979685689158052,
+              "A": -0.03386435338573448
+            }
+          },
+          {
+            "feature": "home_defensive_elo",
+            "mean_abs_shap": 0.02865169356769209,
+            "class_contributions": {
+              "H": -0.009059265975206034,
+              "D": -0.03391827437633118,
+              "A": 0.042977540351539056
+            }
+          },
+          {
+            "feature": "offensive_elo",
+            "mean_abs_shap": 0.02783852932626765,
+            "class_contributions": {
+              "H": -0.04175779398940109,
+              "D": 0.01504555480566926,
+              "A": 0.026712239183732597
+            }
+          },
+          {
+            "feature": "conceding_rate",
+            "mean_abs_shap": 0.0201599795453048,
+            "class_contributions": {
+              "H": 0.01893629696356705,
+              "D": 0.011303672354390082,
+              "A": -0.030239969317957263
+            }
+          },
+          {
+            "feature": "away_last_10_match_win_rate",
+            "mean_abs_shap": 0.017606765020990622,
+            "class_contributions": {
+              "H": -0.026410147531486038,
+              "D": 0.007248087933920176,
+              "A": 0.01916205959756565
+            }
+          },
+          {
+            "feature": "tournament_importance",
+            "mean_abs_shap": 0.014989773058144645,
+            "class_contributions": {
+              "H": -0.013776515236919458,
+              "D": -0.008708144350297084,
+              "A": 0.022484659587217386
+            }
+          }
+        ]
+      },
+      {
+        "match_id": "match_006099",
+        "date": "2025-03-20",
+        "home_team": "Canada",
+        "away_team": "Mexico",
+        "top_features": [
+          {
+            "feature": "elo_difference",
+            "mean_abs_shap": 0.20123982604593005,
+            "class_contributions": {
+              "H": -0.3018597390688897,
+              "D": 0.011380787059540142,
+              "A": 0.2904789520093603
+            }
+          },
+          {
+            "feature": "away_elo",
+            "mean_abs_shap": 0.08891770667438291,
+            "class_contributions": {
+              "H": -0.13337656001157358,
+              "D": 0.02183457700313299,
+              "A": 0.11154198300844213
+            }
+          },
+          {
+            "feature": "away_offensive_elo",
+            "mean_abs_shap": 0.07462626548678929,
+            "class_contributions": {
+              "H": -0.07729190866932553,
+              "D": -0.034647489560858225,
+              "A": 0.11193939823018408
+            }
+          },
+          {
+            "feature": "home_elo",
+            "mean_abs_shap": 0.07397951282478492,
+            "class_contributions": {
+              "H": 0.09172367711812159,
+              "D": 0.01924559211905602,
+              "A": -0.11096926923717713
+            }
+          },
+          {
+            "feature": "defensive_elo",
+            "mean_abs_shap": 0.07309318962033069,
+            "class_contributions": {
+              "H": -0.10963978443049541,
+              "D": 0.014816952258757735,
+              "A": 0.09482283217173894
+            }
+          },
+          {
+            "feature": "derby_flag",
+            "mean_abs_shap": 0.045285664701996874,
+            "class_contributions": {
+              "H": -0.005097714710680154,
+              "D": 0.06792849705299513,
+              "A": -0.06283078234231532
+            }
+          },
+          {
+            "feature": "home_offensive_elo",
+            "mean_abs_shap": 0.041740993811184575,
+            "class_contributions": {
+              "H": 0.045811358076952136,
+              "D": 0.016800132639825733,
+              "A": -0.06261149071677587
+            }
+          },
+          {
+            "feature": "away_rolling_clean_sheet_rate",
+            "mean_abs_shap": 0.027605218407866238,
+            "class_contributions": {
+              "H": 0.014771342575199402,
+              "D": -0.041407827611799314,
+              "A": 0.026636485036599995
+            }
+          },
+          {
+            "feature": "rolling_elo_delta",
+            "mean_abs_shap": 0.022013170228981648,
+            "class_contributions": {
+              "H": -0.00884490417836673,
+              "D": -0.02417485116510624,
+              "A": 0.03301975534347198
+            }
+          },
+          {
+            "feature": "expected_goals_proxy",
+            "mean_abs_shap": 0.017488302633161087,
+            "class_contributions": {
+              "H": -0.026232453949741708,
+              "D": 0.015834810862104066,
+              "A": 0.010397643087637484
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

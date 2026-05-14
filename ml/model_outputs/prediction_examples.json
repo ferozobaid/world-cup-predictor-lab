@@ -1,147 +1,312 @@
 {
-  "examples": [
+  "metadata": {
+    "schema_version": "1.0.0",
+    "model_version": "ml-pipeline-v1",
+    "generated_at": "2026-05-13T23:01:50.321111+00:00",
+    "artifact": "prediction_examples.json",
+    "source": {
+      "evaluation": "offline-ml-pipeline/outputs/metrics/evaluation.json"
+    }
+  },
+  "data": [
     {
-      "match_id": "M-2014-01",
-      "year": 2014,
-      "teamA": "Brazil",
-      "teamB": "Croatia",
-      "actual": "teamA_win",
+      "match_id": "match_006075",
+      "date": "2025-01-18",
+      "home_team": "United States",
+      "away_team": "Venezuela",
+      "actual": "H",
       "probabilities": {
-        "draw": 0.4575,
-        "teamA_win": 0.4376,
-        "teamB_win": 0.1049
+        "H": 0.7245940268167034,
+        "D": 0.18508741353753314,
+        "A": 0.0903185596457634
       }
     },
     {
-      "match_id": "M-2014-02",
-      "year": 2014,
-      "teamA": "Mexico",
-      "teamB": "Cameroon",
-      "actual": "teamA_win",
+      "match_id": "match_006076",
+      "date": "2025-01-22",
+      "home_team": "United States",
+      "away_team": "Costa Rica",
+      "actual": "H",
       "probabilities": {
-        "draw": 0.5433,
-        "teamA_win": 0.2146,
-        "teamB_win": 0.2421
+        "H": 0.6325085523353191,
+        "D": 0.22410970929269508,
+        "A": 0.14338173837198578
       }
     },
     {
-      "match_id": "M-2014-03",
-      "year": 2014,
-      "teamA": "Spain",
-      "teamB": "Netherlands",
-      "actual": "teamB_win",
+      "match_id": "match_006077",
+      "date": "2025-01-22",
+      "home_team": "Uzbekistan",
+      "away_team": "Jordan",
+      "actual": "D",
       "probabilities": {
-        "draw": 0.5086,
-        "teamA_win": 0.1235,
-        "teamB_win": 0.368
+        "H": 0.4509683300499769,
+        "D": 0.2933465647363619,
+        "A": 0.2556851052136614
       }
     },
     {
-      "match_id": "M-2014-04",
-      "year": 2014,
-      "teamA": "Chile",
-      "teamB": "Australia",
-      "actual": "teamA_win",
+      "match_id": "match_006078",
+      "date": "2025-02-07",
+      "home_team": "Jamaica",
+      "away_team": "Trinidad and Tobago",
+      "actual": "H",
       "probabilities": {
-        "draw": 0.4219,
-        "teamA_win": 0.3005,
-        "teamB_win": 0.2776
+        "H": 0.49883043984389014,
+        "D": 0.27641735968189474,
+        "A": 0.22475220047421515
       }
     },
     {
-      "match_id": "M-2014-05",
-      "year": 2014,
-      "teamA": "Colombia",
-      "teamB": "Greece",
-      "actual": "teamA_win",
+      "match_id": "match_006079",
+      "date": "2025-02-08",
+      "home_team": "Chile",
+      "away_team": "Panama",
+      "actual": "H",
       "probabilities": {
-        "draw": 0.4765,
-        "teamA_win": 0.3339,
-        "teamB_win": 0.1897
+        "H": 0.20920340168063764,
+        "D": 0.3125670117809455,
+        "A": 0.478229586538417
       }
     },
     {
-      "match_id": "M-2014-06",
-      "year": 2014,
-      "teamA": "Uruguay",
-      "teamB": "Costa Rica",
-      "actual": "teamB_win",
+      "match_id": "match_006080",
+      "date": "2025-02-10",
+      "home_team": "Jamaica",
+      "away_team": "Trinidad and Tobago",
+      "actual": "D",
       "probabilities": {
-        "draw": 0.4443,
-        "teamA_win": 0.4049,
-        "teamB_win": 0.1508
+        "H": 0.5387483700817342,
+        "D": 0.26950122545720806,
+        "A": 0.1917504044610577
       }
     },
     {
-      "match_id": "M-2014-07",
-      "year": 2014,
-      "teamA": "England",
-      "teamB": "Italy",
-      "actual": "teamB_win",
+      "match_id": "match_006081",
+      "date": "2025-02-13",
+      "home_team": "Oman",
+      "away_team": "Sudan",
+      "actual": "D",
       "probabilities": {
-        "draw": 0.4531,
-        "teamA_win": 0.0401,
-        "teamB_win": 0.5068
+        "H": 0.6817277909124072,
+        "D": 0.21178424876748533,
+        "A": 0.10648796032010736
       }
     },
     {
-      "match_id": "M-2014-08",
-      "year": 2014,
-      "teamA": "Ivory Coast",
-      "teamB": "Japan",
-      "actual": "teamA_win",
+      "match_id": "match_006082",
+      "date": "2025-03-09",
+      "home_team": "Saint Vincent and the Grenadines",
+      "away_team": "Grenada",
+      "actual": "D",
       "probabilities": {
-        "draw": 0.416,
-        "teamA_win": 0.2214,
-        "teamB_win": 0.3627
+        "H": 0.558610855711906,
+        "D": 0.2612154972712482,
+        "A": 0.1801736470168458
       }
     },
     {
-      "match_id": "M-2022-61",
-      "year": 2022,
-      "teamA": "Argentina",
-      "teamB": "Croatia",
-      "actual": "teamA_win",
+      "match_id": "match_006083",
+      "date": "2025-03-13",
+      "home_team": "Oman",
+      "away_team": "Sudan",
+      "actual": "D",
       "probabilities": {
-        "draw": 0.263,
-        "teamA_win": 0.4471,
-        "teamB_win": 0.2899
+        "H": 0.6803402682599063,
+        "D": 0.2027583383297282,
+        "A": 0.11690139341036546
       }
     },
     {
-      "match_id": "M-2022-62",
-      "year": 2022,
-      "teamA": "France",
-      "teamB": "Morocco",
-      "actual": "teamA_win",
+      "match_id": "match_006084",
+      "date": "2025-03-14",
+      "home_team": "Jordan",
+      "away_team": "North Korea",
+      "actual": "D",
       "probabilities": {
-        "draw": 0.3595,
-        "teamA_win": 0.3286,
-        "teamB_win": 0.3119
+        "H": 0.7511309442819508,
+        "D": 0.1694211628910308,
+        "A": 0.0794478928270185
       }
     },
     {
-      "match_id": "M-2022-63",
-      "year": 2022,
-      "teamA": "Croatia",
-      "teamB": "Morocco",
-      "actual": "teamA_win",
+      "match_id": "match_006085",
+      "date": "2025-03-16",
+      "home_team": "Honduras",
+      "away_team": "Guatemala",
+      "actual": "A",
       "probabilities": {
-        "draw": 0.207,
-        "teamA_win": 0.2491,
-        "teamB_win": 0.5439
+        "H": 0.2761420247519206,
+        "D": 0.2688075539909752,
+        "A": 0.45505042125710415
       }
     },
     {
-      "match_id": "M-2022-64",
-      "year": 2022,
-      "teamA": "Argentina",
-      "teamB": "France",
-      "actual": "draw",
+      "match_id": "match_006086",
+      "date": "2025-03-19",
+      "home_team": "Central African Republic",
+      "away_team": "Madagascar",
+      "actual": "A",
       "probabilities": {
-        "draw": 0.255,
-        "teamA_win": 0.117,
-        "teamB_win": 0.6279
+        "H": 0.26119709700150295,
+        "D": 0.231349036285953,
+        "A": 0.507453866712544
+      }
+    },
+    {
+      "match_id": "match_006087",
+      "date": "2025-03-19",
+      "home_team": "Eswatini",
+      "away_team": "Cameroon",
+      "actual": "D",
+      "probabilities": {
+        "H": 0.0696879461686964,
+        "D": 0.1260577766947799,
+        "A": 0.8042542771365236
+      }
+    },
+    {
+      "match_id": "match_006088",
+      "date": "2025-03-19",
+      "home_team": "Hong Kong",
+      "away_team": "Macau",
+      "actual": "H",
+      "probabilities": {
+        "H": 0.7514662718111239,
+        "D": 0.16673312823105235,
+        "A": 0.0818005999578237
+      }
+    },
+    {
+      "match_id": "match_006089",
+      "date": "2025-03-19",
+      "home_team": "India",
+      "away_team": "Maldives",
+      "actual": "H",
+      "probabilities": {
+        "H": 0.42109711044018105,
+        "D": 0.2945318504826636,
+        "A": 0.2843710390771553
+      }
+    },
+    {
+      "match_id": "match_006090",
+      "date": "2025-03-19",
+      "home_team": "Kazakhstan",
+      "away_team": "Cura\u00e7ao",
+      "actual": "H",
+      "probabilities": {
+        "H": 0.14182255357447782,
+        "D": 0.1407932317485046,
+        "A": 0.7173842146770175
+      }
+    },
+    {
+      "match_id": "match_006091",
+      "date": "2025-03-19",
+      "home_team": "Liberia",
+      "away_team": "Tunisia",
+      "actual": "A",
+      "probabilities": {
+        "H": 0.11428348910193868,
+        "D": 0.18659886640197482,
+        "A": 0.6991176444960865
+      }
+    },
+    {
+      "match_id": "match_006092",
+      "date": "2025-03-19",
+      "home_team": "Russia",
+      "away_team": "Grenada",
+      "actual": "H",
+      "probabilities": {
+        "H": 0.8787717713948647,
+        "D": 0.08049245221543498,
+        "A": 0.04073577638970019
+      }
+    },
+    {
+      "match_id": "match_006093",
+      "date": "2025-03-19",
+      "home_team": "Vietnam",
+      "away_team": "Cambodia",
+      "actual": "H",
+      "probabilities": {
+        "H": 0.4939235830969419,
+        "D": 0.28108519733351134,
+        "A": 0.22499121956954674
+      }
+    },
+    {
+      "match_id": "match_006094",
+      "date": "2025-03-20",
+      "home_team": "Armenia",
+      "away_team": "Georgia",
+      "actual": "A",
+      "probabilities": {
+        "H": 0.1620153328647754,
+        "D": 0.24158990709819092,
+        "A": 0.5963947600370337
+      }
+    },
+    {
+      "match_id": "match_006095",
+      "date": "2025-03-20",
+      "home_team": "Australia",
+      "away_team": "Indonesia",
+      "actual": "H",
+      "probabilities": {
+        "H": 0.7807184933789035,
+        "D": 0.15341293306180417,
+        "A": 0.06586857355929214
+      }
+    },
+    {
+      "match_id": "match_006096",
+      "date": "2025-03-20",
+      "home_team": "Austria",
+      "away_team": "Serbia",
+      "actual": "D",
+      "probabilities": {
+        "H": 0.5065491454984963,
+        "D": 0.2349036151894453,
+        "A": 0.2585472393120584
+      }
+    },
+    {
+      "match_id": "match_006097",
+      "date": "2025-03-20",
+      "home_team": "Brazil",
+      "away_team": "Colombia",
+      "actual": "H",
+      "probabilities": {
+        "H": 0.5707206003753109,
+        "D": 0.24922011997942015,
+        "A": 0.18005927964526902
+      }
+    },
+    {
+      "match_id": "match_006098",
+      "date": "2025-03-20",
+      "home_team": "Bulgaria",
+      "away_team": "Republic of Ireland",
+      "actual": "A",
+      "probabilities": {
+        "H": 0.3434909368836118,
+        "D": 0.3056907983382818,
+        "A": 0.35081826477810646
+      }
+    },
+    {
+      "match_id": "match_006099",
+      "date": "2025-03-20",
+      "home_team": "Canada",
+      "away_team": "Mexico",
+      "actual": "A",
+      "probabilities": {
+        "H": 0.32730453879529703,
+        "D": 0.2702942155255298,
+        "A": 0.40240124567917307
       }
     }
   ]

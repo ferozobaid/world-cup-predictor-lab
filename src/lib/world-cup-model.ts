@@ -1,6 +1,6 @@
 import data from "@/data/world-cup-data.json";
 
-export type MatchStage = "Group stage" | "Round of 16" | "Quarter-final" | "Semi-final" | "Final";
+export type MatchStage = "Group stage" | "Round of 32" | "Round of 16" | "Quarter-final" | "Semi-final" | "Final";
 
 export type TeamStats = {
   team: string;

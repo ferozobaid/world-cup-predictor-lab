@@ -10,7 +10,339 @@
   --gold: #d6ad5a;
   --red: #b9473d;
   --blue: #e8dfcc;
+  --poster-blue: #2557ff;
+  --poster-red: #ed2d21;
+  --poster-orange: #ff9417;
+  --poster-teal: #18c7b2;
+  --poster-green: #9ee843;
+  --poster-pink: #ff72b8;
   --shadow: 0 24px 90px rgba(0, 0, 0, 0.58);
+}
+
+/* Final poster UI refinement */
+:root {
+  --display-font: "Arial Black", Impact, "Trebuchet MS", system-ui, sans-serif;
+  --record-win: #12b76a;
+  --record-draw: #f6c945;
+  --record-loss: #f05243;
+}
+
+h1,
+h2,
+h3,
+h4,
+.tabs button,
+.model-toggle button,
+.stage-buttons button,
+.scenario-strip button,
+.metric strong,
+.record-chip,
+.bracket-load-button {
+  font-family: var(--display-font);
+  letter-spacing: 0;
+}
+
+.brand-visual {
+  isolation: isolate;
+  min-width: 98px;
+  min-height: 132px;
+  border-color: rgba(255, 255, 255, 0.92);
+  background: #fff8e8;
+}
+
+.brand-poster-image {
+  opacity: 1;
+  filter: saturate(1.15);
+}
+
+.brand-visual::after {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 2;
+  border-radius: 999px;
+  background: rgba(255, 255, 249, 0.86);
+  color: #172138;
+  content: "26";
+  font-family: var(--display-font);
+  font-size: 14px;
+  padding: 5px 8px;
+  box-shadow: 0 8px 18px rgba(23, 33, 56, 0.16);
+}
+
+.brand-visual .fifa-logo,
+.fifa-logo {
+  display: none;
+}
+
+.main-panel > .mini-module {
+  margin-bottom: 14px;
+}
+
+.main-panel > .mini-module .mini-heading {
+  margin-bottom: 10px;
+}
+
+.main-panel > .mini-module .scenario-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.main-panel > .mini-module .scenario-strip button {
+  flex: 0 0 auto;
+  min-height: 44px;
+  border-color: rgba(255, 116, 67, 0.28);
+  background: linear-gradient(135deg, rgba(255, 255, 249, 0.88), rgba(255, 213, 231, 0.72));
+  padding-inline: 18px;
+}
+
+.forecast-tools {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 14px;
+}
+
+.forecast-tools .probability-panel,
+.forecast-tools .what-if-module {
+  min-height: 100%;
+}
+
+.forecast-tools .what-if-module {
+  border-radius: 8px;
+  padding: 18px;
+  background:
+    linear-gradient(135deg, rgba(255, 117, 185, 0.22), rgba(36, 76, 255, 0.1) 42%, rgba(255, 255, 249, 0.88)),
+    rgba(255, 255, 249, 0.82);
+}
+
+.record-metric {
+  display: grid;
+  align-content: start;
+}
+
+.record-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.record-chip {
+  border-radius: 999px;
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 9px;
+}
+
+.record-chip.wins {
+  background: linear-gradient(135deg, var(--record-win), #6ee7b7);
+}
+
+.record-chip.draws {
+  background: linear-gradient(135deg, #d99a08, var(--record-draw));
+  color: #172138;
+}
+
+.record-chip.losses {
+  background: linear-gradient(135deg, var(--record-loss), #ff8a65);
+}
+
+.city-poster-grid {
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+}
+
+.city-poster {
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.city-poster:hover,
+.city-poster.active {
+  border-color: var(--poster-orange);
+  box-shadow: 0 18px 42px rgba(238, 48, 36, 0.18);
+  transform: translateY(-2px);
+}
+
+.city-poster-art {
+  min-height: 210px;
+  overflow: hidden;
+}
+
+.city-fallback-art {
+  display: grid;
+  min-height: 210px;
+  place-items: center;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% 36%, #ffb14a 0 18%, transparent 19%),
+    radial-gradient(circle at 64% 42%, rgba(255, 117, 185, 0.7), transparent 16%),
+    linear-gradient(145deg, #1f45a9, #10245f 48%, #58b4df);
+  color: #fff;
+  font-family: var(--display-font);
+  font-size: 28px;
+}
+
+.city-fixture-panel {
+  margin-top: 16px;
+  border: 1px solid rgba(23, 33, 56, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 249, 0.72);
+  padding: 14px;
+}
+
+.city-fixture-panel h4 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.city-fixture-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.city-fixture {
+  display: grid;
+  gap: 7px;
+  border: 1px solid rgba(23, 33, 56, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 249, 0.86);
+  color: var(--text);
+  cursor: pointer;
+  padding: 12px;
+  text-align: left;
+}
+
+.city-fixture:hover {
+  border-color: var(--poster-blue);
+}
+
+.city-fixture span,
+.city-fixture small {
+  color: #3c4770;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.city-fixture strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+
+.city-fixture em {
+  color: #c35c00;
+  font-style: normal;
+  font-weight: 950;
+}
+
+.bracket-grid {
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+}
+
+.bracket-card {
+  min-width: 0;
+}
+
+.bracket-select-shell {
+  min-width: 0;
+  width: 100%;
+}
+
+.bracket-select-shell select {
+  width: 100%;
+  min-width: 0;
+  font-size: clamp(12px, 1.1vw, 15px);
+  line-height: 1.1;
+  text-overflow: ellipsis;
+}
+
+.bracket-slot-select > span {
+  overflow-wrap: anywhere;
+}
+
+.final-bracket {
+  overflow: hidden;
+  border: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 150, 29, 0.34), rgba(255, 117, 185, 0.24) 44%, rgba(36, 76, 255, 0.18)),
+    url("/world-cup-posters/miami-2026-poster.png") right -30px center / 220px auto no-repeat,
+    rgba(255, 255, 249, 0.88);
+}
+
+.final-bracket .section-heading h3 {
+  font-size: clamp(28px, 4vw, 50px);
+}
+
+.final-bracket .bracket-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.final-bracket .bracket-card {
+  border: 2px solid rgba(255, 255, 255, 0.68);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 249, 0.82), rgba(255, 213, 231, 0.68)),
+    rgba(255, 255, 249, 0.82);
+  padding: 20px;
+}
+
+@media (max-width: 1040px) {
+  .forecast-tools {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .brand-visual {
+    flex-basis: 86px;
+    min-height: 82px;
+  }
+
+  .main-panel > .mini-module {
+    order: -5;
+  }
+
+  .forecast-tools {
+    order: -2;
+  }
+
+  .forecast-tools .what-if-module {
+    padding: 14px;
+  }
+
+  .city-poster-grid {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .city-poster {
+    flex: 0 0 148px;
+  }
+
+  .city-poster-art,
+  .city-poster-art img,
+  .city-fallback-art {
+    min-height: 198px;
+  }
+
+  .city-fixture-list {
+    grid-template-columns: 1fr;
+  }
+
+  .bracket-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .final-bracket .bracket-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 * {
@@ -26,6 +358,8 @@ body {
   background:
     linear-gradient(90deg, rgba(214, 173, 90, 0.08) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(37, 87, 255, 0.12), transparent 28%),
+    linear-gradient(225deg, rgba(237, 45, 33, 0.1), transparent 32%),
     radial-gradient(circle at 80% 8%, rgba(214, 173, 90, 0.18), transparent 28%),
     radial-gradient(circle at 16% 0%, rgba(255, 255, 255, 0.08), transparent 24%),
     linear-gradient(180deg, #101010 0%, #060606 48%, #000 100%);
@@ -159,6 +493,46 @@ h3 {
   filter: drop-shadow(0 12px 22px rgba(214, 173, 90, 0.2));
 }
 
+.brand-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 96px;
+  min-height: 112px;
+}
+
+.brand-poster-strip {
+  position: absolute;
+  inset: 2px 10px;
+  display: grid;
+  grid-template-rows: 1fr 0.75fr 1fr;
+  gap: 4px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.brand-poster-strip span {
+  border-radius: 999px 999px 8px 8px;
+  transform: skew(-7deg);
+}
+
+.brand-poster-strip span:nth-child(1) {
+  background: linear-gradient(135deg, var(--poster-red), var(--poster-blue));
+}
+
+.brand-poster-strip span:nth-child(2) {
+  background: linear-gradient(135deg, var(--poster-orange), var(--poster-green));
+}
+
+.brand-poster-strip span:nth-child(3) {
+  background: linear-gradient(135deg, var(--poster-teal), var(--gold));
+}
+
+.brand-visual .fifa-logo {
+  position: relative;
+  z-index: 1;
+}
+
 .control-stack {
   display: grid;
   gap: 14px;
@@ -205,7 +579,8 @@ h3 {
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.58);
   color: var(--text);
-  font-size: 13px;
+  padding: 0 6px;
+  font-size: 12px;
   font-weight: 850;
 }
 
@@ -503,6 +878,7 @@ select:focus,
   overflow: hidden;
   border-color: rgba(214, 173, 90, 0.44);
   background:
+    linear-gradient(115deg, rgba(37, 87, 255, 0.12), transparent 26%, rgba(237, 45, 33, 0.12) 54%, transparent 78%),
     linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 38%, rgba(214, 173, 90, 0.09)),
     #080808;
 }
@@ -522,6 +898,18 @@ select:focus,
 .match-card::before {
   display: none;
   content: none;
+}
+
+.match-card::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--poster-blue), var(--poster-red), var(--poster-orange), var(--poster-teal), var(--gold));
+  content: "";
+  opacity: 0.86;
+  pointer-events: none;
 }
 
 .match-card-top {
@@ -999,6 +1387,123 @@ select:focus,
   gap: 8px;
 }
 
+.city-energy-panel {
+  overflow: hidden;
+  border-color: rgba(214, 173, 90, 0.26);
+  background:
+    linear-gradient(120deg, rgba(37, 87, 255, 0.08), transparent 28%, rgba(255, 148, 23, 0.08) 62%, transparent),
+    rgba(9, 9, 9, 0.94);
+}
+
+.city-poster-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.city-poster {
+  --poster-a: var(--poster-blue);
+  --poster-b: var(--poster-red);
+  --poster-c: var(--gold);
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.48);
+  padding: 9px;
+}
+
+.city-poster strong {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.1;
+}
+
+.city-poster small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.city-poster-art {
+  position: relative;
+  min-height: 90px;
+  overflow: hidden;
+  border-radius: 7px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 10px),
+    linear-gradient(135deg, var(--poster-a), #080808 48%, var(--poster-b));
+}
+
+.city-poster-art::before {
+  position: absolute;
+  top: -12px;
+  left: -8px;
+  color: rgba(255, 255, 255, 0.18);
+  content: "26";
+  font-size: 58px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.city-poster-art::after {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  width: 42px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 46%, rgba(255, 255, 255, 0.72) 46% 54%, transparent 54%),
+    linear-gradient(0deg, transparent 46%, rgba(255, 255, 255, 0.72) 46% 54%, transparent 54%),
+    var(--poster-c);
+  content: "";
+  opacity: 0.92;
+}
+
+.city-poster-art span {
+  position: absolute;
+  right: 18px;
+  bottom: 42px;
+  width: 36px;
+  height: 48px;
+  background: linear-gradient(180deg, var(--poster-c), var(--poster-b));
+  clip-path: polygon(50% 0, 72% 24%, 62% 54%, 88% 100%, 48% 78%, 18% 100%, 34% 56%, 20% 24%);
+}
+
+.city-poster.miami {
+  --poster-a: var(--poster-pink);
+  --poster-b: var(--poster-teal);
+  --poster-c: #ffd1e9;
+}
+
+.city-poster.vancouver {
+  --poster-a: #0b4f43;
+  --poster-b: #6ca4d9;
+  --poster-c: #b5a332;
+}
+
+.city-poster.mexico {
+  --poster-a: var(--poster-orange);
+  --poster-b: #3bd36d;
+  --poster-c: #ffd84f;
+}
+
+.city-poster.new-york {
+  --poster-a: #103dff;
+  --poster-b: #ff4b17;
+  --poster-c: var(--poster-teal);
+}
+
+.city-poster.trio {
+  --poster-a: #0b6f57;
+  --poster-b: #c51d28;
+  --poster-c: var(--gold);
+}
+
 .group-fixture-stack {
   display: grid;
   gap: 16px;
@@ -1171,6 +1676,10 @@ select:focus,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .city-poster-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .bracket-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1276,6 +1785,16 @@ select:focus,
   .fifa-logo {
     width: 46px;
     max-height: 72px;
+  }
+
+  .brand-visual {
+    flex-basis: 58px;
+    min-height: 72px;
+  }
+
+  .brand-poster-strip {
+    inset: 1px 6px;
+    gap: 3px;
   }
 
   .control-stack {
@@ -1539,6 +2058,30 @@ select:focus,
     padding: 0 12px;
   }
 
+  .city-energy-panel {
+    padding-bottom: 10px;
+  }
+
+  .city-poster-grid {
+    display: flex;
+    margin: 0 -2px;
+    overflow-x: auto;
+    padding: 1px 2px 5px;
+    scrollbar-width: none;
+  }
+
+  .city-poster-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .city-poster {
+    flex: 0 0 148px;
+  }
+
+  .city-poster-art {
+    min-height: 78px;
+  }
+
   .fixture-grid {
     gap: 8px;
   }
@@ -1584,5 +2127,1239 @@ select:focus,
     right: 16px;
     width: 44px;
     height: 64px;
+  }
+}
+
+/* Vibrant World Cup 26 poster direction */
+:root {
+  --background: #ffe7c7;
+  --panel: rgba(255, 250, 237, 0.82);
+  --panel-strong: rgba(255, 255, 249, 0.94);
+  --line: rgba(22, 43, 72, 0.16);
+  --line-strong: rgba(255, 116, 67, 0.48);
+  --text: #172138;
+  --muted: #606176;
+  --green: #09b58a;
+  --gold: #c58a14;
+  --red: #f04a37;
+  --blue: #214eff;
+  --poster-blue: #244cff;
+  --poster-red: #ee3024;
+  --poster-orange: #ff961d;
+  --poster-teal: #12bda8;
+  --poster-green: #92df3a;
+  --poster-pink: #ff75b9;
+  --cream: #fff5df;
+  --shadow: 0 26px 76px rgba(46, 49, 94, 0.18);
+}
+
+html {
+  background: #ffe7c7;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 117, 185, 0.5), transparent 28%),
+    radial-gradient(circle at 85% 16%, rgba(36, 76, 255, 0.36), transparent 30%),
+    radial-gradient(circle at 76% 88%, rgba(18, 189, 168, 0.38), transparent 32%),
+    linear-gradient(135deg, #fff2cf 0%, #ffd4e6 36%, #c9f2ea 68%, #ffe5b8 100%);
+  color: var(--text);
+}
+
+body::before,
+body::after {
+  position: fixed;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  z-index: 0;
+  background:
+    url("/world-cup-posters/miami-2026-poster.png") left 4% top 8% / 280px auto no-repeat,
+    url("/world-cup-posters/toronto-2026-poster.png") right -30px top 4% / 330px auto no-repeat,
+    url("/world-cup-posters/new-york-new-jersey-2026-poster.png") left -20px bottom 8% / 230px auto no-repeat,
+    url("/world-cup-posters/mexico-city-2026-poster.png") right 9% bottom -36px / 190px auto no-repeat;
+  opacity: 0.2;
+  filter: saturate(1.2);
+}
+
+body::after {
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(23, 33, 56, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(23, 33, 56, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 250, 237, 0.78), rgba(255, 229, 184, 0.72));
+  background-size: 68px 68px, 68px 68px, auto;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.control-panel,
+.main-panel,
+.panel {
+  border-color: rgba(22, 43, 72, 0.16);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 249, 0.86), rgba(255, 241, 212, 0.72)),
+    rgba(255, 250, 237, 0.78);
+  box-shadow: var(--shadow);
+}
+
+.control-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 249, 0.9), rgba(255, 223, 193, 0.78)),
+    rgba(255, 250, 237, 0.84);
+}
+
+.main-panel {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 249, 0.9), rgba(203, 244, 238, 0.62)),
+    rgba(255, 250, 237, 0.84);
+}
+
+.brand-block {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255, 116, 67, 0.22);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 117, 185, 0.28), rgba(36, 76, 255, 0.14) 42%, rgba(18, 189, 168, 0.22)),
+    rgba(255, 255, 249, 0.7);
+  padding: 14px;
+}
+
+.brand-block::after {
+  position: absolute;
+  right: -34px;
+  bottom: -38px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--poster-orange);
+  content: "";
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.eyebrow,
+.mini-heading span,
+.mini-heading small,
+.field > span,
+.section-heading span,
+.metric span,
+.top-features > span,
+.group-header span,
+.group-header small,
+.bracket-meta {
+  color: #3c4770;
+}
+
+h1,
+h2,
+h3,
+.metric strong,
+.factor span,
+.group-team,
+.bracket-side span {
+  color: var(--text);
+}
+
+.intro,
+.muted,
+.ai-copy,
+.source-panel p,
+.probability-note,
+.scenario-copy,
+.factor p,
+.fixture span,
+.fixture small,
+.model-details-panel p,
+.city-poster small,
+.cost-box span,
+.cost-box p {
+  color: var(--muted);
+}
+
+.brand-visual {
+  min-height: 126px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 249, 0.78);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(239, 75, 55, 0.18);
+}
+
+.brand-poster-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.94;
+}
+
+.brand-visual .fifa-logo {
+  width: 52px;
+  margin-top: 44px;
+  border-radius: 8px;
+  filter: drop-shadow(0 10px 18px rgba(23, 33, 56, 0.32));
+}
+
+.mini-module,
+.cost-box,
+.model-details-panel,
+.group-section,
+.bracket-card,
+.metric,
+.factor,
+.match-row,
+.fixture {
+  border-color: rgba(23, 33, 56, 0.14);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 249, 0.84), rgba(255, 242, 214, 0.58)),
+    rgba(255, 255, 249, 0.72);
+}
+
+.select-shell,
+select {
+  border-color: rgba(23, 33, 56, 0.18);
+  background: rgba(255, 255, 249, 0.88);
+  color: var(--text);
+}
+
+select:focus,
+.select-shell:focus-within {
+  border-color: var(--poster-blue);
+  box-shadow: 0 0 0 3px rgba(36, 76, 255, 0.13);
+}
+
+.scenario-strip button,
+.model-toggle button,
+.stage-buttons button,
+.tabs button,
+.primary-button,
+.bracket-load-button {
+  border-color: rgba(23, 33, 56, 0.14);
+  background: rgba(255, 255, 249, 0.84);
+  color: var(--text);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+}
+
+.scenario-strip button:hover,
+.model-toggle button:hover,
+.model-toggle button.active,
+.stage-buttons button:hover,
+.stage-buttons button.active,
+.tabs button:hover,
+.tabs button.active {
+  border-color: rgba(255, 116, 67, 0.62);
+  background: linear-gradient(135deg, rgba(255, 150, 29, 0.24), rgba(255, 117, 185, 0.2));
+  color: #172138;
+}
+
+.switch-button {
+  border-color: rgba(23, 33, 56, 0.16);
+  background: rgba(255, 255, 249, 0.72);
+  color: #5c6070;
+}
+
+.switch-button i {
+  border-color: rgba(23, 33, 56, 0.16);
+  background: rgba(23, 33, 56, 0.08);
+}
+
+.switch-button.active {
+  border-color: rgba(255, 150, 29, 0.7);
+  background: linear-gradient(135deg, rgba(255, 150, 29, 0.26), rgba(255, 117, 185, 0.2));
+  color: var(--text);
+}
+
+.switch-button.active i::after {
+  background: var(--poster-orange);
+}
+
+.primary-button,
+.bracket-load-button {
+  border: 0;
+  background: linear-gradient(135deg, var(--poster-red), var(--poster-orange), var(--poster-pink), var(--poster-blue));
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(36, 76, 255, 0.18);
+}
+
+.primary-button:disabled,
+.bracket-load-button:disabled {
+  background: rgba(23, 33, 56, 0.14);
+  color: rgba(23, 33, 56, 0.46);
+  box-shadow: none;
+}
+
+.tabs {
+  border-color: rgba(23, 33, 56, 0.12);
+  background: rgba(255, 255, 249, 0.82);
+}
+
+.match-card {
+  border: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 237, 0.92), rgba(255, 250, 237, 0.78) 45%, rgba(255, 117, 185, 0.32)),
+    url("/world-cup-posters/toronto-2026-poster.png") right center / 360px auto no-repeat,
+    linear-gradient(135deg, #fff2ce, #ffcfdf 48%, #bdf2e9);
+  box-shadow: 0 24px 78px rgba(36, 76, 255, 0.2);
+}
+
+.match-card::after {
+  height: 8px;
+  background: linear-gradient(90deg, var(--poster-blue), var(--poster-red), var(--poster-orange), var(--poster-green), var(--poster-teal), var(--poster-pink));
+}
+
+.match-card-top strong,
+.score-core span,
+.fixture em,
+.bracket-card em,
+.bar-row.active .bar-label span,
+.top-features strong,
+.squad-detail-row strong {
+  color: #c35c00;
+}
+
+.match-watermark {
+  opacity: 0.16;
+}
+
+.score-core strong {
+  border-color: rgba(23, 33, 56, 0.1);
+  background: #fffdf3;
+  color: #172138;
+  box-shadow: 0 12px 24px rgba(23, 33, 56, 0.14);
+}
+
+.team-badge {
+  border-color: rgba(23, 33, 56, 0.12);
+  background: rgba(255, 255, 249, 0.86);
+}
+
+.bar-track {
+  background: rgba(23, 33, 56, 0.12);
+}
+
+.bar-fill.home {
+  background: linear-gradient(90deg, var(--poster-teal), var(--poster-green));
+}
+
+.bar-fill.draw {
+  background: linear-gradient(90deg, var(--poster-orange), #ffe66b);
+}
+
+.bar-fill.away {
+  background: linear-gradient(90deg, var(--poster-pink), var(--poster-blue));
+}
+
+.factor.positive {
+  border-left-color: var(--poster-teal);
+}
+
+.factor.negative {
+  border-left-color: var(--poster-red);
+}
+
+.factor.neutral {
+  border-left-color: var(--poster-orange);
+}
+
+.ai-panel {
+  grid-column: 1 / -1;
+  min-height: 0;
+  border: 0;
+  background:
+    linear-gradient(110deg, rgba(255, 255, 249, 0.94), rgba(255, 213, 231, 0.82) 45%, rgba(36, 76, 255, 0.36)),
+    url("/world-cup-posters/miami-2026-poster.png") right 42% / 260px auto no-repeat;
+  box-shadow: 0 24px 72px rgba(255, 117, 185, 0.24);
+}
+
+.ai-panel .section-heading h3::after {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--poster-pink), var(--poster-orange));
+  color: #fff;
+  content: "main feature";
+  font-size: 10px;
+  font-weight: 950;
+  padding: 2px 8px;
+  text-transform: uppercase;
+}
+
+.brief-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.brief-item {
+  border-color: rgba(23, 33, 56, 0.12);
+  background: rgba(255, 255, 249, 0.76);
+}
+
+.brief-item span {
+  color: #c35c00;
+}
+
+.brief-item p {
+  color: var(--text);
+}
+
+.city-energy-panel {
+  border: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 117, 185, 0.28), rgba(36, 76, 255, 0.16) 38%, rgba(18, 189, 168, 0.24)),
+    rgba(255, 255, 249, 0.76);
+}
+
+.city-poster-grid {
+  gap: 12px;
+}
+
+.city-poster {
+  gap: 10px;
+  border: 0;
+  border-radius: 16px;
+  background: rgba(255, 255, 249, 0.84);
+  padding: 10px;
+  box-shadow: 0 16px 36px rgba(36, 76, 255, 0.14);
+}
+
+.city-poster-art {
+  min-height: 184px;
+  border-radius: 12px;
+  background: transparent;
+}
+
+.city-poster-art::before,
+.city-poster-art::after {
+  display: none;
+  content: none;
+}
+
+.city-poster-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 184px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.city-poster strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.bracket-card {
+  gap: 10px;
+}
+
+.bracket-slot-select {
+  display: grid;
+  gap: 6px;
+}
+
+.bracket-slot-select > span {
+  color: #3c4770;
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.bracket-select-shell {
+  min-height: 44px;
+}
+
+.bracket-select-shell select {
+  min-height: 42px;
+  font-weight: 900;
+}
+
+.bracket-load-button {
+  min-height: 36px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.final-bracket .bracket-card {
+  background:
+    linear-gradient(135deg, rgba(255, 150, 29, 0.22), rgba(255, 117, 185, 0.18)),
+    rgba(255, 255, 249, 0.84);
+}
+
+@media (max-width: 1040px) {
+  .brief-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .city-poster-art,
+  .city-poster-art img {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 680px) {
+  body::before {
+    background:
+      url("/world-cup-posters/miami-2026-poster.png") right -52px top 10px / 180px auto no-repeat,
+      url("/world-cup-posters/toronto-2026-poster.png") left -42px bottom 70px / 180px auto no-repeat;
+    opacity: 0.16;
+  }
+
+  .control-panel {
+    background: rgba(255, 250, 237, 0.86);
+  }
+
+  .brand-block {
+    padding: 10px;
+  }
+
+  .brand-visual {
+    flex-basis: 68px;
+    min-height: 74px;
+  }
+
+  .brand-visual .fifa-logo {
+    width: 36px;
+    margin-top: 26px;
+  }
+
+  .control-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .what-if-module {
+    grid-template-columns: 1fr;
+  }
+
+  .what-if-module .mini-heading,
+  .what-if-module .toggle-row {
+    grid-column: 1;
+  }
+
+  .slider-field {
+    min-width: 0;
+  }
+
+  .slider-field input {
+    min-width: 0;
+  }
+
+  .field:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .match-card {
+    order: -4;
+    background:
+      linear-gradient(90deg, rgba(255, 250, 237, 0.94), rgba(255, 250, 237, 0.82)),
+      url("/world-cup-posters/toronto-2026-poster.png") right center / 220px auto no-repeat,
+      linear-gradient(135deg, #fff2ce, #ffcfdf 48%, #bdf2e9);
+  }
+
+  .ai-panel {
+    order: -3;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 249, 0.96), rgba(255, 213, 231, 0.9) 54%, rgba(36, 76, 255, 0.18)),
+      url("/world-cup-posters/miami-2026-poster.png") right -30px top -40px / 160px auto no-repeat;
+  }
+
+  .probability-panel {
+    order: -2;
+  }
+
+  .factors-panel {
+    order: -1;
+  }
+
+  .brief-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    background: rgba(255, 255, 249, 0.9);
+  }
+
+  .tabs button {
+    min-height: 42px;
+    padding-inline: 6px;
+    font-size: 12px;
+    line-height: 1;
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+
+  .city-poster {
+    flex-basis: 172px;
+  }
+
+  .city-poster-art,
+  .city-poster-art img {
+    min-height: 230px;
+  }
+}
+
+.ai-panel .section-heading {
+  align-items: center;
+}
+
+.ai-panel .section-heading h3 {
+  color: #101a38;
+  letter-spacing: 0;
+}
+
+.ai-copy {
+  max-width: 760px;
+  color: #17213b;
+  font-size: clamp(18px, 1.8vw, 24px);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.simulation-panel {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 249, 0.92), rgba(255, 229, 241, 0.86) 44%, rgba(190, 244, 231, 0.86)),
+    url("/world-cup-posters/can-mex-usa-2026-logo.png") right 26px center / 110px auto no-repeat;
+}
+
+.simulation-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) repeat(5, minmax(132px, 1fr));
+  gap: 10px;
+}
+
+.simulation-card {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(23, 33, 56, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 249, 0.74);
+  color: #132042;
+  box-shadow: 0 14px 28px rgba(36, 76, 255, 0.08);
+}
+
+.simulation-card.featured {
+  background: linear-gradient(135deg, rgba(255, 242, 206, 0.88), rgba(206, 240, 255, 0.84));
+}
+
+.simulation-card span,
+.simulation-card small {
+  color: #354b7a;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.simulation-card strong {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: #111c3a;
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.simulation-card p {
+  margin: 0;
+  color: #4c5270;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.simulation-team-pair {
+  display: grid;
+  gap: 8px;
+}
+
+.simulation-team-pair strong {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.simulation-bar {
+  overflow: hidden;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(23, 33, 56, 0.1);
+}
+
+.simulation-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff6f3c, #ff5fb7, #244cff);
+}
+
+.city-energy-panel {
+  overflow: hidden;
+}
+
+.city-selector-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.city-scroll-window {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.city-scroll-window::before,
+.city-scroll-window::after {
+  position: absolute;
+  top: 0;
+  bottom: 10px;
+  z-index: 2;
+  width: 42px;
+  pointer-events: none;
+  content: "";
+}
+
+.city-scroll-window::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(213, 234, 255, 0.94), rgba(213, 234, 255, 0));
+}
+
+.city-scroll-window::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(213, 234, 255, 0.94), rgba(213, 234, 255, 0));
+}
+
+.city-scroll-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(16, 80, 184, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 249, 0.72);
+  color: #19315f;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 10px 24px rgba(36, 76, 255, 0.14);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.city-scroll-button:hover,
+.city-scroll-button:focus-visible {
+  background: #fff7cf;
+  box-shadow: 0 14px 30px rgba(255, 94, 45, 0.2);
+  transform: translateY(-1px);
+}
+
+.city-poster-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 4px 4px 14px;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 4px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(36, 76, 255, 0.42) transparent;
+  scrollbar-width: thin;
+}
+
+.city-poster-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.city-poster-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 249, 0.34);
+  border-radius: 999px;
+}
+
+.city-poster-grid::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--poster-orange), var(--poster-pink), var(--poster-blue));
+}
+
+.city-poster {
+  flex: 0 0 clamp(176px, 18vw, 220px);
+  align-self: stretch;
+  border: 2px solid rgba(16, 80, 184, 0.12);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 249, 0.9), rgba(211, 237, 255, 0.72)),
+    rgba(255, 255, 249, 0.86);
+  color: #14254b;
+  scroll-snap-align: start;
+  text-align: left;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.city-poster:hover,
+.city-poster:focus-visible {
+  border-color: rgba(255, 94, 45, 0.55);
+  box-shadow: 0 18px 42px rgba(255, 94, 45, 0.18);
+  transform: translateY(-3px);
+}
+
+.city-poster.active {
+  border-color: #ff5e2d;
+  box-shadow:
+    0 0 0 3px rgba(255, 210, 56, 0.42),
+    0 24px 50px rgba(36, 76, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.city-poster-art {
+  width: 100%;
+  min-height: 96px;
+  height: 112px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(255, 255, 249, 0.78);
+}
+
+.city-poster-art img {
+  width: 100%;
+  height: 100%;
+  min-height: 96px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.city-poster-meta {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.city-poster strong {
+  color: #101a38;
+  font-size: 16px;
+  line-height: 1.05;
+}
+
+.city-poster small {
+  color: #405071;
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.city-poster-kicker,
+.city-poster-count {
+  color: #c35c00;
+  text-transform: uppercase;
+}
+
+.selected-city-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 16px;
+  border: 1px solid rgba(16, 80, 184, 0.14);
+  border-radius: 18px;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 249, 0.9), rgba(255, 222, 171, 0.68), rgba(180, 238, 230, 0.72)),
+    rgba(255, 255, 249, 0.84);
+  padding: 16px;
+}
+
+.selected-city-header span {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 2px;
+  border-radius: 999px;
+  background: rgba(255, 94, 45, 0.12);
+  color: #c35c00;
+  font-size: 11px;
+  font-weight: 950;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+.selected-city-header h4 {
+  margin: 0;
+  color: #101a38;
+  font-size: clamp(26px, 3vw, 42px);
+  line-height: 0.95;
+}
+
+.selected-city-header p,
+.selected-city-header strong {
+  margin: 0;
+  color: #26385f;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.city-fixture-panel {
+  margin-top: 0;
+}
+
+.city-fixture-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.city-fixture {
+  border: 1px solid rgba(16, 80, 184, 0.16);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 249, 0.94), rgba(216, 239, 255, 0.72)),
+    rgba(255, 255, 249, 0.88);
+  box-shadow: 0 12px 30px rgba(36, 76, 255, 0.1);
+}
+
+.city-fixture:hover,
+.city-fixture:focus-visible {
+  border-color: rgba(255, 94, 45, 0.58);
+  box-shadow: 0 18px 36px rgba(255, 94, 45, 0.15);
+}
+
+.city-fixture-date {
+  color: #254b90;
+  font-weight: 950;
+}
+
+.city-fixture strong {
+  color: #101a38;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.city-fixture small {
+  color: #314265;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+@media (max-width: 680px) {
+  .ai-copy {
+    font-size: 17px;
+  }
+
+  .city-selector-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .city-scroll-button {
+    display: none;
+  }
+
+  .city-scroll-window::before,
+  .city-scroll-window::after {
+    width: 26px;
+  }
+
+  .city-poster {
+    flex-basis: 156px;
+    padding: 8px;
+  }
+
+  .city-poster-art,
+  .city-poster-art img {
+    min-height: 88px;
+    height: 96px;
+  }
+
+  .city-poster strong {
+    font-size: 14px;
+  }
+
+  .selected-city-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px;
+  }
+
+  .selected-city-header h4 {
+    font-size: 28px;
+  }
+
+  .city-fixture-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* UI polish pass: logo, what-if team controls, contrast, factors lens, final card */
+.brand-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 132px;
+  padding: 10px;
+  background:
+    radial-gradient(circle at 85% 80%, rgba(255, 204, 77, 0.24), transparent 36%),
+    linear-gradient(135deg, rgba(255, 255, 249, 0.94), rgba(228, 243, 255, 0.82));
+}
+
+.brand-visual::after {
+  display: none;
+}
+
+.brand-logo-image {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 110px);
+  height: auto;
+  max-height: 132px;
+  border-radius: 16px;
+  object-fit: contain;
+  box-shadow: 0 14px 34px rgba(23, 33, 56, 0.18);
+}
+
+.what-if-module,
+.what-if-module .mini-heading span,
+.what-if-module .mini-heading small,
+.what-if-module .slider-field span,
+.what-if-module .slider-field strong,
+.what-if-module .switch-button span,
+.what-if-module .switch-control small {
+  color: #122044;
+}
+
+.what-if-module .mini-heading span,
+.what-if-module .mini-heading small,
+.what-if-module .slider-field span,
+.what-if-module .slider-field strong {
+  text-shadow: none;
+}
+
+.what-if-module .slider-field strong {
+  color: #173d82;
+  font-size: 13px;
+}
+
+.what-if-module .switch-button {
+  border-color: rgba(18, 32, 68, 0.16);
+  background: rgba(255, 255, 249, 0.72);
+  color: #122044;
+}
+
+.what-if-module .switch-button.active {
+  border-color: rgba(255, 94, 45, 0.58);
+  background: linear-gradient(135deg, rgba(255, 217, 102, 0.38), rgba(255, 117, 185, 0.2));
+  color: #122044;
+}
+
+.what-if-team-toggle,
+.factor-lens-toggle {
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: 6px;
+  width: fit-content;
+  border: 1px solid rgba(18, 32, 68, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 249, 0.6);
+  padding: 4px;
+}
+
+.what-if-team-toggle {
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.what-if-team-toggle button,
+.factor-lens-toggle button {
+  min-height: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #38466d;
+  cursor: pointer;
+  font: 900 12px/1 var(--display-font);
+  letter-spacing: 0;
+  padding: 7px 11px;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.what-if-team-toggle button {
+  width: 100%;
+}
+
+.factor-lens-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.what-if-team-toggle button:hover,
+.factor-lens-toggle button:hover,
+.what-if-team-toggle button:focus-visible,
+.factor-lens-toggle button:focus-visible {
+  background: rgba(255, 255, 249, 0.78);
+  color: #122044;
+}
+
+.what-if-team-toggle button.active,
+.factor-lens-toggle button.active {
+  background: linear-gradient(135deg, #ff5e2d, #ff75b9 58%, #244cff);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(255, 94, 45, 0.2);
+  transform: translateY(-1px);
+}
+
+.factor-lens-toggle .team-badge {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+}
+
+.lens-note {
+  margin: -8px 0 14px;
+  color: #314265;
+  font-size: 12px;
+  font-weight: 950;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.final-bracket {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 94, 45, 0.28);
+  background:
+    radial-gradient(circle at 88% 18%, rgba(255, 117, 185, 0.34), transparent 28%),
+    radial-gradient(circle at 12% 82%, rgba(36, 76, 255, 0.2), transparent 34%),
+    linear-gradient(135deg, rgba(255, 249, 232, 0.96), rgba(255, 224, 189, 0.7) 44%, rgba(196, 244, 234, 0.76));
+  box-shadow:
+    0 24px 60px rgba(23, 33, 56, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 249, 0.5);
+}
+
+.final-bracket::before {
+  position: absolute;
+  right: clamp(16px, 5vw, 64px);
+  top: 18px;
+  width: clamp(90px, 14vw, 150px);
+  aspect-ratio: 588 / 886;
+  border-radius: 18px;
+  background: url("/world-cup-posters/can-mex-usa-2026-logo.png") center / contain no-repeat;
+  content: "";
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.final-bracket .section-heading {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 22px;
+}
+
+.final-bracket .section-heading h3 {
+  color: #111a38;
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 0.92;
+}
+
+.final-bracket .bracket-grid {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.final-bracket .bracket-card {
+  border: 2px solid rgba(255, 94, 45, 0.36);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 249, 0.9), rgba(216, 239, 255, 0.76)),
+    rgba(255, 255, 249, 0.88);
+  box-shadow:
+    0 20px 46px rgba(36, 76, 255, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 249, 0.68);
+  padding: clamp(20px, 4vw, 34px);
+}
+
+.final-bracket .bracket-meta {
+  color: #ff5e2d;
+  font-size: 13px;
+}
+
+.final-bracket .bracket-slot-select > span {
+  color: #173d82;
+}
+
+.final-bracket .bracket-select-shell {
+  min-height: 56px;
+  border-color: rgba(36, 76, 255, 0.22);
+  background: rgba(230, 245, 255, 0.76);
+}
+
+.final-bracket .bracket-select-shell select {
+  min-height: 54px;
+  color: #122044;
+  font-size: clamp(16px, 2vw, 20px);
+}
+
+.final-bracket .bracket-load-button {
+  min-height: 48px;
+  background: linear-gradient(135deg, #ff3d22, #ff9c1a 32%, #ff75b9 68%, #244cff);
+  color: #fff;
+  box-shadow: 0 14px 32px rgba(255, 94, 45, 0.25);
+}
+
+@media (max-width: 760px) {
+  .section-heading:has(.factor-lens-toggle) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .factor-lens-toggle {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .factor-lens-toggle button {
+    justify-content: center;
+    max-width: none;
+  }
+
+  .lens-note {
+    margin-top: -4px;
+    text-align: left;
+  }
+
+  .final-bracket {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  }
+
+  .final-bracket .bracket-card {
+    padding-bottom: 28px;
   }
 }

@@ -1,23 +1,16 @@
 import featureImportance from "../../ml/model_outputs/feature_importance.json";
+import matchupPredictions from "../../ml/model_outputs/matchup_predictions.json";
 import modelMetrics from "../../ml/model_outputs/model_metrics.json";
-import teamFeatures from "../../ml/model_outputs/team_features.json";
-import { canonicalTeam, getHeadToHead, getTeamStats, predictMatch, type MatchStage, type Prediction, type PredictionFactor } from "./world-cup-model";
+import { getHeadToHead, getTeamStats, predictMatch, type MatchStage, type Prediction, type PredictionFactor } from "./world-cup-model";
 
-type TeamFeature = {
-  win_rate: number;
-  goals_for_per_match: number;
-  goals_against_per_match: number;
-  goal_difference_per_match: number;
-  recent_form_index: number;
-  tournament_experience: number;
-  strength: number;
-  matches_before: number;
-};
+export type MLModelMode = "calibrated" | "benchmark" | "elo";
 
-type MLModelDetails = {
+export type MLModelDetails = {
   modelType: string;
   accuracy: number;
   macroF1: number;
+  logLoss?: number;
+  brierScore?: number;
   baselineAccuracy: number;
   baselineMacroF1: number;
   topFeatures: { feature: string; importance: number }[];
@@ -26,154 +19,247 @@ type MLModelDetails = {
   isExperimental: boolean;
 };
 
-const typedTeamFeatures = teamFeatures as Record<string, TeamFeature>;
-const frontendParameters = modelMetrics.frontend_parameters;
-const logisticMetrics = modelMetrics.models.logistic_regression;
-const historicalBaseline = modelMetrics.baselines.historical_strength;
-const topLogisticFeatures = featureImportance.logistic_regression.slice(0, 5);
+type StaticPredictionLike = {
+  probabilities: Prediction["probabilities"];
+  likelyScore: Prediction["likelyScore"];
+  expectedGoals?: {
+    teamA: number;
+    teamB: number;
+  };
+  favorite: string;
+  confidence: Prediction["confidence"];
+  factors: PredictionFactor[];
+};
 
-export function getMLModelDetails(): MLModelDetails {
-  const isExperimental = logisticMetrics.macro_f1 <= historicalBaseline.macro_f1;
+type MatchupPredictionRecord = {
+  teamA: string;
+  teamB: string;
+  stage: MatchStage;
+  pipelineTeams?: {
+    teamA: string;
+    teamB: string;
+  };
+  models: Record<MLModelMode, StaticPredictionLike>;
+};
+
+type MatchupPredictionPayload = {
+  metadata: {
+    schemaVersion: string;
+    generatedAt: string;
+    defaultModel: MLModelMode;
+    sourceModels: Record<MLModelMode, string>;
+  };
+  data: {
+    teams: string[];
+    predictions: Record<string, MatchupPredictionRecord>;
+  };
+};
+
+type PipelineMetric = {
+  accuracy?: number;
+  macro_f1?: number;
+  log_loss?: number;
+  brier?: number;
+  brier_score?: number;
+};
+
+type PipelineMetricsPayload = {
+  data?: {
+    best_model?: string;
+    models?: Record<string, PipelineMetric>;
+  };
+};
+
+type FeatureImportancePayload = {
+  data?: Record<string, { feature: string; importance: number }[]>;
+};
+
+const typedMatchups = matchupPredictions as MatchupPredictionPayload;
+const typedMetrics = modelMetrics as PipelineMetricsPayload;
+const typedFeatureImportance = featureImportance as FeatureImportancePayload;
+
+const sourceModelByMode: Record<MLModelMode, string> = {
+  calibrated: "catboost",
+  benchmark: "logistic_regression",
+  elo: "elo_poisson"
+};
+
+const modelTypeByMode: Record<MLModelMode, string> = {
+  calibrated: "Calibrated ML (CatBoost)",
+  benchmark: "ML Benchmark (Logistic Regression)",
+  elo: "Elo + Poisson Baseline"
+};
+
+const legacyHistoricalBaseline = {
+  accuracy: 0.484,
+  macroF1: 0.456
+};
+
+export function getMLModelDetails(mode: MLModelMode = "calibrated"): MLModelDetails {
+  const sourceModel = sourceModelByMode[mode];
+  const metrics = typedMetrics.data?.models?.[sourceModel] ?? {};
+  const topFeatures = (typedFeatureImportance.data?.[sourceModel] ?? []).slice(0, 5).map((feature) => ({
+    feature: feature.feature,
+    importance: Number(feature.importance) || 0
+  }));
+
   return {
-    modelType: modelMetrics.selected_frontend_model,
-    accuracy: logisticMetrics.accuracy,
-    macroF1: logisticMetrics.macro_f1,
-    baselineAccuracy: historicalBaseline.accuracy,
-    baselineMacroF1: historicalBaseline.macro_f1,
-    topFeatures: topLogisticFeatures,
-    probabilityNote: modelMetrics.probability_note,
-    limitation: isExperimental
-      ? "Tournament ML is educational/experimental here because it does not outperform the historical-strength baseline on the time-based test split."
-      : "Tournament ML outperforms the simple historical-strength baseline on the time-based test split, but calibration can still be weak on a small dataset.",
-    isExperimental
+    modelType: modelTypeByMode[mode],
+    accuracy: metricValue(metrics.accuracy),
+    macroF1: metricValue(metrics.macro_f1),
+    logLoss: optionalMetric(metrics.log_loss),
+    brierScore: optionalMetric(metrics.brier_score ?? metrics.brier),
+    baselineAccuracy: legacyHistoricalBaseline.accuracy,
+    baselineMacroF1: legacyHistoricalBaseline.macroF1,
+    topFeatures,
+    probabilityNote: probabilityNote(mode),
+    limitation: limitationNote(mode),
+    isExperimental: mode !== "calibrated"
   };
 }
 
+export function predictMatchWithCalibratedML(teamA: string, teamB: string, stage: MatchStage): Prediction {
+  return predictFromStaticArtifact(teamA, teamB, stage, "calibrated");
+}
+
 export function predictMatchWithML(teamA: string, teamB: string, stage: MatchStage): Prediction {
-  const historical = predictMatch(teamA, teamB, stage);
-  const features = buildFeatureVector(teamA, teamB, stage);
+  return predictFromStaticArtifact(teamA, teamB, stage, "benchmark");
+}
 
-  if (!features) {
-    return {
-      ...historical,
-      factors: [
-        {
-          label: "ML fallback",
-          value: "Team features were unavailable, so the historical local model is shown.",
-          impact: "neutral"
-        },
-        ...historical.factors.slice(0, 4)
-      ]
-    };
+export function predictMatchWithEloScore(teamA: string, teamB: string, stage: MatchStage): Prediction {
+  return predictFromStaticArtifact(teamA, teamB, stage, "elo");
+}
+
+function predictFromStaticArtifact(teamA: string, teamB: string, stage: MatchStage, mode: MLModelMode): Prediction {
+  const fallbackPrediction = predictMatch(teamA, teamB, stage);
+  const matchup = typedMatchups.data.predictions[predictionKey(teamA, teamB, stage)];
+  const staticPrediction = matchup?.models?.[mode];
+
+  if (!staticPrediction) {
+    return mlFallback(
+      fallbackPrediction,
+      `${modelLabel(mode)} coverage was unavailable for this matchup, so Legacy Historical is shown.`
+    );
   }
-
-  const probabilities = predictProbabilities(features);
-  const favorite =
-    Math.abs(probabilities.teamAWin - probabilities.teamBWin) < 5
-      ? "Toss-up"
-      : probabilities.teamAWin > probabilities.teamBWin
-        ? teamA
-        : teamB;
-  const spread = Math.abs(probabilities.teamAWin - probabilities.teamBWin);
-  const confidence = spread > 22 ? "High" : spread < 8 ? "Low" : "Medium";
 
   return {
     teamA,
     teamB,
     stage,
-    probabilities,
-    likelyScore: historical.likelyScore,
-    confidence,
-    favorite,
-    factors: buildMLFactors(teamA, teamB, features),
+    probabilities: normalizeStaticProbabilities(staticPrediction.probabilities),
+    likelyScore: normalizeStaticScore(staticPrediction.likelyScore),
+    confidence: validConfidence(staticPrediction.confidence),
+    favorite: staticPrediction.favorite || fallbackPrediction.favorite,
+    factors: normalizeStaticFactors(staticPrediction.factors, mode),
     statsA: getTeamStats(teamA),
     statsB: getTeamStats(teamB),
     headToHead: getHeadToHead(teamA, teamB)
   };
 }
 
-function buildFeatureVector(teamA: string, teamB: string, stage: MatchStage) {
-  const featuresA = typedTeamFeatures[canonicalTeam(teamA)] ?? typedTeamFeatures[teamA];
-  const featuresB = typedTeamFeatures[canonicalTeam(teamB)] ?? typedTeamFeatures[teamB];
-  if (!featuresA || !featuresB) return null;
-
+function mlFallback(historical: Prediction, reason: string): Prediction {
   return {
-    team_a_win_rate: featuresA.win_rate,
-    team_b_win_rate: featuresB.win_rate,
-    team_a_goals_for_per_match: featuresA.goals_for_per_match,
-    team_b_goals_for_per_match: featuresB.goals_for_per_match,
-    team_a_goals_against_per_match: featuresA.goals_against_per_match,
-    team_b_goals_against_per_match: featuresB.goals_against_per_match,
-    team_a_goal_difference_per_match: featuresA.goal_difference_per_match,
-    team_b_goal_difference_per_match: featuresB.goal_difference_per_match,
-    team_a_recent_form_index: featuresA.recent_form_index,
-    team_b_recent_form_index: featuresB.recent_form_index,
-    team_a_tournament_experience: featuresA.tournament_experience,
-    team_b_tournament_experience: featuresB.tournament_experience,
-    knockout_match_flag: stage === "Group stage" ? 0 : 1,
-    final_flag: stage === "Final" ? 1 : 0,
-    strength_difference: featuresA.strength - featuresB.strength,
-    form_difference: featuresA.recent_form_index - featuresB.recent_form_index,
-    goal_balance_difference: featuresA.goal_difference_per_match - featuresB.goal_difference_per_match,
-    experience_difference: featuresA.tournament_experience - featuresB.tournament_experience
+    ...historical,
+    factors: [
+      {
+        label: "ML coverage fallback",
+        value: reason,
+        impact: "neutral"
+      },
+      ...historical.factors.slice(0, 4)
+    ]
   };
 }
 
-function predictProbabilities(features: Record<string, number>) {
-  const featureOrder = frontendParameters.feature_order as string[];
-  const scaled = featureOrder.map((feature, index) => {
-    const scale = frontendParameters.scaler_scale[index] || 1;
-    return ((features[feature] ?? 0) - frontendParameters.scaler_mean[index]) / scale;
-  });
-  const scores = frontendParameters.coefficients.map((row: number[], classIndex: number) =>
-    row.reduce((total, coefficient, featureIndex) => total + coefficient * scaled[featureIndex], frontendParameters.intercepts[classIndex])
-  );
-  const probabilities = softmax(scores);
-  const byClass = Object.fromEntries(
-    (frontendParameters.class_labels as string[]).map((label, index) => [label, probabilities[index]])
-  );
-  const teamAWin = Math.round((byClass.teamA_win ?? 0) * 100);
-  const draw = Math.round((byClass.draw ?? 0) * 100);
+function normalizeStaticProbabilities(probabilities: Prediction["probabilities"]): Prediction["probabilities"] {
+  const teamAWin = clampPercent(Math.round(Number(probabilities.teamAWin) || 0));
+  const draw = clampPercent(Math.round(Number(probabilities.draw) || 0));
+  const teamBWin = clampPercent(100 - teamAWin - draw);
+
+  if (teamAWin + draw + teamBWin === 100) {
+    return { teamAWin, draw, teamBWin };
+  }
+
   return {
     teamAWin,
     draw,
-    teamBWin: Math.max(0, 100 - teamAWin - draw)
+    teamBWin: clampPercent(Math.round(Number(probabilities.teamBWin) || 0))
   };
 }
 
-function softmax(values: number[]) {
-  const max = Math.max(...values);
-  const exp = values.map((value) => Math.exp(value - max));
-  const total = exp.reduce((sum, value) => sum + value, 0);
-  return exp.map((value) => value / total);
+function normalizeStaticScore(score: Prediction["likelyScore"]): Prediction["likelyScore"] {
+  return {
+    teamA: Math.max(0, Math.round(Number(score.teamA) || 0)),
+    teamB: Math.max(0, Math.round(Number(score.teamB) || 0))
+  };
 }
 
-function buildMLFactors(teamA: string, teamB: string, features: Record<string, number>): PredictionFactor[] {
-  return [
-    {
-      label: "Model-estimated probabilities",
-      value: "Tournament ML probabilities are not betting odds and may be weakly calibrated on this small dataset.",
-      impact: "neutral"
-    },
-    {
-      label: "Strength difference",
-      value: `${teamA} ${features.strength_difference.toFixed(2)} model-strength edge vs ${teamB}`,
-      impact: features.strength_difference > 2 ? "positive" : features.strength_difference < -2 ? "negative" : "neutral"
-    },
-    {
-      label: "Form difference",
-      value: `${Math.round(features.form_difference * 100)} point recent-form gap`,
-      impact: features.form_difference > 0.05 ? "positive" : features.form_difference < -0.05 ? "negative" : "neutral"
-    },
-    {
-      label: "Goal balance difference",
-      value: `${features.goal_balance_difference.toFixed(2)} goals per match net gap`,
-      impact: features.goal_balance_difference > 0.15 ? "positive" : features.goal_balance_difference < -0.15 ? "negative" : "neutral"
-    },
-    {
-      label: "Experience difference",
-      value: `${features.experience_difference.toFixed(0)} tournament appearance gap`,
-      impact: features.experience_difference > 1 ? "positive" : features.experience_difference < -1 ? "negative" : "neutral"
-    }
-  ];
+function normalizeStaticFactors(factors: PredictionFactor[] | undefined, mode: MLModelMode): PredictionFactor[] {
+  if (!factors?.length) {
+    return [
+      {
+        label: modelLabel(mode),
+        value: "Static model output was generated offline from the Python ML pipeline.",
+        impact: "neutral"
+      }
+    ];
+  }
+
+  return factors.slice(0, 5).map((factor) => ({
+    label: String(factor.label || "Model factor"),
+    value: String(factor.value || "No factor detail available."),
+    impact: validImpact(factor.impact)
+  }));
+}
+
+function validConfidence(confidence: string): Prediction["confidence"] {
+  if (confidence === "High" || confidence === "Medium" || confidence === "Low") return confidence;
+  return "Medium";
+}
+
+function validImpact(impact: string): PredictionFactor["impact"] {
+  if (impact === "positive" || impact === "negative" || impact === "neutral") return impact;
+  return "neutral";
+}
+
+function predictionKey(teamA: string, teamB: string, stage: MatchStage) {
+  return `${teamA}|${teamB}|${stage}`;
+}
+
+function metricValue(value: unknown) {
+  return typeof value === "number" && Number.isFinite(value) ? value : 0;
+}
+
+function optionalMetric(value: unknown) {
+  return typeof value === "number" && Number.isFinite(value) ? value : undefined;
+}
+
+function clampPercent(value: number) {
+  return Math.min(100, Math.max(0, value));
+}
+
+function modelLabel(mode: MLModelMode) {
+  if (mode === "calibrated") return "Calibrated ML";
+  if (mode === "benchmark") return "ML Benchmark";
+  return "Elo + Score";
+}
+
+function probabilityNote(mode: MLModelMode) {
+  if (mode === "calibrated") {
+    return "Calibrated ML probabilities are static model-estimated probabilities exported from the offline Python pipeline. They are not betting odds.";
+  }
+  if (mode === "benchmark") {
+    return "ML Benchmark probabilities come from an offline Logistic Regression comparison model. They are not betting odds.";
+  }
+  return "Elo + Score probabilities come from an offline Elo + Poisson baseline. They are not betting odds.";
+}
+
+function limitationNote(mode: MLModelMode) {
+  if (mode === "calibrated") {
+    return "Calibrated ML uses broader 2018-2026 senior international results, so it is stronger than the old World Cup-only model but not directly apples-to-apples with the legacy backtest.";
+  }
+  if (mode === "benchmark") {
+    return "ML Benchmark is kept for transparency as an explainable Logistic Regression comparison, not as the recommended default.";
+  }
+  return "Elo + Score is a football-native baseline for comparison; it is useful for score intuition but trails the calibrated classifier on the new test split.";
 }

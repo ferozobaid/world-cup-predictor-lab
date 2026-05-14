@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 const model = process.env.OPENAI_MODEL ?? "gpt-5-nano";
+const analystBriefVersion = "2026-05-analyst-brief-v4";
+const maxOutputTokens = 700;
 type AnalystSections = {
   keyTakeaway: string;
   whyFavorite: string;
@@ -39,6 +41,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   const prediction = (body?.prediction ?? body) as ExplainPrediction;
   const key = stableKey({
+    analystBriefVersion,
     teamA: prediction?.teamA,
     teamB: prediction?.teamB,
     stage: prediction?.stage,
@@ -88,36 +91,63 @@ export async function POST(request: Request) {
     whatIf: body?.whatIf ?? null
   };
 
-  const response = await client.responses.create({
-    model,
-    max_output_tokens: 320,
-    input: [
-      {
-        role: "system",
-        content:
-          [
-            "You are a concise football analyst. OpenAI explains the forecast but does not make or override the prediction.",
-            "Use only the supplied JSON context. Do not add external facts.",
-            "Return only valid JSON with keys: keyTakeaway, whyFavorite, riskFactor, upsetPath, modelLimitation.",
-            "Keep each value to one concise sentence. State probabilities are model-estimated, not betting odds.",
-            "If selectedModel is Tournament ML, say it is an experimental offline Logistic Regression model trained on historical World Cup features.",
-            "If squadProxy is enabled/applied, say it is a manually curated sample/proxy layer, not official squad data."
-          ].join(" ")
-      },
-      {
-        role: "user",
-        content: JSON.stringify(analystContext)
-      }
-    ]
-  });
+  let rawText = "";
+  let usage = null;
+  try {
+    const response = await client.responses.create({
+      model,
+      reasoning: { effort: "minimal" },
+      max_output_tokens: maxOutputTokens,
+      input: [
+        {
+          role: "system",
+          content:
+            [
+              "You are a concise football analyst. OpenAI explains the forecast but does not make or override the prediction.",
+              "Use only the supplied JSON context. Do not add external facts.",
+              "Return only valid JSON with keys: keyTakeaway, whyFavorite, riskFactor, upsetPath, modelLimitation.",
+              "Return the JSON object immediately and do not leave any value blank.",
+              "Keep each value to one concise sentence. State probabilities are model-estimated, not betting odds.",
+              "If selectedModel is Experimental ML, say it is an experimental offline Logistic Regression model trained on historical World Cup features.",
+              "If selectedModel is Elo + Score, say it is an offline Elo-style expected-goals model that derives probabilities from a Poisson score grid.",
+              "If squadProxy is enabled/applied, say it is a manually curated sample/proxy layer, not official squad data."
+            ].join(" ")
+        },
+        {
+          role: "user",
+          content: JSON.stringify(analystContext)
+        }
+      ]
+    });
+    rawText = response.output_text.trim();
+    usage = response.usage ?? null;
+  } catch {
+    const sections = fallbackSections({
+      keyTakeaway:
+        "OpenAI could not generate the analyst brief with the current API key or billing setup. The local prediction remains available.",
+      prediction,
+      selectedModel: body?.selectedModel,
+      squadProxy: body?.squadProxy
+    });
+    return NextResponse.json({
+      text: sections.keyTakeaway,
+      sections,
+      cached: false,
+      model,
+      usage: null,
+      providerError: true
+    });
+  }
 
-  const rawText = response.output_text.trim();
-  const sections = parseSections(rawText) ?? fallbackSections({
-    keyTakeaway: rawText,
+  const fallback = fallbackSections({
+    keyTakeaway:
+      rawText ||
+      "The selected forecast is ready, but OpenAI returned an empty analyst note. The local prediction remains available.",
     prediction,
     selectedModel: body?.selectedModel,
     squadProxy: body?.squadProxy
   });
+  const sections = mergeSections(parseSections(rawText), fallback);
   const text = sections.keyTakeaway;
   explanationCache.set(key, { text, sections, createdAt: new Date().toISOString() });
 
@@ -126,33 +156,33 @@ export async function POST(request: Request) {
     sections,
     cached: false,
     model,
-    usage: response.usage ?? null
+    usage
   });
 }
 
-function parseSections(value: string): AnalystSections | null {
+function parseSections(value: string): Partial<AnalystSections> | null {
+  if (!value.trim()) return null;
   try {
     const cleaned = value.replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```$/i, "").trim();
     const parsed = JSON.parse(cleaned) as Partial<AnalystSections>;
-    if (
-      parsed.keyTakeaway &&
-      parsed.whyFavorite &&
-      parsed.riskFactor &&
-      parsed.upsetPath &&
-      parsed.modelLimitation
-    ) {
-      return {
-        keyTakeaway: parsed.keyTakeaway,
-        whyFavorite: parsed.whyFavorite,
-        riskFactor: parsed.riskFactor,
-        upsetPath: parsed.upsetPath,
-        modelLimitation: parsed.modelLimitation
-      };
-    }
+    return parsed;
   } catch {
     return null;
   }
-  return null;
+}
+
+function mergeSections(parsed: Partial<AnalystSections> | null, fallback: AnalystSections): AnalystSections {
+  return {
+    keyTakeaway: nonEmpty(parsed?.keyTakeaway) ?? fallback.keyTakeaway,
+    whyFavorite: nonEmpty(parsed?.whyFavorite) ?? fallback.whyFavorite,
+    riskFactor: nonEmpty(parsed?.riskFactor) ?? fallback.riskFactor,
+    upsetPath: nonEmpty(parsed?.upsetPath) ?? fallback.upsetPath,
+    modelLimitation: nonEmpty(parsed?.modelLimitation) ?? fallback.modelLimitation
+  };
+}
+
+function nonEmpty(value: unknown) {
+  return typeof value === "string" && value.trim() ? value.trim() : null;
 }
 
 function fallbackSections({
@@ -177,8 +207,10 @@ function fallbackSections({
     riskFactor: `${riskTeam ?? "The opponent"} can keep this close if tempo drops or set-piece pressure changes the game state.`,
     upsetPath: "The underdog path is defensive control, transition chances, and forcing the favorite away from its normal scoring rhythm.",
     modelLimitation:
-      selectedModel === "Tournament ML"
-        ? "Tournament ML is an experimental offline Logistic Regression model trained on historical World Cup features; probabilities are model-estimated, not betting odds."
+      selectedModel === "Experimental ML"
+        ? "Experimental ML is an offline Logistic Regression baseline trained on historical World Cup features; probabilities are model-estimated, not betting odds."
+        : selectedModel === "Elo + Score"
+          ? "Elo + Score is an offline Elo-style expected-goals model using a Poisson score grid; probabilities are model-estimated, not betting odds."
         : squadProxy?.enabled || squadProxy?.status === "applied"
           ? "The modern squad proxy is manually curated sample data, not official squad data; probabilities are model-estimated, not betting odds."
           : "This is an explanatory brief for a local forecast; probabilities are model-estimated, not betting odds."

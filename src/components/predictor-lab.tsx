@@ -1,20 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import worldCupSimulation from "../../ml/model_outputs/worldcup_simulation.json";
 import { getTeamFlag, isFallbackBadge } from "@/lib/team-flags";
-import { getMLModelDetails, predictMatchWithML } from "@/lib/ml-prediction-model";
+import {
+  getMLModelDetails,
+  predictMatchWithCalibratedML,
+  predictMatchWithEloScore,
+  predictMatchWithML,
+  type MLModelDetails
+} from "@/lib/ml-prediction-model";
 import {
   applySquadStrengthAdjustment,
   getSquadStrength,
   type SquadAdjustmentState
 } from "@/lib/squad-strength-adjustment";
 import {
-  formatRecord,
   predictMatch,
   worldCupData,
   type MatchStage,
   type Prediction,
+  type PredictionFactor,
   type TeamStats,
   type WorldCupFixture
 } from "@/lib/world-cup-model";
@@ -40,62 +47,335 @@ type ExplainState =
   | { status: "ready"; text: string; meta: string; sections?: AnalystSections }
   | { status: "error"; text: string; meta: string; sections?: AnalystSections };
 
-const stages: MatchStage[] = ["Group stage", "Round of 16", "Quarter-final", "Semi-final", "Final"];
+const knockoutStages: MatchStage[] = ["Round of 32", "Round of 16", "Quarter-final", "Semi-final", "Final"];
 
-type WhatIfState = {
+type WhatIfTarget = "teamA" | "teamB";
+
+type WhatIfValues = {
   recentForm: number;
   attack: number;
   defense: number;
   knockoutPressure: boolean;
 };
 
-type ScenarioTab = "Group Stage" | "Round of 32" | "Round of 16" | "Quarter-final" | "Semi-final" | "Final";
-type PredictionModelMode = "historical" | "ml";
+type WhatIfState = {
+  activeTarget: WhatIfTarget;
+  teamA: WhatIfValues;
+  teamB: WhatIfValues;
+};
 
-const defaultWhatIf: WhatIfState = {
+type ScenarioTab = "Group Stage" | "Round of 32" | "Round of 16" | "Quarter-final" | "Semi-final" | "Final";
+type PredictionModelMode = "calibrated" | "legacy" | "benchmark" | "elo";
+
+type SimulationProbability = {
+  knockout_probability: number;
+  quarterfinal_probability: number;
+  semifinal_probability: number;
+  finalist_probability: number;
+  champion_probability: number;
+};
+
+type WorldCupSimulationPayload = {
+  data?: {
+    runs?: number;
+    probabilities?: Record<string, SimulationProbability>;
+  };
+};
+
+const defaultWhatIfValues: WhatIfValues = {
   recentForm: 0,
   attack: 0,
   defense: 0,
   knockoutPressure: false
 };
 
+const defaultWhatIf: WhatIfState = {
+  activeTarget: "teamA",
+  teamA: { ...defaultWhatIfValues },
+  teamB: { ...defaultWhatIfValues }
+};
+
 const scenarioTabs: ScenarioTab[] = ["Group Stage", "Round of 32", "Round of 16", "Quarter-final", "Semi-final", "Final"];
+const typedWorldCupSimulation = worldCupSimulation as WorldCupSimulationPayload;
+const simulationTeamAliases: Record<string, string> = {
+  "Bosnia & Herzegovina": "Bosnia and Herzegovina",
+  "DR Congo": "Congo DR",
+  USA: "United States"
+};
+const simulationToAppTeamAliases: Record<string, string> = Object.fromEntries(
+  Object.entries(simulationTeamAliases).map(([appTeam, simulationTeam]) => [simulationTeam, appTeam])
+);
+type HostCityPoster = {
+  id: string;
+  city: string;
+  fixtureGround: string;
+  hostCountry: string;
+  stadiumName: string;
+  caption: string;
+  label: string;
+  imageSrc?: string;
+  width?: number;
+  height?: number;
+};
+
+const hostCityPosters: HostCityPoster[] = [
+  {
+    id: "atlanta",
+    city: "Atlanta",
+    fixtureGround: "Atlanta",
+    hostCountry: "USA",
+    stadiumName: "Mercedes-Benz Stadium",
+    caption: "peach sky, skyline, supporter color",
+    label: "Atlanta World Cup 2026 poster with peach sky, fans, skyline, and football energy",
+    imageSrc: "/world-cup-posters/atlanta-2026-poster.jpeg",
+    width: 768,
+    height: 1154
+  },
+  {
+    id: "boston",
+    city: "Boston",
+    fixtureGround: "Boston (Foxborough)",
+    hostCountry: "USA",
+    stadiumName: "Gillette Stadium",
+    caption: "harbor character, hand-drawn match joy",
+    label: "Boston World Cup 2026 poster with harbor artwork, football, and coastal character",
+    imageSrc: "/world-cup-posters/boston-2026-poster.jpeg",
+    width: 754,
+    height: 1116
+  },
+  {
+    id: "dallas",
+    city: "Dallas",
+    fixtureGround: "Dallas (Arlington)",
+    hostCountry: "USA",
+    stadiumName: "AT&T Stadium",
+    caption: "deep teal, red skyline, overhead kick",
+    label: "Dallas World Cup 2026 poster with red skyline and overhead kick artwork",
+    imageSrc: "/world-cup-posters/dallas-2026-poster.jpeg",
+    width: 736,
+    height: 1122
+  },
+  {
+    id: "guadalajara",
+    city: "Guadalajara",
+    fixtureGround: "Guadalajara (Zapopan)",
+    hostCountry: "Mexico",
+    stadiumName: "Estadio Akron",
+    caption: "pink festival field, bright folk pattern",
+    label: "Guadalajara World Cup 2026 poster with pink festival color and stadium motifs",
+    imageSrc: "/world-cup-posters/guadalajara-2026-poster.jpeg",
+    width: 760,
+    height: 1148
+  },
+  {
+    id: "houston",
+    city: "Houston",
+    fixtureGround: "Houston",
+    hostCountry: "USA",
+    stadiumName: "NRG Stadium",
+    caption: "space city, night blue, astronaut football",
+    label: "Houston World Cup 2026 poster with space city night colors and astronaut football",
+    imageSrc: "/world-cup-posters/houston-2026-poster.jpeg",
+    width: 854,
+    height: 1320
+  },
+  {
+    id: "kansas-city",
+    city: "Kansas City",
+    fixtureGround: "Kansas City",
+    hostCountry: "USA",
+    stadiumName: "GEHA Field at Arrowhead Stadium",
+    caption: "music strips, match murals, midnight color",
+    label: "Kansas City World Cup 2026 poster with layered mural ribbons and football scenes",
+    imageSrc: "/world-cup-posters/kansas-city-2026-poster.jpeg",
+    width: 764,
+    height: 1170
+  },
+  {
+    id: "los-angeles",
+    city: "Los Angeles",
+    fixtureGround: "Los Angeles (Inglewood)",
+    hostCountry: "USA",
+    stadiumName: "SoFi Stadium",
+    caption: "sunset skyline, palm silhouettes, match glow",
+    label: "Los Angeles World Cup 2026 poster with sunset skyline and footballer silhouette",
+    imageSrc: "/world-cup-posters/los-angeles-2026-poster.jpeg",
+    width: 714,
+    height: 1014
+  },
+  {
+    id: "toronto",
+    city: "Toronto",
+    fixtureGround: "Toronto",
+    hostCountry: "Canada",
+    stadiumName: "BMO Field",
+    caption: "motion, blue blocks, match night red",
+    label: "Toronto World Cup 2026 poster with blue blocks and red football motion",
+    imageSrc: "/world-cup-posters/toronto-2026-poster.png",
+    width: 960,
+    height: 1232
+  },
+  {
+    id: "miami",
+    city: "Miami",
+    fixtureGround: "Miami (Miami Gardens)",
+    hostCountry: "USA",
+    stadiumName: "Hard Rock Stadium",
+    caption: "pink waterfront, teal skyline, festival heat",
+    label: "Miami World Cup 2026 poster with pink waterfront colors and a flamingo",
+    imageSrc: "/world-cup-posters/miami-2026-poster.png",
+    width: 888,
+    height: 1348
+  },
+  {
+    id: "vancouver",
+    city: "Vancouver",
+    fixtureGround: "Vancouver",
+    hostCountry: "Canada",
+    stadiumName: "BC Place",
+    caption: "coast green, sky blue, Pacific linework",
+    label: "Vancouver World Cup 2026 poster with coast green, blue, and Pacific artwork",
+    imageSrc: "/world-cup-posters/vancouver-2026-poster.png",
+    width: 832,
+    height: 1284
+  },
+  {
+    id: "mexico",
+    city: "Mexico City",
+    fixtureGround: "Mexico City",
+    hostCountry: "Mexico",
+    stadiumName: "Estadio Azteca",
+    caption: "orange festival color, stadium geometry",
+    label: "Mexico City World Cup 2026 poster with orange festival colors",
+    imageSrc: "/world-cup-posters/mexico-city-2026-poster.png",
+    width: 288,
+    height: 432
+  },
+  {
+    id: "monterrey",
+    city: "Monterrey",
+    fixtureGround: "Monterrey (Guadalupe)",
+    hostCountry: "Mexico",
+    stadiumName: "Estadio BBVA",
+    caption: "royal blue, green pattern, northern rhythm",
+    label: "Monterrey World Cup 2026 poster with royal blue and green stadium pattern",
+    imageSrc: "/world-cup-posters/monterrey-2026-poster.jpeg",
+    width: 790,
+    height: 1192
+  },
+  {
+    id: "new-york",
+    city: "New York/New Jersey",
+    fixtureGround: "New York/New Jersey (East Rutherford)",
+    hostCountry: "USA",
+    stadiumName: "MetLife Stadium",
+    caption: "torch energy, electric blue, orange flame",
+    label: "New York New Jersey World Cup 2026 poster with electric blue and orange torch energy",
+    imageSrc: "/world-cup-posters/new-york-new-jersey-2026-poster.png",
+    width: 288,
+    height: 440
+  },
+  {
+    id: "philadelphia",
+    city: "Philadelphia",
+    fixtureGround: "Philadelphia",
+    hostCountry: "USA",
+    stadiumName: "Lincoln Financial Field",
+    caption: "spotlight football, blue city collage",
+    label: "Philadelphia World Cup 2026 poster with blue city collage and football spotlights",
+    imageSrc: "/world-cup-posters/philadelphia-2026-poster.jpeg",
+    width: 910,
+    height: 1100
+  },
+  {
+    id: "san-francisco",
+    city: "San Francisco Bay Area",
+    fixtureGround: "San Francisco Bay Area (Santa Clara)",
+    hostCountry: "USA",
+    stadiumName: "Levi's Stadium",
+    caption: "bridge angle, orange football, bay light",
+    label: "San Francisco Bay Area World Cup 2026 poster with bridge artwork and floating football",
+    imageSrc: "/world-cup-posters/san-francisco-bay-area-2026-poster.jpeg",
+    width: 822,
+    height: 1208
+  },
+  {
+    id: "seattle",
+    city: "Seattle",
+    fixtureGround: "Seattle",
+    hostCountry: "USA",
+    stadiumName: "Lumen Field",
+    caption: "coast green, whale mark, mountain energy",
+    label: "Seattle World Cup 2026 poster with whale artwork, water, and mountain silhouette",
+    imageSrc: "/world-cup-posters/seattle-2026-poster.jpeg",
+    width: 806,
+    height: 1218
+  }
+];
+
+type FixtureGroup = {
+  name: string;
+  teams: string[];
+  fixtures: WorldCupFixture[];
+};
+
+function modelLabel(mode: PredictionModelMode) {
+  if (mode === "calibrated") return "Calibrated ML";
+  if (mode === "benchmark") return "ML Benchmark";
+  if (mode === "elo") return "Elo + Score";
+  return "Legacy Historical";
+}
 
 export function PredictorLab({ teams, fixtures, generatedAt, sources }: PredictorLabProps) {
   const [teamA, setTeamA] = useState("Argentina");
   const [teamB, setTeamB] = useState("France");
   const [stage, setStage] = useState<MatchStage>("Final");
-  const [predictionModel, setPredictionModel] = useState<PredictionModelMode>("historical");
+  const [predictionModel, setPredictionModel] = useState<PredictionModelMode>("calibrated");
   const [modernSquadEnabled, setModernSquadEnabled] = useState(false);
   const [activeView, setActiveView] = useState<"prediction" | "data" | "fixtures">("prediction");
   const [explanation, setExplanation] = useState<ExplainState>({ status: "idle", text: "", meta: "" });
   const [whatIf, setWhatIf] = useState<WhatIfState>(defaultWhatIf);
-
-  const prediction = useMemo(
-    () => (predictionModel === "ml" ? predictMatchWithML(teamA, teamB, stage) : predictMatch(teamA, teamB, stage)),
-    [predictionModel, teamA, teamB, stage]
+  const fixtureGroups = useMemo(() => groupFixtures(fixtures), [fixtures]);
+  const activeTeams = useMemo(
+    () => [...new Set(fixtureGroups.flatMap((group) => group.teams))].sort((a, b) => a.localeCompare(b)),
+    [fixtureGroups]
   );
+  const availableStages = useMemo(
+    () => validStagesForMatch(teamA, teamB, fixtureGroups),
+    [fixtureGroups, teamA, teamB]
+  );
+
+  const prediction = useMemo(() => {
+    if (predictionModel === "calibrated") return predictMatchWithCalibratedML(teamA, teamB, stage);
+    if (predictionModel === "benchmark") return predictMatchWithML(teamA, teamB, stage);
+    if (predictionModel === "elo") return predictMatchWithEloScore(teamA, teamB, stage);
+    return predictMatch(teamA, teamB, stage);
+  }, [predictionModel, teamA, teamB, stage]);
   const squadAdjustedResult = useMemo(
     () => applySquadStrengthAdjustment(prediction, modernSquadEnabled),
     [prediction, modernSquadEnabled]
   );
   const squadPrediction = squadAdjustedResult.prediction;
   const displayPrediction = useMemo(() => alignScoreline(applyWhatIf(squadPrediction, whatIf)), [squadPrediction, whatIf]);
-  const mlDetails = useMemo(() => getMLModelDetails(), []);
-  const sortedTeams = useMemo(() => teams.filter(Boolean), [teams]);
+  const modelDetails = useMemo(
+    () => (predictionModel === "legacy" ? null : getMLModelDetails(predictionModel)),
+    [predictionModel]
+  );
+  const sortedTeams = activeTeams.length ? activeTeams : teams.filter(Boolean);
 
   async function explainPrediction() {
     setExplanation({ status: "loading", text: "", meta: "" });
     try {
       const whatIfActive =
-        whatIf.recentForm > 0 || whatIf.attack > 0 || whatIf.defense > 0 || whatIf.knockoutPressure;
+        isWhatIfValuesActive(whatIf.teamA) ||
+        isWhatIfValuesActive(whatIf.teamB);
       const response = await fetch("/api/explain", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          selectedModel: predictionModel === "ml" ? "Tournament ML" : "Historical Local",
+          selectedModel: modelLabel(predictionModel),
           prediction: displayPrediction,
-          modelDetails: predictionModel === "ml" ? mlDetails : null,
+          modelDetails,
           squadProxy: {
             enabled: modernSquadEnabled,
             status: squadAdjustedResult.adjustment.status,
@@ -117,10 +397,9 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
           },
           whatIf: {
             active: whatIfActive,
-            recentForm: whatIf.recentForm,
-            attack: whatIf.attack,
-            defense: whatIf.defense,
-            knockoutPressure: whatIf.knockoutPressure
+            activeTarget: whatIf.activeTarget,
+            teamA: whatIf.teamA,
+            teamB: whatIf.teamB
           }
         })
       });
@@ -131,6 +410,8 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
         sections: payload.sections,
         meta: payload.missingKey
           ? "OpenAI key missing"
+          : payload.providerError
+            ? "OpenAI unavailable"
           : `${payload.cached ? "Cached" : "Generated"} with ${payload.model}`
       });
     } catch {
@@ -150,6 +431,14 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
     setExplanation({ status: "idle", text: "", meta: "" });
   }
 
+  function loadBracketMatchup(nextTeamA: string, nextTeamB: string, scenarioTab: ScenarioTab) {
+    setTeamA(nextTeamA);
+    setTeamB(nextTeamB);
+    setStage(scenarioTabToMatchStage(scenarioTab));
+    setActiveView("prediction");
+    setExplanation({ status: "idle", text: "", meta: "" });
+  }
+
   function clearExplanation() {
     setExplanation({ status: "idle", text: "", meta: "" });
   }
@@ -162,7 +451,7 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
       const second = pool[Math.floor(Math.random() * pool.length)] || "France";
       setTeamA(first);
       setTeamB(second);
-      setStage("Group stage");
+      setStage(defaultStageForMatch(first, second, fixtureGroups));
     }
     if (scenario === "final") {
       setTeamA("Argentina");
@@ -172,7 +461,7 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
     if (scenario === "upset") {
       setTeamA("South Africa");
       setTeamB("Brazil");
-      setStage("Round of 16");
+      setStage("Round of 32");
     }
     if (scenario === "heavyweight") {
       setTeamA("Brazil");
@@ -194,25 +483,27 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
         <aside className="control-panel" aria-label="Prediction controls">
           <BrandHeader />
           <Controls
+            availableStages={availableStages}
             sortedTeams={sortedTeams}
             teamA={teamA}
             teamB={teamB}
             stage={stage}
             setTeamA={(value) => {
               setTeamA(value);
+              if (!validStagesForMatch(value, teamB, fixtureGroups).includes(stage)) {
+                setStage(defaultStageForMatch(value, teamB, fixtureGroups));
+              }
               clearExplanation();
             }}
             setTeamB={(value) => {
               setTeamB(value);
+              if (!validStagesForMatch(teamA, value, fixtureGroups).includes(stage)) {
+                setStage(defaultStageForMatch(teamA, value, fixtureGroups));
+              }
               clearExplanation();
             }}
             setStage={(value) => {
               setStage(value);
-              clearExplanation();
-            }}
-            swapTeams={() => {
-              setTeamA(teamB);
-              setTeamB(teamA);
               clearExplanation();
             }}
           />
@@ -228,19 +519,6 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
               clearExplanation();
             }}
           />
-          <QuickScenarios onApply={applyScenario} />
-          <WhatIfLab
-            whatIf={whatIf}
-            setWhatIf={(value) => {
-              setWhatIf(value);
-              clearExplanation();
-            }}
-          />
-          <div className="cost-box">
-            <span>Budget guard</span>
-            <strong>$0 prediction engine</strong>
-            <p>On-demand analyst notes stay capped and cached.</p>
-          </div>
         </aside>
 
         <section className="main-panel">
@@ -276,15 +554,22 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
             </div>
           </div>
 
+          {activeView === "prediction" && <QuickScenarios onApply={applyScenario} />}
+
           {activeView === "prediction" && (
             <PredictionView
               prediction={prediction}
               displayPrediction={displayPrediction}
               predictionModel={predictionModel}
-              mlDetails={mlDetails}
+              modelDetails={modelDetails}
               squadAdjustment={squadAdjustedResult.adjustment}
               explanation={explanation}
               onExplain={explainPrediction}
+              whatIf={whatIf}
+              setWhatIf={(value) => {
+                setWhatIf(value);
+                clearExplanation();
+              }}
             />
           )}
 
@@ -295,6 +580,7 @@ export function PredictorLab({ teams, fixtures, generatedAt, sources }: Predicto
               fixtures={fixtures}
               prediction={displayPrediction}
               onLoadFixture={loadFixture}
+              onLoadBracketMatchup={loadBracketMatchup}
             />
           )}
         </section>
@@ -311,16 +597,16 @@ function BrandHeader() {
           <p className="eyebrow">World Cup Predictor Lab</p>
           <h1>Matchup model</h1>
         </div>
-        <Image
-          className="fifa-logo"
-          src="/fifa-2026-logo.svg"
-          alt="FIFA World Cup 2026 emblem"
-          width={455}
-          height={701}
-          loading="eager"
-          priority
-          unoptimized
-        />
+        <div className="brand-visual" aria-label="World Cup 2026 visual identity">
+          <Image
+            className="brand-logo-image"
+            src="/world-cup-posters/can-mex-usa-2026-logo.png"
+            alt="FIFA World Cup 2026 CAN MEX USA logo artwork"
+            width={588}
+            height={886}
+            loading="eager"
+          />
+        </div>
       </div>
       <p className="intro">Build a matchup, test the stage, then stress the forecast with quick what-if scenarios.</p>
     </div>
@@ -328,15 +614,16 @@ function BrandHeader() {
 }
 
 function Controls({
+  availableStages,
   sortedTeams,
   teamA,
   teamB,
   stage,
   setTeamA,
   setTeamB,
-  setStage,
-  swapTeams
+  setStage
 }: {
+  availableStages: MatchStage[];
   sortedTeams: string[];
   teamA: string;
   teamB: string;
@@ -344,20 +631,15 @@ function Controls({
   setTeamA: (team: string) => void;
   setTeamB: (team: string) => void;
   setStage: (stage: MatchStage) => void;
-  swapTeams: () => void;
 }) {
   return (
     <div className="control-stack">
       <TeamSelect label="Team A" value={teamA} teams={sortedTeams} onChange={setTeamA} />
-      <button className="swap-button" type="button" onClick={swapTeams} aria-label="Swap teams">
-        ⇄
-        <span>Swap</span>
-      </button>
       <TeamSelect label="Team B" value={teamB} teams={sortedTeams} onChange={setTeamB} />
       <label className="field">
         <span>Match context</span>
         <select value={stage} onChange={(event) => setStage(event.target.value as MatchStage)}>
-          {stages.map((stageName) => (
+          {availableStages.map((stageName) => (
             <option key={stageName} value={stageName}>
               {stageName}
             </option>
@@ -413,11 +695,17 @@ function ModelSelector({
         <span>Model</span>
       </div>
       <div className="model-toggle" role="group" aria-label="Prediction model">
-        <button className={value === "historical" ? "active" : ""} type="button" onClick={() => onChange("historical")}>
-          Historical Local
+        <button className={value === "calibrated" ? "active" : ""} type="button" onClick={() => onChange("calibrated")}>
+          Calibrated ML
         </button>
-        <button className={value === "ml" ? "active" : ""} type="button" onClick={() => onChange("ml")}>
-          Tournament ML
+        <button className={value === "legacy" ? "active" : ""} type="button" onClick={() => onChange("legacy")}>
+          Legacy Historical
+        </button>
+        <button className={value === "benchmark" ? "active" : ""} type="button" onClick={() => onChange("benchmark")}>
+          ML Benchmark
+        </button>
+        <button className={value === "elo" ? "active" : ""} type="button" onClick={() => onChange("elo")}>
+          Elo + Score
         </button>
       </div>
       <div className="switch-control squad-switch">
@@ -469,36 +757,69 @@ function WhatIfLab({
   whatIf: WhatIfState;
   setWhatIf: (value: WhatIfState) => void;
 }) {
+  const activeValues = whatIf[whatIf.activeTarget];
+  const activeLabel = whatIf.activeTarget === "teamA" ? "Team A" : "Team B";
+
+  function setActiveTarget(activeTarget: WhatIfTarget) {
+    setWhatIf({ ...whatIf, activeTarget });
+  }
+
+  function updateActiveValues(values: Partial<WhatIfValues>) {
+    setWhatIf({
+      ...whatIf,
+      [whatIf.activeTarget]: {
+        ...activeValues,
+        ...values
+      }
+    });
+  }
+
   return (
     <section className="mini-module what-if-module">
       <div className="mini-heading">
         <span>What-if lab</span>
-        <small>Team A boost</small>
+        <small>{activeLabel} boost</small>
+      </div>
+      <div className="what-if-team-toggle" role="group" aria-label="What-if adjustment team">
+        <button
+          className={whatIf.activeTarget === "teamA" ? "active" : ""}
+          type="button"
+          onClick={() => setActiveTarget("teamA")}
+        >
+          Team A
+        </button>
+        <button
+          className={whatIf.activeTarget === "teamB" ? "active" : ""}
+          type="button"
+          onClick={() => setActiveTarget("teamB")}
+        >
+          Team B
+        </button>
       </div>
       <SliderControl
         label="Recent form"
-        value={whatIf.recentForm}
-        onChange={(recentForm) => setWhatIf({ ...whatIf, recentForm })}
+        value={activeValues.recentForm}
+        onChange={(recentForm) => updateActiveValues({ recentForm })}
       />
       <SliderControl
         label="Attack"
-        value={whatIf.attack}
-        onChange={(attack) => setWhatIf({ ...whatIf, attack })}
+        value={activeValues.attack}
+        onChange={(attack) => updateActiveValues({ attack })}
       />
       <SliderControl
         label="Defensive stability"
-        value={whatIf.defense}
-        onChange={(defense) => setWhatIf({ ...whatIf, defense })}
+        value={activeValues.defense}
+        onChange={(defense) => updateActiveValues({ defense })}
       />
       <div className="switch-control">
         <button
-          className={whatIf.knockoutPressure ? "switch-button active" : "switch-button"}
+          className={activeValues.knockoutPressure ? "switch-button active" : "switch-button"}
           type="button"
           role="switch"
-          aria-checked={whatIf.knockoutPressure}
-          onClick={() => setWhatIf({ ...whatIf, knockoutPressure: !whatIf.knockoutPressure })}
+          aria-checked={activeValues.knockoutPressure}
+          onClick={() => updateActiveValues({ knockoutPressure: !activeValues.knockoutPressure })}
         >
-          <span>Knockout pressure: {whatIf.knockoutPressure ? "On" : "Off"}</span>
+          <span>Knockout pressure: {activeValues.knockoutPressure ? "On" : "Off"}</span>
           <i aria-hidden="true" />
         </button>
       </div>
@@ -530,20 +851,25 @@ function PredictionView({
   prediction,
   displayPrediction,
   predictionModel,
-  mlDetails,
+  modelDetails,
   squadAdjustment,
   explanation,
-  onExplain
+  onExplain,
+  whatIf,
+  setWhatIf
 }: {
   prediction: Prediction;
   displayPrediction: Prediction;
   predictionModel: PredictionModelMode;
-  mlDetails: ReturnType<typeof getMLModelDetails>;
+  modelDetails: MLModelDetails | null;
   squadAdjustment: SquadAdjustmentState;
   explanation: ExplainState;
   onExplain: () => void;
+  whatIf: WhatIfState;
+  setWhatIf: (value: WhatIfState) => void;
 }) {
   const [activeProbability, setActiveProbability] = useState("");
+  const [factorLens, setFactorLens] = useState<WhatIfTarget>("teamA");
   const probabilities = [
     {
       label: `${displayPrediction.teamA} win`,
@@ -568,6 +894,11 @@ function PredictionView({
     }
   ];
   const activeProbabilityDetail = probabilities.find((probability) => probability.label === activeProbability)?.detail;
+  const lensTeam = factorLens === "teamA" ? prediction.teamA : prediction.teamB;
+  const displayedFactors =
+    factorLens === "teamA"
+      ? prediction.factors
+      : mirrorPredictionFactors(prediction.factors, prediction.teamA, prediction.teamB);
 
   return (
     <div className="grid prediction-grid">
@@ -599,7 +930,7 @@ function PredictionView({
         <div className="metric-strip">
           <Metric label="Favorite" value={displayPrediction.favorite} />
           <Metric label="Confidence" value={displayPrediction.confidence} />
-          <Metric label="Model" value={predictionModel === "ml" ? "Tournament ML" : "Historical local"} />
+          <Metric label="Model" value={modelLabel(predictionModel)} />
           <Metric label="Match Type" value={displayPrediction.stage} />
           {squadAdjustment.status !== "disabled" && (
             <Metric
@@ -610,49 +941,84 @@ function PredictionView({
         </div>
       </section>
 
-      <section className="panel probability-panel">
+      <section className={`panel ai-panel ${explanation.status}`}>
         <div className="section-heading">
-          <h3>Win probability</h3>
-          <span>Normalized forecast</span>
+          <h3>AI Analyst Brief</h3>
+          {explanation.status === "loading" && <span>Building brief</span>}
+          {explanation.status === "error" && <span>Unavailable</span>}
         </div>
-        <div className="bars">
-          {probabilities.map((probability) => (
-            <button
-              key={probability.label}
-              className={`bar-row ${activeProbability === probability.label ? "active" : ""}`}
-              type="button"
-              title={probability.detail}
-              onClick={() => setActiveProbability(activeProbability === probability.label ? "" : probability.label)}
-            >
-              <div className="bar-label">
-                <span>
-                  {probability.team && <TeamBadge team={probability.team} />} {probability.label}
-                </span>
-                <strong>{probability.value}%</strong>
-              </div>
-              <div className="bar-track">
-                <div className={`bar-fill ${probability.className}`} style={{ width: `${probability.value}%` }} />
-              </div>
-            </button>
-          ))}
-        </div>
-        <p className="probability-note">
-          {activeProbabilityDetail ||
-            (squadAdjustment.status === "applied"
-              ? "Why this matters: the selected base model is adjusted by a small curated squad-strength proxy. These are not betting odds."
-              : predictionModel === "ml"
-                ? "Why this matters: these are model-estimated probabilities from exported ML features, not betting odds."
-                : "Why this matters: the bars translate the historical model into a quick match-read before the analyst brief.")}
-        </p>
+        <AnalystBrief explanation={explanation} prediction={displayPrediction} />
+        <button className="primary-button" type="button" onClick={onExplain} disabled={explanation.status === "loading"}>
+          {explanation.status === "loading" ? "Generating..." : "Generate"}
+        </button>
       </section>
+
+      <div className="forecast-tools">
+        <section className="panel probability-panel">
+          <div className="section-heading">
+            <h3>Win probability</h3>
+            <span>Normalized forecast</span>
+          </div>
+          <div className="bars">
+            {probabilities.map((probability) => (
+              <button
+                key={probability.label}
+                className={`bar-row ${activeProbability === probability.label ? "active" : ""}`}
+                type="button"
+                title={probability.detail}
+                onClick={() => setActiveProbability(activeProbability === probability.label ? "" : probability.label)}
+              >
+                <div className="bar-label">
+                  <span>
+                    {probability.team && <TeamBadge team={probability.team} />} {probability.label}
+                  </span>
+                  <strong>{probability.value}%</strong>
+                </div>
+                <div className="bar-track">
+                  <div className={`bar-fill ${probability.className}`} style={{ width: `${probability.value}%` }} />
+                </div>
+              </button>
+            ))}
+          </div>
+          <p className="probability-note">
+            {activeProbabilityDetail ||
+              (squadAdjustment.status === "applied"
+                ? "Why this matters: the selected base model is adjusted by a small curated squad-strength proxy. These are not betting odds."
+                : predictionModel === "calibrated"
+                  ? "Why this matters: Calibrated ML uses static probabilities exported from the offline Python pipeline, not betting odds."
+                : predictionModel === "benchmark"
+                  ? "Why this matters: ML Benchmark is an explainable Logistic Regression comparison, not the recommended default."
+                  : predictionModel === "elo"
+                    ? "Why this matters: Elo + Score converts expected goals into model-estimated probabilities, not betting odds."
+                  : "Why this matters: Legacy Historical translates World Cup records into a quick match-read before the analyst brief.")}
+          </p>
+        </section>
+        <WhatIfLab whatIf={whatIf} setWhatIf={setWhatIf} />
+      </div>
 
       <section className="panel factors-panel">
         <div className="section-heading">
           <h3>Key factors</h3>
-          <span>{prediction.teamA} lens</span>
+          <div className="factor-lens-toggle" role="group" aria-label="Key factors lens">
+            <button
+              className={factorLens === "teamA" ? "active" : ""}
+              type="button"
+              onClick={() => setFactorLens("teamA")}
+            >
+              <TeamBadge team={prediction.teamA} /> {prediction.teamA}
+            </button>
+            <button
+              className={factorLens === "teamB" ? "active" : ""}
+              type="button"
+              onClick={() => setFactorLens("teamB")}
+            >
+              <TeamBadge team={prediction.teamB} /> {prediction.teamB}
+            </button>
+          </div>
         </div>
+        <p className="lens-note">{lensTeam} lens</p>
         <div className="factor-list">
-          {prediction.factors.map((factor) => (
+          {displayedFactors.map((factor) => (
             <div className={`factor ${factor.impact}`} key={factor.label}>
               <span>{factor.label}</span>
               <p>{factor.value}</p>
@@ -661,18 +1027,7 @@ function PredictionView({
         </div>
       </section>
 
-      <section className={`panel ai-panel ${explanation.status}`}>
-        <div className="section-heading">
-          <h3>AI analyst brief</h3>
-          <span>{explanation.meta || "Standby"}</span>
-        </div>
-        <AnalystBrief explanation={explanation} prediction={displayPrediction} />
-        <button className="primary-button" type="button" onClick={onExplain} disabled={explanation.status === "loading"}>
-          {explanation.status === "loading" ? "Generating..." : "Generate analyst brief"}
-        </button>
-      </section>
-
-      {predictionModel === "ml" && <ModelDetailsPanel details={mlDetails} squadAdjustment={squadAdjustment} />}
+      {modelDetails && <ModelDetailsPanel details={modelDetails} squadAdjustment={squadAdjustment} />}
     </div>
   );
 }
@@ -681,7 +1036,7 @@ function ModelDetailsPanel({
   details,
   squadAdjustment
 }: {
-  details: ReturnType<typeof getMLModelDetails>;
+  details: MLModelDetails;
   squadAdjustment: SquadAdjustmentState;
 }) {
   return (
@@ -695,6 +1050,8 @@ function ModelDetailsPanel({
         <Metric label="Accuracy" value={`${Math.round(details.accuracy * 100)}%`} />
         <Metric label="Macro F1" value={details.macroF1.toFixed(3)} />
         <Metric label="Historical baseline" value={`${Math.round(details.baselineAccuracy * 100)}% / ${details.baselineMacroF1.toFixed(3)} F1`} />
+        {details.brierScore !== undefined && <Metric label="Brier score" value={details.brierScore.toFixed(3)} />}
+        {details.logLoss !== undefined && <Metric label="Log loss" value={details.logLoss.toFixed(3)} />}
       </div>
       <div className="top-features">
         <span>Top features</span>
@@ -724,7 +1081,7 @@ function AnalystBrief({ explanation, prediction }: { explanation: ExplainState; 
   if (explanation.status === "idle") {
     return (
       <p className="ai-copy">
-        Generate an OpenAI-powered analyst brief explaining the selected model output. OpenAI explains the forecast but does not make the prediction.
+        Unlock the tactical read behind this forecast: the edge, the danger, and the upset route in one compact match brief.
       </p>
     );
   }
@@ -735,7 +1092,7 @@ function AnalystBrief({ explanation, prediction }: { explanation: ExplainState; 
 
   const favorite = prediction.favorite === "Toss-up" ? prediction.teamA : prediction.favorite;
   const riskTeam = favorite === prediction.teamA ? prediction.teamB : prediction.teamA;
-  const structured = explanation.sections ?? {
+  const fallbackSections = {
     keyTakeaway: explanation.text,
     whyFavorite:
       favorite === "Toss-up"
@@ -744,6 +1101,13 @@ function AnalystBrief({ explanation, prediction }: { explanation: ExplainState; 
     riskFactor: `${riskTeam} can keep this close if the game state lowers tempo or turns the forecast into a one-chance match.`,
     upsetPath: "The underdog route is early defensive control, set-piece pressure, and forcing the favorite away from its normal scoring rhythm.",
     modelLimitation: "OpenAI explains the selected forecast but does not make the prediction. Probabilities are model-estimated, not betting odds."
+  };
+  const structured = {
+    keyTakeaway: nonEmptyBriefValue(explanation.sections?.keyTakeaway) ?? nonEmptyBriefValue(fallbackSections.keyTakeaway) ?? fallbackSections.whyFavorite,
+    whyFavorite: nonEmptyBriefValue(explanation.sections?.whyFavorite) ?? fallbackSections.whyFavorite,
+    riskFactor: nonEmptyBriefValue(explanation.sections?.riskFactor) ?? fallbackSections.riskFactor,
+    upsetPath: nonEmptyBriefValue(explanation.sections?.upsetPath) ?? fallbackSections.upsetPath,
+    modelLimitation: nonEmptyBriefValue(explanation.sections?.modelLimitation) ?? fallbackSections.modelLimitation
   };
   const sections = [
     ["Key takeaway", structured.keyTakeaway],
@@ -763,6 +1127,10 @@ function AnalystBrief({ explanation, prediction }: { explanation: ExplainState; 
       ))}
     </div>
   );
+}
+
+function nonEmptyBriefValue(value: unknown) {
+  return typeof value === "string" && value.trim() ? value.trim() : null;
 }
 
 function TeamIdentity({ team, align }: { team: string; align: "left" | "right" }) {
@@ -796,13 +1164,13 @@ function DataView({
             <span>{stats.matches} matches</span>
           </div>
           <div className="stat-table">
-            <Metric label="Record" value={formatRecord(stats)} />
+            <RecordMetric stats={stats} />
             <Metric label="World Cup win rate" value={`${Math.round((stats.wins / Math.max(stats.matches, 1)) * 100)}%`} />
             <Metric label="Goals for" value={String(stats.goalsFor)} />
             <Metric label="Goals against" value={String(stats.goalsAgainst)} />
             <Metric label="Recent form index" value={`${Math.round(stats.recentForm * 100)}`} />
             <Metric label="Tournaments played" value={String(teamInsight(stats).tournaments)} />
-            <Metric label="Best stage" value={teamInsight(stats).bestStage} />
+            <Metric label="World Cup trophies" value={String(stats.titles)} />
             <SquadStrengthMetric team={stats.team} />
           </div>
         </section>
@@ -866,14 +1234,29 @@ function SquadStrengthMetric({ team }: { team: string }) {
   );
 }
 
+function RecordMetric({ stats }: { stats: TeamStats }) {
+  return (
+    <div className="metric record-metric">
+      <span>Record</span>
+      <div className="record-chips" aria-label={`${stats.wins} wins, ${stats.draws} draws, ${stats.losses} losses`}>
+        <strong className="record-chip wins">{stats.wins}W</strong>
+        <strong className="record-chip draws">{stats.draws}D</strong>
+        <strong className="record-chip losses">{stats.losses}L</strong>
+      </div>
+    </div>
+  );
+}
+
 function ScenarioView({
   fixtures,
   prediction,
-  onLoadFixture
+  onLoadFixture,
+  onLoadBracketMatchup
 }: {
   fixtures: WorldCupFixture[];
   prediction: Prediction;
   onLoadFixture: (fixture: WorldCupFixture) => void;
+  onLoadBracketMatchup: (teamA: string, teamB: string, scenarioTab: ScenarioTab) => void;
 }) {
   const [scenarioTab, setScenarioTab] = useState<ScenarioTab>("Group Stage");
   const fixtureGroups = useMemo(() => groupFixtures(fixtures), [fixtures]);
@@ -906,6 +1289,8 @@ function ScenarioView({
             : "Bracket slots are placeholders until group standings are simulated or finalized."}
         </p>
       </section>
+      <TournamentSimulationPanel prediction={prediction} />
+      <HostCityEnergy fixtures={fixtures} onLoadFixture={onLoadFixture} />
       {scenarioTab === "Group Stage" ? (
         <section className="panel wide-panel fixture-panel">
           <div className="section-heading">
@@ -948,40 +1333,323 @@ function ScenarioView({
           </div>
         </section>
       ) : (
-        <BracketView scenarioTab={scenarioTab} />
+        <BracketView fixtureGroups={fixtureGroups} onLoadMatchup={onLoadBracketMatchup} scenarioTab={scenarioTab} />
       )}
     </div>
   );
 }
 
-function BracketView({ scenarioTab }: { scenarioTab: Exclude<ScenarioTab, "Group Stage"> }) {
+function TournamentSimulationPanel({ prediction }: { prediction: Prediction }) {
+  const probabilities = typedWorldCupSimulation.data?.probabilities ?? {};
+  const runs = typedWorldCupSimulation.data?.runs ?? 0;
+  const topTeams = Object.entries(probabilities)
+    .sort(([, teamA], [, teamB]) => teamB.champion_probability - teamA.champion_probability)
+    .slice(0, 5);
+  const selectedTeams = [prediction.teamA, prediction.teamB]
+    .map((team) => [team, probabilities[simulationTeamAliases[team] ?? team]] as const)
+    .filter((entry): entry is readonly [string, SimulationProbability] => Boolean(entry[1]));
+
+  if (!topTeams.length) return null;
+
+  return (
+    <section className="panel wide-panel simulation-panel">
+      <div className="section-heading">
+        <h3>Monte Carlo tournament outlook</h3>
+        <span>{runs.toLocaleString()} offline runs</span>
+      </div>
+      <div className="simulation-grid">
+        <div className="simulation-card featured">
+          <span>Current matchup</span>
+          <div className="simulation-team-pair">
+            {selectedTeams.map(([team, outlook]) => (
+              <strong key={team}>
+                <TeamBadge team={team} /> {team}
+                <small>{formatSimulationPercent(outlook.champion_probability)} champion path</small>
+              </strong>
+            ))}
+          </div>
+          <p>Scenario-only tournament simulation; single-match probabilities still come from the selected model.</p>
+        </div>
+        {topTeams.map(([simulationTeam, outlook]) => {
+          const team = simulationToAppTeamAliases[simulationTeam] ?? simulationTeam;
+          return (
+            <div className="simulation-card" key={simulationTeam}>
+              <span>Champion path</span>
+              <strong>
+                <TeamBadge team={team} /> {team}
+              </strong>
+              <div className="simulation-bar" aria-label={`${team} champion probability ${formatSimulationPercent(outlook.champion_probability)}`}>
+                <i style={{ width: `${Math.max(4, Math.round(outlook.champion_probability * 100))}%` }} />
+              </div>
+              <small>
+                {formatSimulationPercent(outlook.champion_probability)} win tournament · {formatSimulationPercent(outlook.finalist_probability)} final
+              </small>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function HostCityEnergy({
+  fixtures,
+  onLoadFixture
+}: {
+  fixtures: WorldCupFixture[];
+  onLoadFixture: (fixture: WorldCupFixture) => void;
+}) {
+  const [selectedCity, setSelectedCity] = useState(hostCityPosters[0]?.fixtureGround ?? "");
+  const cityRailRef = useRef<HTMLDivElement>(null);
+  const cityFixtures = useMemo(() => fixtures.filter((fixture) => fixture.ground === selectedCity), [fixtures, selectedCity]);
+  const selectedPoster = hostCityPosters.find((poster) => poster.fixtureGround === selectedCity) ?? hostCityPosters[0];
+
+  function scrollCities(direction: -1 | 1) {
+    const rail = cityRailRef.current;
+    if (!rail) return;
+    rail.scrollBy({
+      left: direction * Math.max(rail.clientWidth * 0.85, 280),
+      behavior: "smooth"
+    });
+  }
+
+  return (
+    <section className="panel wide-panel city-energy-panel">
+      <div className="section-heading">
+        <h3>Host City Fixtures</h3>
+        <span>{hostCityPosters.length} host cities</span>
+      </div>
+      <div className="city-selector-shell">
+        <button
+          aria-label="Scroll host cities left"
+          className="city-scroll-button"
+          onClick={() => scrollCities(-1)}
+          type="button"
+        >
+          ‹
+        </button>
+        <div className="city-scroll-window">
+          <div className="city-poster-grid" ref={cityRailRef} aria-label="World Cup 2026 host city selector">
+            {hostCityPosters.map((poster) => {
+              const cityMatchCount = fixtures.filter((fixture) => fixture.ground === poster.fixtureGround).length;
+              const isSelected = selectedCity === poster.fixtureGround;
+
+              return (
+                <button
+                  aria-label={`Show ${poster.city} fixtures at ${poster.stadiumName}`}
+                  aria-pressed={isSelected}
+                  className={`city-poster ${poster.id} ${isSelected ? "active" : ""}`}
+                  key={poster.id}
+                  onClick={() => setSelectedCity(poster.fixtureGround)}
+                  type="button"
+                >
+                  <div className="city-poster-art">
+                    {poster.imageSrc ? (
+                      <Image
+                        src={poster.imageSrc}
+                        alt={poster.label}
+                        width={poster.width ?? 800}
+                        height={poster.height ?? 1100}
+                        sizes="(max-width: 680px) 160px, (max-width: 1040px) 190px, 220px"
+                      />
+                    ) : (
+                      <span className="city-fallback-art" aria-hidden="true">
+                        {poster.city.slice(0, 3).toUpperCase()}
+                      </span>
+                    )}
+                  </div>
+                  <span className="city-poster-meta">
+                    <strong>{poster.city}</strong>
+                    <small className="city-poster-kicker">{poster.hostCountry}</small>
+                    <small className="city-poster-stadium">{poster.stadiumName}</small>
+                    <small className="city-poster-count">{cityMatchCount} matches</small>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        <button
+          aria-label="Scroll host cities right"
+          className="city-scroll-button"
+          onClick={() => scrollCities(1)}
+          type="button"
+        >
+          ›
+        </button>
+      </div>
+      {selectedPoster && (
+        <div className="city-fixture-panel">
+          <div className="selected-city-header">
+            <div>
+              <span>{selectedPoster.hostCountry}</span>
+              <h4>{selectedPoster.city}</h4>
+              <p>{selectedPoster.stadiumName}</p>
+            </div>
+            <strong>{cityFixtures.length} matches hosted</strong>
+          </div>
+          <div className="city-fixture-list">
+            {cityFixtures.map((fixture) => (
+              <button
+                className="city-fixture"
+                key={`${fixture.date}-${fixture.team1}-${fixture.team2}-${fixture.ground}`}
+                onClick={() => onLoadFixture(fixture)}
+                type="button"
+              >
+                <span className="city-fixture-date">{fixture.date}</span>
+                <strong>
+                  <TeamBadge team={fixture.team1} /> {fixture.team1}
+                  <em>vs</em>
+                  <TeamBadge team={fixture.team2} /> {fixture.team2}
+                </strong>
+                <small>
+                  {fixture.group} · {fixture.round}
+                </small>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function BracketView({
+  fixtureGroups,
+  onLoadMatchup,
+  scenarioTab
+}: {
+  fixtureGroups: FixtureGroup[];
+  onLoadMatchup: (teamA: string, teamB: string, scenarioTab: ScenarioTab) => void;
+  scenarioTab: Exclude<ScenarioTab, "Group Stage">;
+}) {
   const matchups = bracketMatchups(scenarioTab);
+  const [selectedSlots, setSelectedSlots] = useState<Record<string, string>>({});
+  const allGroupTeams = useMemo(
+    () => [...new Set(fixtureGroups.flatMap((group) => group.teams))].sort((a, b) => a.localeCompare(b)),
+    [fixtureGroups]
+  );
+
+  function optionsForSlot(slot: string) {
+    const groupName = extractGroupName(slot);
+    if (!groupName) return allGroupTeams;
+    return fixtureGroups.find((group) => group.name === groupName)?.teams ?? allGroupTeams;
+  }
+
+  function selectedValue(matchupId: string, side: "home" | "away", slot: string) {
+    const key = `${scenarioTab}-${matchupId}-${side}`;
+    const options = optionsForSlot(slot);
+    return selectedSlots[key] && options.includes(selectedSlots[key]) ? selectedSlots[key] : options[0] ?? "";
+  }
+
+  function updateSlot(matchupId: string, side: "home" | "away", value: string) {
+    setSelectedSlots((current) => ({
+      ...current,
+      [`${scenarioTab}-${matchupId}-${side}`]: value
+    }));
+  }
 
   return (
     <section className={`panel wide-panel bracket-panel ${scenarioTab === "Final" ? "final-bracket" : ""}`}>
       <div className="section-heading">
-        <h3>{scenarioTab} bracket</h3>
-        <span>{matchups.length} {matchups.length === 1 ? "matchup" : "matchups"}</span>
+        <h3>{scenarioTab === "Final" ? "The Final" : `${scenarioTab} bracket`}</h3>
+        {scenarioTab !== "Final" && <span>{matchups.length} {matchups.length === 1 ? "matchup" : "matchups"}</span>}
       </div>
       <div className="bracket-grid">
         {matchups.map((matchup) => (
-          <article className="bracket-card" key={matchup.id}>
-            <span className="bracket-meta">{matchup.id}</span>
-            <div className="bracket-side">
-              <span>{matchup.home}</span>
-            </div>
-            <em>vs</em>
-            <div className="bracket-side">
-              <span>{matchup.away}</span>
-            </div>
-          </article>
+          <BracketCard
+            awayValue={selectedValue(matchup.id, "away", matchup.away)}
+            homeValue={selectedValue(matchup.id, "home", matchup.home)}
+            key={matchup.id}
+            matchup={matchup}
+            onChangeAway={(value) => updateSlot(matchup.id, "away", value)}
+            onChangeHome={(value) => updateSlot(matchup.id, "home", value)}
+            onLoad={() =>
+              onLoadMatchup(
+                selectedValue(matchup.id, "home", matchup.home),
+                selectedValue(matchup.id, "away", matchup.away),
+                scenarioTab
+              )
+            }
+            optionsForSlot={optionsForSlot}
+          />
         ))}
       </div>
     </section>
   );
 }
 
-function groupFixtures(fixtures: WorldCupFixture[]) {
+function BracketCard({
+  awayValue,
+  homeValue,
+  matchup,
+  onChangeAway,
+  onChangeHome,
+  onLoad,
+  optionsForSlot
+}: {
+  awayValue: string;
+  homeValue: string;
+  matchup: ReturnType<typeof toBracketMatchup>;
+  onChangeAway: (value: string) => void;
+  onChangeHome: (value: string) => void;
+  onLoad: () => void;
+  optionsForSlot: (slot: string) => string[];
+}) {
+  const canLoad = Boolean(homeValue && awayValue && homeValue !== awayValue);
+
+  return (
+    <article className="bracket-card">
+      <span className="bracket-meta">{matchup.id}</span>
+      <BracketSlotSelect
+        label={matchup.home}
+        onChange={onChangeHome}
+        options={optionsForSlot(matchup.home)}
+        value={homeValue}
+      />
+      <em>vs</em>
+      <BracketSlotSelect
+        label={matchup.away}
+        onChange={onChangeAway}
+        options={optionsForSlot(matchup.away)}
+        value={awayValue}
+      />
+      <button className="bracket-load-button" disabled={!canLoad} onClick={onLoad} type="button">
+        {canLoad ? "Use matchup" : "Pick two teams"}
+      </button>
+    </article>
+  );
+}
+
+function BracketSlotSelect({
+  label,
+  onChange,
+  options,
+  value
+}: {
+  label: string;
+  onChange: (value: string) => void;
+  options: string[];
+  value: string;
+}) {
+  return (
+    <label className="bracket-slot-select">
+      <span>{label}</span>
+      <div className="select-shell bracket-select-shell">
+        {value && <TeamBadge team={value} />}
+        <select aria-label={label} value={value} onChange={(event) => onChange(event.target.value)}>
+          {options.map((team) => (
+            <option key={`${label}-${team}`} value={team}>
+              {team}
+            </option>
+          ))}
+        </select>
+      </div>
+    </label>
+  );
+}
+
+function groupFixtures(fixtures: WorldCupFixture[]): FixtureGroup[] {
   const groups = new Map<string, WorldCupFixture[]>();
   for (const fixture of fixtures) {
     const group = groups.get(fixture.group) ?? [];
@@ -1046,14 +1714,76 @@ function toBracketMatchup(matchup: string[]) {
   return { id, home, away };
 }
 
-function applyWhatIf(prediction: Prediction, whatIf: WhatIfState): Prediction {
-  const boost = whatIf.recentForm * 0.7 + whatIf.attack * 0.8 + whatIf.defense * 0.5 + (whatIf.knockoutPressure && prediction.stage !== "Group stage" ? 4 : 0);
-  if (boost === 0) return prediction;
+function extractGroupName(slot: string) {
+  const match = slot.match(/Group [A-L]/);
+  return match?.[0] ?? "";
+}
 
-  const teamAWin = clampPercent(prediction.probabilities.teamAWin + boost, 5, 88);
-  const drawDrop = Math.min(prediction.probabilities.draw - 8, boost * 0.28);
-  const draw = clampPercent(prediction.probabilities.draw - Math.max(0, drawDrop), prediction.stage === "Group stage" ? 10 : 6, 42);
-  const teamBWin = clampPercent(100 - teamAWin - draw, 4, 88);
+function scenarioTabToMatchStage(scenarioTab: ScenarioTab): MatchStage {
+  if (scenarioTab === "Group Stage") return "Group stage";
+  if (scenarioTab === "Round of 32") return "Round of 32";
+  if (scenarioTab === "Quarter-final") return "Quarter-final";
+  if (scenarioTab === "Semi-final") return "Semi-final";
+  if (scenarioTab === "Final") return "Final";
+  return "Round of 16";
+}
+
+function validStagesForMatch(teamA: string, teamB: string, fixtureGroups: FixtureGroup[]): MatchStage[] {
+  const stages = [...knockoutStages];
+  if (hasGroupFixture(teamA, teamB, fixtureGroups)) {
+    return ["Group stage", ...stages];
+  }
+  return stages;
+}
+
+function defaultStageForMatch(teamA: string, teamB: string, fixtureGroups: FixtureGroup[]): MatchStage {
+  return hasGroupFixture(teamA, teamB, fixtureGroups) ? "Group stage" : "Round of 32";
+}
+
+function hasGroupFixture(teamA: string, teamB: string, fixtureGroups: FixtureGroup[]) {
+  return fixtureGroups.some((group) =>
+    group.fixtures.some(
+      (fixture) =>
+        (fixture.team1 === teamA && fixture.team2 === teamB) ||
+        (fixture.team1 === teamB && fixture.team2 === teamA)
+    )
+  );
+}
+
+function isWhatIfValuesActive(values: WhatIfValues) {
+  return values.recentForm > 0 || values.attack > 0 || values.defense > 0 || values.knockoutPressure;
+}
+
+function whatIfBoost(values: WhatIfValues, stage: MatchStage) {
+  return (
+    values.recentForm * 0.7 +
+    values.attack * 0.8 +
+    values.defense * 0.5 +
+    (values.knockoutPressure && stage !== "Group stage" ? 4 : 0)
+  );
+}
+
+function applyWhatIf(prediction: Prediction, whatIf: WhatIfState): Prediction {
+  const teamABoost = whatIfBoost(whatIf.teamA, prediction.stage);
+  const teamBBoost = whatIfBoost(whatIf.teamB, prediction.stage);
+  const netBoost = teamABoost - teamBBoost;
+  if (netBoost === 0) return prediction;
+
+  const shift = Math.abs(netBoost);
+  const drawFloor = prediction.stage === "Group stage" ? 10 : 6;
+  const drawDrop = Math.min(Math.max(0, prediction.probabilities.draw - drawFloor), shift * 0.28);
+  const draw = clampPercent(prediction.probabilities.draw - drawDrop, drawFloor, 42);
+  let teamAWin = prediction.probabilities.teamAWin;
+  let teamBWin = prediction.probabilities.teamBWin;
+
+  if (netBoost > 0) {
+    teamAWin = clampPercent(teamAWin + shift, 5, 88);
+    teamBWin = clampPercent(100 - teamAWin - draw, 4, 88);
+  } else {
+    teamBWin = clampPercent(teamBWin + shift, 5, 88);
+    teamAWin = clampPercent(100 - teamBWin - draw, 4, 88);
+  }
+
   const normalizedTotal = teamAWin + draw + teamBWin;
   const probabilities = {
     teamAWin: Math.round((teamAWin / normalizedTotal) * 100),
@@ -1080,6 +1810,27 @@ function applyWhatIf(prediction: Prediction, whatIf: WhatIfState): Prediction {
     favorite,
     confidence
   };
+}
+
+function mirrorPredictionFactors(factors: PredictionFactor[], teamA: string, teamB: string): PredictionFactor[] {
+  return factors.map((factor) => ({
+    ...factor,
+    value: swapTeamNames(factor.value, teamA, teamB),
+    impact: flipFactorImpact(factor.impact)
+  }));
+}
+
+function swapTeamNames(value: string, teamA: string, teamB: string) {
+  return value
+    .replaceAll(teamA, "__TEAM_A__")
+    .replaceAll(teamB, teamA)
+    .replaceAll("__TEAM_A__", teamB);
+}
+
+function flipFactorImpact(impact: PredictionFactor["impact"]): PredictionFactor["impact"] {
+  if (impact === "positive") return "negative";
+  if (impact === "negative") return "positive";
+  return "neutral";
 }
 
 function alignScoreline(prediction: Prediction): Prediction {
@@ -1184,6 +1935,10 @@ function toTitleCase(value: string) {
 
 function formatFeatureName(value: string) {
   return toTitleCase(value.replaceAll("_", " "));
+}
+
+function formatSimulationPercent(value: number) {
+  return `${Math.round(value * 100)}%`;
 }
 
 function clampPercent(value: number, min: number, max: number) {

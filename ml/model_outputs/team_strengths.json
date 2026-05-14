@@ -1,0 +1,1507 @@
+{
+  "metadata": {
+    "schema_version": "1.0.0",
+    "model_version": "ml-pipeline-v1",
+    "generated_at": "2026-05-13T23:01:50.324925+00:00",
+    "artifact": "team_strengths.json",
+    "source": {
+      "source_file": "offline-ml-pipeline/data/processed/team_strengths.csv"
+    }
+  },
+  "data": [
+    {
+      "team": "Afghanistan",
+      "elo": 1379.094939584974,
+      "offensive_elo": 1419.300000000001,
+      "defensive_elo": 1401.8999999999994
+    },
+    {
+      "team": "Albania",
+      "elo": 1530.562282600379,
+      "offensive_elo": 1469.1000000000015,
+      "defensive_elo": 1510.499999999998
+    },
+    {
+      "team": "Algeria",
+      "elo": 1760.379424010905,
+      "offensive_elo": 2071.500000000002,
+      "defensive_elo": 1703.699999999997
+    },
+    {
+      "team": "American Samoa",
+      "elo": 1437.269112486243,
+      "offensive_elo": 1491.9,
+      "defensive_elo": 1443.3
+    },
+    {
+      "team": "Andorra",
+      "elo": 1189.594761143672,
+      "offensive_elo": 1144.5000000000018,
+      "defensive_elo": 1206.299999999998
+    },
+    {
+      "team": "Angola",
+      "elo": 1550.606063451975,
+      "offensive_elo": 1473.3000000000015,
+      "defensive_elo": 1621.4999999999984
+    },
+    {
+      "team": "Anguilla",
+      "elo": 1208.4438579730654,
+      "offensive_elo": 1351.2000000000012,
+      "defensive_elo": 919.1999999999994
+    },
+    {
+      "team": "Antigua and Barbuda",
+      "elo": 1296.8160791217492,
+      "offensive_elo": 1488.000000000001,
+      "defensive_elo": 1171.199999999999
+    },
+    {
+      "team": "Argentina",
+      "elo": 1852.1868153637988,
+      "offensive_elo": 2020.2000000000016,
+      "defensive_elo": 1782.5999999999972
+    },
+    {
+      "team": "Armenia",
+      "elo": 1345.4196472893714,
+      "offensive_elo": 1489.5000000000018,
+      "defensive_elo": 1067.6999999999982
+    },
+    {
+      "team": "Aruba",
+      "elo": 1410.9409033433633,
+      "offensive_elo": 1557.000000000001,
+      "defensive_elo": 1259.3999999999992
+    },
+    {
+      "team": "Australia",
+      "elo": 1736.8855377282575,
+      "offensive_elo": 1839.3000000000015,
+      "defensive_elo": 1671.8999999999985
+    },
+    {
+      "team": "Austria",
+      "elo": 1673.5450314133525,
+      "offensive_elo": 1859.100000000002,
+      "defensive_elo": 1578.8999999999978
+    },
+    {
+      "team": "Azerbaijan",
+      "elo": 1345.2652943132896,
+      "offensive_elo": 1381.5000000000018,
+      "defensive_elo": 1254.899999999998
+    },
+    {
+      "team": "Bahamas",
+      "elo": 1178.846182445055,
+      "offensive_elo": 1493.1000000000008,
+      "defensive_elo": 1059.299999999999
+    },
+    {
+      "team": "Bahrain",
+      "elo": 1504.5864978913703,
+      "offensive_elo": 1638.0000000000011,
+      "defensive_elo": 1525.199999999997
+    },
+    {
+      "team": "Bangladesh",
+      "elo": 1348.208248470547,
+      "offensive_elo": 1372.2000000000012,
+      "defensive_elo": 1403.3999999999987
+    },
+    {
+      "team": "Barawa",
+      "elo": 1471.6006950704734,
+      "offensive_elo": 1513.2,
+      "defensive_elo": 1430.4
+    },
+    {
+      "team": "Barbados",
+      "elo": 1306.7509451431335,
+      "offensive_elo": 1536.6000000000013,
+      "defensive_elo": 1160.9999999999986
+    },
+    {
+      "team": "Basque Country",
+      "elo": 1524.6624111011652,
+      "offensive_elo": 1523.7,
+      "defensive_elo": 1508.6999999999998
+    },
+    {
+      "team": "Belarus",
+      "elo": 1439.4237824704137,
+      "offensive_elo": 1426.500000000002,
+      "defensive_elo": 1326.2999999999984
+    },
+    {
+      "team": "Belgium",
+      "elo": 1711.6949663919702,
+      "offensive_elo": 2228.3999999999987,
+      "defensive_elo": 1670.3999999999976
+    },
+    {
+      "team": "Belize",
+      "elo": 1411.7778215279272,
+      "offensive_elo": 1512.300000000001,
+      "defensive_elo": 1352.0999999999988
+    },
+    {
+      "team": "Benin",
+      "elo": 1503.2638264800437,
+      "offensive_elo": 1444.2000000000016,
+      "defensive_elo": 1502.9999999999986
+    },
+    {
+      "team": "Bermuda",
+      "elo": 1386.1982210304668,
+      "offensive_elo": 1673.4000000000012,
+      "defensive_elo": 1146.5999999999988
+    },
+    {
+      "team": "Bhutan",
+      "elo": 1324.9916014890653,
+      "offensive_elo": 1421.1000000000006,
+      "defensive_elo": 1305.2999999999995
+    },
+    {
+      "team": "Bolivia",
+      "elo": 1499.9419820356936,
+      "offensive_elo": 1409.4000000000024,
+      "defensive_elo": 1114.1999999999985
+    },
+    {
+      "team": "Bonaire",
+      "elo": 1353.4732000390966,
+      "offensive_elo": 1545.000000000001,
+      "defensive_elo": 1328.999999999999
+    },
+    {
+      "team": "Bosnia and Herzegovina",
+      "elo": 1483.8579064643018,
+      "offensive_elo": 1475.400000000002,
+      "defensive_elo": 1382.9999999999982
+    },
+    {
+      "team": "Botswana",
+      "elo": 1406.6554041392865,
+      "offensive_elo": 1344.300000000001,
+      "defensive_elo": 1458.899999999999
+    },
+    {
+      "team": "Brazil",
+      "elo": 1756.9774284340106,
+      "offensive_elo": 1971.6000000000015,
+      "defensive_elo": 1790.3999999999974
+    },
+    {
+      "team": "British Virgin Islands",
+      "elo": 1347.055848768288,
+      "offensive_elo": 1484.100000000001,
+      "defensive_elo": 1202.6999999999994
+    },
+    {
+      "team": "Brunei",
+      "elo": 1327.90131787124,
+      "offensive_elo": 1454.4000000000003,
+      "defensive_elo": 1276.7999999999993
+    },
+    {
+      "team": "Bulgaria",
+      "elo": 1437.1525513502963,
+      "offensive_elo": 1419.300000000002,
+      "defensive_elo": 1301.0999999999983
+    },
+    {
+      "team": "Burkina Faso",
+      "elo": 1626.834809449254,
+      "offensive_elo": 1650.0000000000025,
+      "defensive_elo": 1603.1999999999985
+    },
+    {
+      "team": "Burundi",
+      "elo": 1421.431539281207,
+      "offensive_elo": 1494.300000000001,
+      "defensive_elo": 1412.099999999999
+    },
+    {
+      "team": "Cambodia",
+      "elo": 1330.3691595140888,
+      "offensive_elo": 1434.6000000000008,
+      "defensive_elo": 1216.199999999999
+    },
+    {
+      "team": "Cameroon",
+      "elo": 1638.7252589922098,
+      "offensive_elo": 1568.100000000002,
+      "defensive_elo": 1685.099999999998
+    },
+    {
+      "team": "Canada",
+      "elo": 1707.8674626748175,
+      "offensive_elo": 1992.900000000002,
+      "defensive_elo": 1643.099999999998
+    },
+    {
+      "team": "Cape Verde",
+      "elo": 1585.298062632458,
+      "offensive_elo": 1542.6000000000015,
+      "defensive_elo": 1584.5999999999983
+    },
+    {
+      "team": "Cascadia",
+      "elo": 1508.2420074253496,
+      "offensive_elo": 1528.5,
+      "defensive_elo": 1488.3
+    },
+    {
+      "team": "Catalonia",
+      "elo": 1506.9136835703025,
+      "offensive_elo": 1504.5,
+      "defensive_elo": 1500.3
+    },
+    {
+      "team": "Cayman Islands",
+      "elo": 1326.1571590492133,
+      "offensive_elo": 1434.000000000001,
+      "defensive_elo": 1270.799999999999
+    },
+    {
+      "team": "Central African Republic",
+      "elo": 1399.4622093576372,
+      "offensive_elo": 1493.1000000000013,
+      "defensive_elo": 1320.899999999999
+    },
+    {
+      "team": "Chad",
+      "elo": 1320.503701811718,
+      "offensive_elo": 1368.000000000001,
+      "defensive_elo": 1384.7999999999993
+    },
+    {
+      "team": "Chagos Islands",
+      "elo": 1455.832327317899,
+      "offensive_elo": 1497.6,
+      "defensive_elo": 1396.8
+    },
+    {
+      "team": "Chameria",
+      "elo": 1504.8751326546212,
+      "offensive_elo": 1516.2,
+      "defensive_elo": 1489.8
+    },
+    {
+      "team": "Chile",
+      "elo": 1522.5484453681831,
+      "offensive_elo": 1520.4000000000024,
+      "defensive_elo": 1444.7999999999984
+    },
+    {
+      "team": "China PR",
+      "elo": 1508.2354424654463,
+      "offensive_elo": 1588.800000000001,
+      "defensive_elo": 1441.1999999999982
+    },
+    {
+      "team": "Colombia",
+      "elo": 1740.4397438905603,
+      "offensive_elo": 1722.6000000000022,
+      "defensive_elo": 1663.799999999998
+    },
+    {
+      "team": "Comoros",
+      "elo": 1506.213827260594,
+      "offensive_elo": 1523.4000000000017,
+      "defensive_elo": 1460.9999999999986
+    },
+    {
+      "team": "Congo",
+      "elo": 1369.0262480838098,
+      "offensive_elo": 1434.600000000001,
+      "defensive_elo": 1360.1999999999991
+    },
+    {
+      "team": "Congo DR",
+      "elo": 1663.9054473453127,
+      "offensive_elo": 1486.200000000002,
+      "defensive_elo": 1651.7999999999984
+    },
+    {
+      "team": "Cook Islands",
+      "elo": 1448.806953785025,
+      "offensive_elo": 1477.8000000000002,
+      "defensive_elo": 1434.6
+    },
+    {
+      "team": "Costa Rica",
+      "elo": 1654.032495694777,
+      "offensive_elo": 1623.300000000003,
+      "defensive_elo": 1423.4999999999975
+    },
+    {
+      "team": "Croatia",
+      "elo": 1733.2755100616275,
+      "offensive_elo": 1847.4000000000024,
+      "defensive_elo": 1496.9999999999975
+    },
+    {
+      "team": "Cuba",
+      "elo": 1463.206176244647,
+      "offensive_elo": 1555.200000000002,
+      "defensive_elo": 1251.599999999999
+    },
+    {
+      "team": "Cura\u00e7ao",
+      "elo": 1588.3291785343129,
+      "offensive_elo": 1729.5000000000014,
+      "defensive_elo": 1499.699999999999
+    },
+    {
+      "team": "Cyprus",
+      "elo": 1302.4935542482974,
+      "offensive_elo": 1380.0000000000018,
+      "defensive_elo": 1097.9999999999982
+    },
+    {
+      "team": "Czech Republic",
+      "elo": 1579.7789026716953,
+      "offensive_elo": 1762.200000000002,
+      "defensive_elo": 1438.199999999998
+    },
+    {
+      "team": "Denmark",
+      "elo": 1686.1679436002194,
+      "offensive_elo": 1909.800000000002,
+      "defensive_elo": 1684.1999999999975
+    },
+    {
+      "team": "Djibouti",
+      "elo": 1273.9092960584494,
+      "offensive_elo": 1410.000000000001,
+      "defensive_elo": 1244.3999999999994
+    },
+    {
+      "team": "Dominica",
+      "elo": 1349.9988485235797,
+      "offensive_elo": 1482.000000000001,
+      "defensive_elo": 1349.999999999999
+    },
+    {
+      "team": "Dominican Republic",
+      "elo": 1520.3014596672317,
+      "offensive_elo": 1731.0000000000011,
+      "defensive_elo": 1481.3999999999985
+    },
+    {
+      "team": "East Turkestan",
+      "elo": 1492.556228870306,
+      "offensive_elo": 1535.4,
+      "defensive_elo": 1485.0
+    },
+    {
+      "team": "Ecuador",
+      "elo": 1712.2090699742807,
+      "offensive_elo": 1533.3000000000022,
+      "defensive_elo": 1627.4999999999982
+    },
+    {
+      "team": "Egypt",
+      "elo": 1736.5110314151195,
+      "offensive_elo": 1713.0000000000018,
+      "defensive_elo": 1742.9999999999975
+    },
+    {
+      "team": "El Salvador",
+      "elo": 1485.891504228123,
+      "offensive_elo": 1440.3000000000025,
+      "defensive_elo": 1486.499999999998
+    },
+    {
+      "team": "Elba Island",
+      "elo": 1511.215854733556,
+      "offensive_elo": 1522.5,
+      "defensive_elo": 1506.3
+    },
+    {
+      "team": "Ellan Vannin",
+      "elo": 1509.336480144245,
+      "offensive_elo": 1504.2,
+      "defensive_elo": 1501.8
+    },
+    {
+      "team": "England",
+      "elo": 1817.0128985216097,
+      "offensive_elo": 2165.4000000000005,
+      "defensive_elo": 1792.199999999997
+    },
+    {
+      "team": "Equatorial Guinea",
+      "elo": 1463.03767585976,
+      "offensive_elo": 1429.8000000000015,
+      "defensive_elo": 1501.7999999999984
+    },
+    {
+      "team": "Eritrea",
+      "elo": 1466.3388114706477,
+      "offensive_elo": 1492.2,
+      "defensive_elo": 1489.8
+    },
+    {
+      "team": "Estonia",
+      "elo": 1299.53282495838,
+      "offensive_elo": 1299.900000000002,
+      "defensive_elo": 1101.2999999999984
+    },
+    {
+      "team": "Eswatini",
+      "elo": 1363.3189038824416,
+      "offensive_elo": 1378.5000000000011,
+      "defensive_elo": 1363.499999999999
+    },
+    {
+      "team": "Ethiopia",
+      "elo": 1419.6712329374045,
+      "offensive_elo": 1442.100000000001,
+      "defensive_elo": 1436.6999999999985
+    },
+    {
+      "team": "Faroe Islands",
+      "elo": 1378.2733814958767,
+      "offensive_elo": 1385.700000000002,
+      "defensive_elo": 1266.2999999999984
+    },
+    {
+      "team": "Fiji",
+      "elo": 1470.3942106684735,
+      "offensive_elo": 1495.2000000000005,
+      "defensive_elo": 1441.1999999999996
+    },
+    {
+      "team": "Finland",
+      "elo": 1462.9278696987649,
+      "offensive_elo": 1530.6000000000022,
+      "defensive_elo": 1458.599999999998
+    },
+    {
+      "team": "France",
+      "elo": 1845.9111476108153,
+      "offensive_elo": 2124.600000000001,
+      "defensive_elo": 1673.3999999999974
+    },
+    {
+      "team": "Franconia",
+      "elo": 1509.39853597448,
+      "offensive_elo": 1517.7,
+      "defensive_elo": 1489.5
+    },
+    {
+      "team": "French Guiana",
+      "elo": 1499.688185146831,
+      "offensive_elo": 1579.8000000000009,
+      "defensive_elo": 1478.999999999999
+    },
+    {
+      "team": "Gabon",
+      "elo": 1529.29303354295,
+      "offensive_elo": 1568.7000000000014,
+      "defensive_elo": 1454.0999999999983
+    },
+    {
+      "team": "Galicia",
+      "elo": 1493.9157202089582,
+      "offensive_elo": 1492.5,
+      "defensive_elo": 1494.3
+    },
+    {
+      "team": "Gambia",
+      "elo": 1529.6315877748186,
+      "offensive_elo": 1575.0000000000016,
+      "defensive_elo": 1482.5999999999988
+    },
+    {
+      "team": "Georgia",
+      "elo": 1525.4182694889344,
+      "offensive_elo": 1688.400000000002,
+      "defensive_elo": 1455.599999999998
+    },
+    {
+      "team": "Germany",
+      "elo": 1752.4937609519422,
+      "offensive_elo": 2088.9000000000015,
+      "defensive_elo": 1447.4999999999973
+    },
+    {
+      "team": "Ghana",
+      "elo": 1568.4005773802714,
+      "offensive_elo": 1567.200000000002,
+      "defensive_elo": 1546.7999999999986
+    },
+    {
+      "team": "Gibraltar",
+      "elo": 1154.1889530924168,
+      "offensive_elo": 1165.5000000000016,
+      "defensive_elo": 778.4999999999982
+    },
+    {
+      "team": "Greece",
+      "elo": 1601.538162780141,
+      "offensive_elo": 1601.400000000002,
+      "defensive_elo": 1604.9999999999982
+    },
+    {
+      "team": "Greenland",
+      "elo": 1482.685875200129,
+      "offensive_elo": 1492.5,
+      "defensive_elo": 1476.3
+    },
+    {
+      "team": "Grenada",
+      "elo": 1392.951769648771,
+      "offensive_elo": 1513.2000000000012,
+      "defensive_elo": 1175.9999999999986
+    },
+    {
+      "team": "Guadeloupe",
+      "elo": 1536.3686882664856,
+      "offensive_elo": 1675.200000000001,
+      "defensive_elo": 1502.399999999999
+    },
+    {
+      "team": "Guam",
+      "elo": 1333.8331543131414,
+      "offensive_elo": 1475.1000000000006,
+      "defensive_elo": 1323.2999999999995
+    },
+    {
+      "team": "Guatemala",
+      "elo": 1589.0023311392845,
+      "offensive_elo": 1735.200000000002,
+      "defensive_elo": 1528.799999999998
+    },
+    {
+      "team": "Guinea",
+      "elo": 1565.107461312586,
+      "offensive_elo": 1517.100000000002,
+      "defensive_elo": 1532.0999999999983
+    },
+    {
+      "team": "Guinea-Bissau",
+      "elo": 1411.0359169870685,
+      "offensive_elo": 1427.4000000000017,
+      "defensive_elo": 1412.9999999999989
+    },
+    {
+      "team": "Guyana",
+      "elo": 1557.1078290814917,
+      "offensive_elo": 1766.4000000000017,
+      "defensive_elo": 1315.199999999999
+    },
+    {
+      "team": "Haiti",
+      "elo": 1635.3826664088604,
+      "offensive_elo": 1933.5000000000016,
+      "defensive_elo": 1466.0999999999983
+    },
+    {
+      "team": "Honduras",
+      "elo": 1611.6774765026885,
+      "offensive_elo": 1536.0000000000025,
+      "defensive_elo": 1395.599999999998
+    },
+    {
+      "team": "Hong Kong",
+      "elo": 1430.9462749093,
+      "offensive_elo": 1508.100000000001,
+      "defensive_elo": 1435.4999999999986
+    },
+    {
+      "team": "Hungary",
+      "elo": 1577.0804801491718,
+      "offensive_elo": 1588.8000000000018,
+      "defensive_elo": 1459.1999999999978
+    },
+    {
+      "team": "Iceland",
+      "elo": 1476.5291599077705,
+      "offensive_elo": 1622.7000000000028,
+      "defensive_elo": 1158.8999999999985
+    },
+    {
+      "team": "India",
+      "elo": 1364.6560223838028,
+      "offensive_elo": 1409.7000000000012,
+      "defensive_elo": 1466.6999999999991
+    },
+    {
+      "team": "Indonesia",
+      "elo": 1504.257049808724,
+      "offensive_elo": 1655.100000000001,
+      "defensive_elo": 1253.699999999998
+    },
+    {
+      "team": "Iran",
+      "elo": 1755.9410117087828,
+      "offensive_elo": 1948.8000000000015,
+      "defensive_elo": 1709.999999999998
+    },
+    {
+      "team": "Iraq",
+      "elo": 1684.5230675899036,
+      "offensive_elo": 1572.0000000000016,
+      "defensive_elo": 1612.799999999998
+    },
+    {
+      "team": "Israel",
+      "elo": 1512.742769168917,
+      "offensive_elo": 1722.3000000000018,
+      "defensive_elo": 1233.2999999999984
+    },
+    {
+      "team": "Italy",
+      "elo": 1690.4326448909808,
+      "offensive_elo": 1963.800000000002,
+      "defensive_elo": 1640.9999999999975
+    },
+    {
+      "team": "Ivory Coast",
+      "elo": 1705.8182735308033,
+      "offensive_elo": 1828.8000000000015,
+      "defensive_elo": 1693.1999999999975
+    },
+    {
+      "team": "Jamaica",
+      "elo": 1612.0508621175404,
+      "offensive_elo": 1703.4000000000026,
+      "defensive_elo": 1520.999999999998
+    },
+    {
+      "team": "Japan",
+      "elo": 1798.971623307858,
+      "offensive_elo": 2124.5999999999995,
+      "defensive_elo": 1654.1999999999978
+    },
+    {
+      "team": "Jordan",
+      "elo": 1640.1341642219395,
+      "offensive_elo": 1683.6000000000022,
+      "defensive_elo": 1538.3999999999978
+    },
+    {
+      "team": "Kazakhstan",
+      "elo": 1417.4915273131217,
+      "offensive_elo": 1472.400000000002,
+      "defensive_elo": 1286.3999999999985
+    },
+    {
+      "team": "Kenya",
+      "elo": 1478.6499308086136,
+      "offensive_elo": 1497.600000000001,
+      "defensive_elo": 1448.3999999999985
+    },
+    {
+      "team": "Kernow",
+      "elo": 1523.587626723886,
+      "offensive_elo": 1527.0,
+      "defensive_elo": 1506.6
+    },
+    {
+      "team": "Kosovo",
+      "elo": 1579.932491560461,
+      "offensive_elo": 1671.9000000000017,
+      "defensive_elo": 1479.299999999998
+    },
+    {
+      "team": "Kuwait",
+      "elo": 1462.8535385641171,
+      "offensive_elo": 1509.9000000000012,
+      "defensive_elo": 1378.4999999999982
+    },
+    {
+      "team": "Kyrgyzstan",
+      "elo": 1478.18245396228,
+      "offensive_elo": 1626.300000000001,
+      "defensive_elo": 1377.2999999999986
+    },
+    {
+      "team": "Laos",
+      "elo": 1361.952073417326,
+      "offensive_elo": 1457.4000000000003,
+      "defensive_elo": 1382.999999999999
+    },
+    {
+      "team": "Latvia",
+      "elo": 1315.3086867413197,
+      "offensive_elo": 1363.5000000000018,
+      "defensive_elo": 1276.4999999999984
+    },
+    {
+      "team": "Lebanon",
+      "elo": 1493.5413293713575,
+      "offensive_elo": 1450.8000000000018,
+      "defensive_elo": 1498.799999999999
+    },
+    {
+      "team": "Lesotho",
+      "elo": 1410.0920888495948,
+      "offensive_elo": 1329.0000000000014,
+      "defensive_elo": 1430.999999999999
+    },
+    {
+      "team": "Liberia",
+      "elo": 1431.048261634274,
+      "offensive_elo": 1387.5000000000014,
+      "defensive_elo": 1402.4999999999989
+    },
+    {
+      "team": "Libya",
+      "elo": 1507.4259835315545,
+      "offensive_elo": 1497.9000000000017,
+      "defensive_elo": 1478.0999999999988
+    },
+    {
+      "team": "Liechtenstein",
+      "elo": 1106.3304942448117,
+      "offensive_elo": 1138.500000000002,
+      "defensive_elo": 815.0999999999985
+    },
+    {
+      "team": "Lithuania",
+      "elo": 1274.9399140875823,
+      "offensive_elo": 1278.900000000002,
+      "defensive_elo": 1129.4999999999984
+    },
+    {
+      "team": "Luhansk PR",
+      "elo": 1499.858561133576,
+      "offensive_elo": 1510.2,
+      "defensive_elo": 1483.8
+    },
+    {
+      "team": "Luxembourg",
+      "elo": 1350.5479402848705,
+      "offensive_elo": 1364.1000000000015,
+      "defensive_elo": 1281.899999999998
+    },
+    {
+      "team": "Macau",
+      "elo": 1304.098679250113,
+      "offensive_elo": 1410.9000000000003,
+      "defensive_elo": 1375.4999999999995
+    },
+    {
+      "team": "Madagascar",
+      "elo": 1485.364470839857,
+      "offensive_elo": 1519.800000000001,
+      "defensive_elo": 1396.199999999999
+    },
+    {
+      "team": "Malawi",
+      "elo": 1428.8753119148182,
+      "offensive_elo": 1340.1000000000015,
+      "defensive_elo": 1478.699999999999
+    },
+    {
+      "team": "Malaysia",
+      "elo": 1572.6548174486643,
+      "offensive_elo": 1863.600000000001,
+      "defensive_elo": 1468.799999999998
+    },
+    {
+      "team": "Maldives",
+      "elo": 1328.9568242703224,
+      "offensive_elo": 1489.200000000001,
+      "defensive_elo": 1342.7999999999995
+    },
+    {
+      "team": "Mali",
+      "elo": 1662.2827460527783,
+      "offensive_elo": 1674.600000000002,
+      "defensive_elo": 1760.9999999999984
+    },
+    {
+      "team": "Malta",
+      "elo": 1301.3612299436234,
+      "offensive_elo": 1326.3000000000015,
+      "defensive_elo": 1102.499999999998
+    },
+    {
+      "team": "Martinique",
+      "elo": 1441.2435863349897,
+      "offensive_elo": 1506.000000000001,
+      "defensive_elo": 1409.999999999999
+    },
+    {
+      "team": "Mauritania",
+      "elo": 1434.4876516228614,
+      "offensive_elo": 1340.4000000000017,
+      "defensive_elo": 1489.1999999999982
+    },
+    {
+      "team": "Mauritius",
+      "elo": 1362.4237185065406,
+      "offensive_elo": 1447.2000000000007,
+      "defensive_elo": 1467.5999999999997
+    },
+    {
+      "team": "Mexico",
+      "elo": 1762.8935311629934,
+      "offensive_elo": 1777.5000000000025,
+      "defensive_elo": 1642.499999999996
+    },
+    {
+      "team": "Moldova",
+      "elo": 1273.375835444862,
+      "offensive_elo": 1260.600000000002,
+      "defensive_elo": 1049.399999999998
+    },
+    {
+      "team": "Mongolia",
+      "elo": 1307.4060992572602,
+      "offensive_elo": 1417.500000000001,
+      "defensive_elo": 1323.2999999999995
+    },
+    {
+      "team": "Montenegro",
+      "elo": 1395.3431562525034,
+      "offensive_elo": 1455.0000000000016,
+      "defensive_elo": 1350.599999999998
+    },
+    {
+      "team": "Montserrat",
+      "elo": 1407.6443062657972,
+      "offensive_elo": 1497.6000000000008,
+      "defensive_elo": 1370.3999999999992
+    },
+    {
+      "team": "Morocco",
+      "elo": 1812.9403917942211,
+      "offensive_elo": 1865.1000000000013,
+      "defensive_elo": 1852.4999999999968
+    },
+    {
+      "team": "Mozambique",
+      "elo": 1494.5818232325294,
+      "offensive_elo": 1502.4000000000017,
+      "defensive_elo": 1383.5999999999983
+    },
+    {
+      "team": "Myanmar",
+      "elo": 1303.6377625130244,
+      "offensive_elo": 1400.4000000000012,
+      "defensive_elo": 1024.799999999999
+    },
+    {
+      "team": "Namibia",
+      "elo": 1432.8590481856083,
+      "offensive_elo": 1405.2000000000014,
+      "defensive_elo": 1457.9999999999989
+    },
+    {
+      "team": "Nepal",
+      "elo": 1315.4101255312644,
+      "offensive_elo": 1337.1000000000015,
+      "defensive_elo": 1284.8999999999992
+    },
+    {
+      "team": "Netherlands",
+      "elo": 1767.413225120075,
+      "offensive_elo": 2143.500000000001,
+      "defensive_elo": 1594.4999999999975
+    },
+    {
+      "team": "New Caledonia",
+      "elo": 1482.0973589737152,
+      "offensive_elo": 1527.000000000001,
+      "defensive_elo": 1439.4
+    },
+    {
+      "team": "New Zealand",
+      "elo": 1614.237214257901,
+      "offensive_elo": 1653.900000000001,
+      "defensive_elo": 1538.0999999999992
+    },
+    {
+      "team": "Nicaragua",
+      "elo": 1508.7051229330689,
+      "offensive_elo": 1647.3000000000018,
+      "defensive_elo": 1430.6999999999985
+    },
+    {
+      "team": "Niger",
+      "elo": 1503.2853334068643,
+      "offensive_elo": 1500.0000000000014,
+      "defensive_elo": 1291.1999999999985
+    },
+    {
+      "team": "Nigeria",
+      "elo": 1706.2744173781373,
+      "offensive_elo": 1718.7000000000023,
+      "defensive_elo": 1626.8999999999978
+    },
+    {
+      "team": "North Korea",
+      "elo": 1445.8366238821638,
+      "offensive_elo": 1471.500000000001,
+      "defensive_elo": 1383.2999999999995
+    },
+    {
+      "team": "North Macedonia",
+      "elo": 1505.7333066030185,
+      "offensive_elo": 1638.000000000002,
+      "defensive_elo": 1441.1999999999982
+    },
+    {
+      "team": "Northern Ireland",
+      "elo": 1471.010042852152,
+      "offensive_elo": 1464.300000000002,
+      "defensive_elo": 1444.4999999999984
+    },
+    {
+      "team": "Norway",
+      "elo": 1718.3372096916744,
+      "offensive_elo": 1948.5000000000016,
+      "defensive_elo": 1590.299999999998
+    },
+    {
+      "team": "Oman",
+      "elo": 1551.3470294003196,
+      "offensive_elo": 1483.8000000000015,
+      "defensive_elo": 1642.199999999998
+    },
+    {
+      "team": "Pakistan",
+      "elo": 1324.9391108484444,
+      "offensive_elo": 1401.9000000000003,
+      "defensive_elo": 1364.0999999999997
+    },
+    {
+      "team": "Palestine",
+      "elo": 1532.380667813761,
+      "offensive_elo": 1461.6000000000015,
+      "defensive_elo": 1503.599999999999
+    },
+    {
+      "team": "Panama",
+      "elo": 1713.2081263737011,
+      "offensive_elo": 1705.2000000000032,
+      "defensive_elo": 1361.999999999998
+    },
+    {
+      "team": "Panjab",
+      "elo": 1500.7939866845572,
+      "offensive_elo": 1547.1,
+      "defensive_elo": 1480.5
+    },
+    {
+      "team": "Papua New Guinea",
+      "elo": 1429.855951058418,
+      "offensive_elo": 1496.7000000000005,
+      "defensive_elo": 1402.4999999999998
+    },
+    {
+      "team": "Paraguay",
+      "elo": 1599.1314680977457,
+      "offensive_elo": 1396.5000000000025,
+      "defensive_elo": 1493.0999999999988
+    },
+    {
+      "team": "Parishes of Jersey",
+      "elo": 1507.2541251371406,
+      "offensive_elo": 1504.5,
+      "defensive_elo": 1500.3
+    },
+    {
+      "team": "Peru",
+      "elo": 1498.278108808453,
+      "offensive_elo": 1387.2000000000023,
+      "defensive_elo": 1505.999999999998
+    },
+    {
+      "team": "Philippines",
+      "elo": 1443.2612431300288,
+      "offensive_elo": 1501.5000000000011,
+      "defensive_elo": 1368.8999999999992
+    },
+    {
+      "team": "Poland",
+      "elo": 1592.4850192114989,
+      "offensive_elo": 1758.6000000000015,
+      "defensive_elo": 1453.7999999999977
+    },
+    {
+      "team": "Portugal",
+      "elo": 1787.2710212827958,
+      "offensive_elo": 2182.499999999999,
+      "defensive_elo": 1692.2999999999977
+    },
+    {
+      "team": "Puerto Rico",
+      "elo": 1502.8709728556216,
+      "offensive_elo": 1710.900000000001,
+      "defensive_elo": 1407.899999999999
+    },
+    {
+      "team": "Qatar",
+      "elo": 1596.6848300617112,
+      "offensive_elo": 1765.200000000002,
+      "defensive_elo": 1405.199999999997
+    },
+    {
+      "team": "Raetia",
+      "elo": 1527.497626568915,
+      "offensive_elo": 1584.3000000000002,
+      "defensive_elo": 1446.9
+    },
+    {
+      "team": "Republic of Ireland",
+      "elo": 1548.22899461414,
+      "offensive_elo": 1448.1000000000015,
+      "defensive_elo": 1533.899999999998
+    },
+    {
+      "team": "Romania",
+      "elo": 1532.8807902331043,
+      "offensive_elo": 1708.200000000002,
+      "defensive_elo": 1526.999999999998
+    },
+    {
+      "team": "Russia",
+      "elo": 1667.2077867033215,
+      "offensive_elo": 1864.5000000000016,
+      "defensive_elo": 1563.899999999998
+    },
+    {
+      "team": "Rwanda",
+      "elo": 1444.157132990894,
+      "offensive_elo": 1422.300000000001,
+      "defensive_elo": 1551.2999999999986
+    },
+    {
+      "team": "Saint Barth\u00e9lemy",
+      "elo": 1498.2787096640038,
+      "offensive_elo": 1586.4,
+      "defensive_elo": 1438.7999999999995
+    },
+    {
+      "team": "Saint Helena",
+      "elo": 1488.4324908425194,
+      "offensive_elo": 1505.7,
+      "defensive_elo": 1465.5
+    },
+    {
+      "team": "Saint Kitts and Nevis",
+      "elo": 1378.6683566636896,
+      "offensive_elo": 1629.6000000000013,
+      "defensive_elo": 1268.3999999999987
+    },
+    {
+      "team": "Saint Lucia",
+      "elo": 1367.687378919367,
+      "offensive_elo": 1507.500000000001,
+      "defensive_elo": 1373.6999999999991
+    },
+    {
+      "team": "Saint Martin",
+      "elo": 1480.167914586326,
+      "offensive_elo": 1637.400000000001,
+      "defensive_elo": 1314.5999999999997
+    },
+    {
+      "team": "Saint Vincent and the Grenadines",
+      "elo": 1451.2343847593172,
+      "offensive_elo": 1639.800000000001,
+      "defensive_elo": 1270.199999999999
+    },
+    {
+      "team": "Samoa",
+      "elo": 1489.738853409042,
+      "offensive_elo": 1511.1,
+      "defensive_elo": 1445.6999999999998
+    },
+    {
+      "team": "San Marino",
+      "elo": 1067.29051777256,
+      "offensive_elo": 1089.6000000000015,
+      "defensive_elo": 566.3999999999983
+    },
+    {
+      "team": "Saudi Arabia",
+      "elo": 1614.480644424495,
+      "offensive_elo": 1504.200000000002,
+      "defensive_elo": 1585.7999999999972
+    },
+    {
+      "team": "Scotland",
+      "elo": 1601.6609301448232,
+      "offensive_elo": 1624.800000000002,
+      "defensive_elo": 1399.199999999998
+    },
+    {
+      "team": "Senegal",
+      "elo": 1787.598129135156,
+      "offensive_elo": 1842.6000000000024,
+      "defensive_elo": 1832.9999999999975
+    },
+    {
+      "team": "Serbia",
+      "elo": 1613.4167359371777,
+      "offensive_elo": 1751.1000000000022,
+      "defensive_elo": 1506.899999999998
+    },
+    {
+      "team": "Seychelles",
+      "elo": 1226.5635864272522,
+      "offensive_elo": 1363.2000000000007,
+      "defensive_elo": 1065.5999999999997
+    },
+    {
+      "team": "Sierra Leone",
+      "elo": 1473.4268700574812,
+      "offensive_elo": 1455.9000000000017,
+      "defensive_elo": 1409.6999999999991
+    },
+    {
+      "team": "Singapore",
+      "elo": 1427.1439273410929,
+      "offensive_elo": 1562.4000000000012,
+      "defensive_elo": 1279.199999999999
+    },
+    {
+      "team": "Sint Maarten",
+      "elo": 1452.2254993144902,
+      "offensive_elo": 1591.500000000001,
+      "defensive_elo": 1102.499999999999
+    },
+    {
+      "team": "Slovakia",
+      "elo": 1548.4782091120608,
+      "offensive_elo": 1624.500000000002,
+      "defensive_elo": 1496.699999999998
+    },
+    {
+      "team": "Slovenia",
+      "elo": 1584.914579508411,
+      "offensive_elo": 1579.800000000002,
+      "defensive_elo": 1578.599999999998
+    },
+    {
+      "team": "Solomon Islands",
+      "elo": 1472.6465685522148,
+      "offensive_elo": 1579.2000000000005,
+      "defensive_elo": 1387.1999999999996
+    },
+    {
+      "team": "Somalia",
+      "elo": 1342.520457871923,
+      "offensive_elo": 1417.8000000000006,
+      "defensive_elo": 1403.3999999999996
+    },
+    {
+      "team": "Somaliland",
+      "elo": 1490.6250374510078,
+      "offensive_elo": 1505.7,
+      "defensive_elo": 1471.5
+    },
+    {
+      "team": "South Africa",
+      "elo": 1607.850179824164,
+      "offensive_elo": 1596.300000000001,
+      "defensive_elo": 1624.4999999999975
+    },
+    {
+      "team": "South Korea",
+      "elo": 1724.7472130804683,
+      "offensive_elo": 1855.8000000000015,
+      "defensive_elo": 1625.3999999999971
+    },
+    {
+      "team": "South Ossetia",
+      "elo": 1500.141438866424,
+      "offensive_elo": 1516.2,
+      "defensive_elo": 1489.8
+    },
+    {
+      "team": "South Sudan",
+      "elo": 1339.373885270366,
+      "offensive_elo": 1350.9000000000012,
+      "defensive_elo": 1343.099999999999
+    },
+    {
+      "team": "Spain",
+      "elo": 1919.8785051686984,
+      "offensive_elo": 2255.3999999999996,
+      "defensive_elo": 1706.9999999999975
+    },
+    {
+      "team": "Sri Lanka",
+      "elo": 1336.1597852064986,
+      "offensive_elo": 1396.200000000001,
+      "defensive_elo": 1332.5999999999992
+    },
+    {
+      "team": "Sudan",
+      "elo": 1486.2118775042788,
+      "offensive_elo": 1374.0000000000018,
+      "defensive_elo": 1496.3999999999987
+    },
+    {
+      "team": "Suriname",
+      "elo": 1558.8729021527838,
+      "offensive_elo": 1672.5000000000011,
+      "defensive_elo": 1527.8999999999987
+    },
+    {
+      "team": "Surrey",
+      "elo": 1509.8668602705914,
+      "offensive_elo": 1511.7,
+      "defensive_elo": 1501.5
+    },
+    {
+      "team": "Sweden",
+      "elo": 1587.414638417627,
+      "offensive_elo": 1748.400000000002,
+      "defensive_elo": 1478.3999999999976
+    },
+    {
+      "team": "Switzerland",
+      "elo": 1703.1004081335334,
+      "offensive_elo": 1905.9000000000024,
+      "defensive_elo": 1514.099999999998
+    },
+    {
+      "team": "Syria",
+      "elo": 1563.045904832658,
+      "offensive_elo": 1567.800000000002,
+      "defensive_elo": 1435.7999999999988
+    },
+    {
+      "team": "Sz\u00e9kely Land",
+      "elo": 1536.9928061733624,
+      "offensive_elo": 1545.0,
+      "defensive_elo": 1500.6
+    },
+    {
+      "team": "S\u00e1pmi",
+      "elo": 1487.2162374350146,
+      "offensive_elo": 1499.7,
+      "defensive_elo": 1495.5
+    },
+    {
+      "team": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+      "elo": 1300.821245329444,
+      "offensive_elo": 1423.500000000001,
+      "defensive_elo": 1221.2999999999995
+    },
+    {
+      "team": "Tahiti",
+      "elo": 1487.7689167136732,
+      "offensive_elo": 1553.4000000000003,
+      "defensive_elo": 1476.5999999999997
+    },
+    {
+      "team": "Taiwan",
+      "elo": 1293.393914981628,
+      "offensive_elo": 1495.200000000001,
+      "defensive_elo": 1207.1999999999991
+    },
+    {
+      "team": "Tajikistan",
+      "elo": 1555.913815129806,
+      "offensive_elo": 1563.9000000000017,
+      "defensive_elo": 1511.6999999999991
+    },
+    {
+      "team": "Tamil Eelam",
+      "elo": 1523.0110523221367,
+      "offensive_elo": 1510.5,
+      "defensive_elo": 1506.3
+    },
+    {
+      "team": "Tanzania",
+      "elo": 1449.5758334980064,
+      "offensive_elo": 1381.5000000000018,
+      "defensive_elo": 1527.2999999999986
+    },
+    {
+      "team": "Thailand",
+      "elo": 1548.048353433139,
+      "offensive_elo": 1569.9000000000012,
+      "defensive_elo": 1466.0999999999983
+    },
+    {
+      "team": "Tibet",
+      "elo": 1500.9341058862449,
+      "offensive_elo": 1511.7,
+      "defensive_elo": 1489.5
+    },
+    {
+      "team": "Ticino",
+      "elo": 1452.4280731503754,
+      "offensive_elo": 1498.2,
+      "defensive_elo": 1435.8
+    },
+    {
+      "team": "Timor-Leste",
+      "elo": 1361.57447398471,
+      "offensive_elo": 1474.2000000000007,
+      "defensive_elo": 1309.7999999999995
+    },
+    {
+      "team": "Togo",
+      "elo": 1450.4741529580278,
+      "offensive_elo": 1440.300000000001,
+      "defensive_elo": 1485.2999999999988
+    },
+    {
+      "team": "Tonga",
+      "elo": 1462.8765263512869,
+      "offensive_elo": 1502.4,
+      "defensive_elo": 1479.6
+    },
+    {
+      "team": "Trinidad and Tobago",
+      "elo": 1528.0279679587622,
+      "offensive_elo": 1674.900000000002,
+      "defensive_elo": 1352.6999999999985
+    },
+    {
+      "team": "Tunisia",
+      "elo": 1672.5274696175472,
+      "offensive_elo": 1643.7000000000023,
+      "defensive_elo": 1753.4999999999975
+    },
+    {
+      "team": "Turkey",
+      "elo": 1717.754583071661,
+      "offensive_elo": 1859.400000000002,
+      "defensive_elo": 1428.599999999998
+    },
+    {
+      "team": "Turkmenistan",
+      "elo": 1450.9215400823614,
+      "offensive_elo": 1511.400000000001,
+      "defensive_elo": 1392.5999999999997
+    },
+    {
+      "team": "Turks and Caicos Islands",
+      "elo": 1283.0091802609973,
+      "offensive_elo": 1490.7000000000007,
+      "defensive_elo": 1030.499999999999
+    },
+    {
+      "team": "Two Sicilies",
+      "elo": 1458.1320611720164,
+      "offensive_elo": 1493.4,
+      "defensive_elo": 1455.0
+    },
+    {
+      "team": "Uganda",
+      "elo": 1522.2998693960055,
+      "offensive_elo": 1407.300000000002,
+      "defensive_elo": 1568.699999999999
+    },
+    {
+      "team": "Ukraine",
+      "elo": 1625.4826712115243,
+      "offensive_elo": 1650.300000000002,
+      "defensive_elo": 1440.899999999998
+    },
+    {
+      "team": "United Arab Emirates",
+      "elo": 1620.9913798248704,
+      "offensive_elo": 1709.4000000000012,
+      "defensive_elo": 1568.9999999999975
+    },
+    {
+      "team": "United States",
+      "elo": 1681.3414983437765,
+      "offensive_elo": 1989.0000000000011,
+      "defensive_elo": 1626.5999999999956
+    },
+    {
+      "team": "United States Virgin Islands",
+      "elo": 1266.3185262324862,
+      "offensive_elo": 1435.2000000000007,
+      "defensive_elo": 1228.7999999999993
+    },
+    {
+      "team": "Uruguay",
+      "elo": 1691.1404380563647,
+      "offensive_elo": 1640.1000000000024,
+      "defensive_elo": 1711.4999999999982
+    },
+    {
+      "team": "Uzbekistan",
+      "elo": 1698.0770019097076,
+      "offensive_elo": 1676.7000000000016,
+      "defensive_elo": 1614.899999999998
+    },
+    {
+      "team": "Vanuatu",
+      "elo": 1434.1695087196545,
+      "offensive_elo": 1494.6000000000004,
+      "defensive_elo": 1375.7999999999995
+    },
+    {
+      "team": "Vatican City",
+      "elo": 1498.632021141251,
+      "offensive_elo": 1504.5,
+      "defensive_elo": 1494.3
+    },
+    {
+      "team": "Venezuela",
+      "elo": 1563.1185125111622,
+      "offensive_elo": 1499.1000000000022,
+      "defensive_elo": 1437.2999999999986
+    },
+    {
+      "team": "Vietnam",
+      "elo": 1470.2544843497533,
+      "offensive_elo": 1557.300000000001,
+      "defensive_elo": 1419.8999999999985
+    },
+    {
+      "team": "Wales",
+      "elo": 1583.0089734063774,
+      "offensive_elo": 1560.3000000000018,
+      "defensive_elo": 1530.8999999999978
+    },
+    {
+      "team": "West Papua",
+      "elo": 1484.3265013527357,
+      "offensive_elo": 1503.0,
+      "defensive_elo": 1458.6
+    },
+    {
+      "team": "Yemen",
+      "elo": 1459.221887341287,
+      "offensive_elo": 1507.500000000001,
+      "defensive_elo": 1396.499999999999
+    },
+    {
+      "team": "Ynys M\u00f4n",
+      "elo": 1511.5675091574806,
+      "offensive_elo": 1534.5,
+      "defensive_elo": 1494.3
+    },
+    {
+      "team": "Yorkshire",
+      "elo": 1535.644616339836,
+      "offensive_elo": 1613.4,
+      "defensive_elo": 1474.1999999999998
+    },
+    {
+      "team": "Zambia",
+      "elo": 1510.3237306474382,
+      "offensive_elo": 1562.100000000002,
+      "defensive_elo": 1350.2999999999988
+    },
+    {
+      "team": "Zimbabwe",
+      "elo": 1434.0122538585356,
+      "offensive_elo": 1398.3000000000015,
+      "defensive_elo": 1491.299999999999
+    }
+  ]
+}

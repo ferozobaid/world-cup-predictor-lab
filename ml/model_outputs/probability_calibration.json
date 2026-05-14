@@ -1,0 +1,1375 @@
+{
+  "metadata": {
+    "schema_version": "1.0.0",
+    "model_version": "ml-pipeline-v1",
+    "generated_at": "2026-05-13T23:01:50.417179+00:00",
+    "artifact": "probability_calibration.json",
+    "source": {
+      "evaluation": "offline-ml-pipeline/outputs/metrics/evaluation.json"
+    }
+  },
+  "data": {
+    "logistic_regression": [
+      {
+        "class": "H",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.04694395128343544,
+            "observed_rate": 0.06593406593406594,
+            "count": 91
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.14751499161499082,
+            "observed_rate": 0.1623931623931624,
+            "count": 117
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.2458195245532995,
+            "observed_rate": 0.2717391304347826,
+            "count": 92
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.3505944576343346,
+            "observed_rate": 0.3602941176470588,
+            "count": 136
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4541018294330819,
+            "observed_rate": 0.5076923076923077,
+            "count": 130
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5515797732589114,
+            "observed_rate": 0.4807692307692308,
+            "count": 104
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6432189420092295,
+            "observed_rate": 0.6451612903225806,
+            "count": 124
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7485299801974354,
+            "observed_rate": 0.7053571428571429,
+            "count": 112
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8441989521598768,
+            "observed_rate": 0.8220338983050848,
+            "count": 118
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9367743010038635,
+            "observed_rate": 0.9772727272727273,
+            "count": 44
+          }
+        ]
+      },
+      {
+        "class": "D",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.06624264121538441,
+            "observed_rate": 0.0625,
+            "count": 112
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15514448779460813,
+            "observed_rate": 0.20347394540942929,
+            "count": 403
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24268726572032576,
+            "observed_rate": 0.278372591006424,
+            "count": 467
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.3312572237249284,
+            "observed_rate": 0.25,
+            "count": 84
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4180974273396213,
+            "observed_rate": 0.5,
+            "count": 2
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          }
+        ]
+      },
+      {
+        "class": "A",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.04960342000152182,
+            "observed_rate": 0.04743083003952569,
+            "count": 253
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.14830119999275854,
+            "observed_rate": 0.10752688172043011,
+            "count": 186
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.2504134745122606,
+            "observed_rate": 0.2097902097902098,
+            "count": 143
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.34824595165701044,
+            "observed_rate": 0.34558823529411764,
+            "count": 136
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.44800091077322873,
+            "observed_rate": 0.391304347826087,
+            "count": 92
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.551716851832291,
+            "observed_rate": 0.5194805194805194,
+            "count": 77
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6445995091910857,
+            "observed_rate": 0.5909090909090909,
+            "count": 66
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7518282307164768,
+            "observed_rate": 0.6379310344827587,
+            "count": 58
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8492099181949748,
+            "observed_rate": 0.8648648648648649,
+            "count": 37
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9417470130997575,
+            "observed_rate": 1.0,
+            "count": 20
+          }
+        ]
+      }
+    ],
+    "random_forest": [
+      {
+        "class": "H",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.0715148291414603,
+            "observed_rate": 0.022727272727272728,
+            "count": 44
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15165749261463785,
+            "observed_rate": 0.12280701754385964,
+            "count": 114
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.25047816509554954,
+            "observed_rate": 0.2926829268292683,
+            "count": 164
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.349257162815816,
+            "observed_rate": 0.4155844155844156,
+            "count": 154
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4448793590493591,
+            "observed_rate": 0.463855421686747,
+            "count": 166
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5516897571972452,
+            "observed_rate": 0.6363636363636364,
+            "count": 143
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6568253420308231,
+            "observed_rate": 0.6699029126213593,
+            "count": 103
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7434967937943111,
+            "observed_rate": 0.822429906542056,
+            "count": 107
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.844555003135363,
+            "observed_rate": 0.847457627118644,
+            "count": 59
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.92994258135324,
+            "observed_rate": 0.8571428571428571,
+            "count": 14
+          }
+        ]
+      },
+      {
+        "class": "D",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.07202428140632154,
+            "observed_rate": 0.11764705882352941,
+            "count": 68
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15858220111331953,
+            "observed_rate": 0.16115702479338842,
+            "count": 242
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.2501138841361276,
+            "observed_rate": 0.25196850393700787,
+            "count": 508
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.33480649951365526,
+            "observed_rate": 0.26495726495726496,
+            "count": 234
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.43116592724898634,
+            "observed_rate": 0.2,
+            "count": 15
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5012261696420016,
+            "observed_rate": 1.0,
+            "count": 1
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          }
+        ]
+      },
+      {
+        "class": "A",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.054970366550570915,
+            "observed_rate": 0.047337278106508875,
+            "count": 169
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15104694961222662,
+            "observed_rate": 0.08374384236453201,
+            "count": 203
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.25261210031082126,
+            "observed_rate": 0.22380952380952382,
+            "count": 210
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.34689293249717446,
+            "observed_rate": 0.3227848101265823,
+            "count": 158
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.44598847504920974,
+            "observed_rate": 0.4357142857142857,
+            "count": 140
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.543366789260743,
+            "observed_rate": 0.5769230769230769,
+            "count": 78
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6453184157921432,
+            "observed_rate": 0.725,
+            "count": 40
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7479621995897288,
+            "observed_rate": 0.7567567567567568,
+            "count": 37
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8356135997364075,
+            "observed_rate": 0.7777777777777778,
+            "count": 27
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9296287553925037,
+            "observed_rate": 1.0,
+            "count": 6
+          }
+        ]
+      }
+    ],
+    "xgboost": [
+      {
+        "class": "H",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.0677209123969078,
+            "observed_rate": 0.02631578947368421,
+            "count": 76
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.14797279238700867,
+            "observed_rate": 0.1651376146788991,
+            "count": 109
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.25094395875930786,
+            "observed_rate": 0.3,
+            "count": 110
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.35228535532951355,
+            "observed_rate": 0.359375,
+            "count": 128
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.45283448696136475,
+            "observed_rate": 0.4491525423728814,
+            "count": 118
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5477556586265564,
+            "observed_rate": 0.5079365079365079,
+            "count": 126
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6470257043838501,
+            "observed_rate": 0.6194690265486725,
+            "count": 113
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7525612711906433,
+            "observed_rate": 0.6944444444444444,
+            "count": 108
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8500319123268127,
+            "observed_rate": 0.8424657534246576,
+            "count": 146
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9309263825416565,
+            "observed_rate": 0.8823529411764706,
+            "count": 34
+          }
+        ]
+      },
+      {
+        "class": "D",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.06898246705532074,
+            "observed_rate": 0.11194029850746269,
+            "count": 134
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15307198464870453,
+            "observed_rate": 0.20949720670391062,
+            "count": 358
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24784626066684723,
+            "observed_rate": 0.25869565217391305,
+            "count": 460
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.3278643488883972,
+            "observed_rate": 0.27522935779816515,
+            "count": 109
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.42797043919563293,
+            "observed_rate": 0.2857142857142857,
+            "count": 7
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          }
+        ]
+      },
+      {
+        "class": "A",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.04441399127244949,
+            "observed_rate": 0.05185185185185185,
+            "count": 270
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.14467106759548187,
+            "observed_rate": 0.10857142857142857,
+            "count": 175
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.2468087375164032,
+            "observed_rate": 0.25142857142857145,
+            "count": 175
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.348145455121994,
+            "observed_rate": 0.33613445378151263,
+            "count": 119
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4466734528541565,
+            "observed_rate": 0.44680851063829785,
+            "count": 94
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5449873208999634,
+            "observed_rate": 0.5064935064935064,
+            "count": 77
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6410537958145142,
+            "observed_rate": 0.6,
+            "count": 60
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7505955100059509,
+            "observed_rate": 0.7045454545454546,
+            "count": 44
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8627863526344299,
+            "observed_rate": 0.8863636363636364,
+            "count": 44
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9310337901115417,
+            "observed_rate": 0.9,
+            "count": 10
+          }
+        ]
+      }
+    ],
+    "lightgbm": [
+      {
+        "class": "H",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.05060125533100915,
+            "observed_rate": 0.061224489795918366,
+            "count": 98
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.14677688171991465,
+            "observed_rate": 0.22429906542056074,
+            "count": 107
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24904607836972875,
+            "observed_rate": 0.3211009174311927,
+            "count": 109
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.3512627299551713,
+            "observed_rate": 0.30303030303030304,
+            "count": 99
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.452369918127714,
+            "observed_rate": 0.5966386554621849,
+            "count": 119
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5475322674089054,
+            "observed_rate": 0.48484848484848486,
+            "count": 99
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6494611324935552,
+            "observed_rate": 0.44642857142857145,
+            "count": 112
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.750371599019976,
+            "observed_rate": 0.7065217391304348,
+            "count": 92
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8480377663480849,
+            "observed_rate": 0.7266187050359713,
+            "count": 139
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9399962262282774,
+            "observed_rate": 0.8936170212765957,
+            "count": 94
+          }
+        ]
+      },
+      {
+        "class": "D",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.05809886299708435,
+            "observed_rate": 0.13414634146341464,
+            "count": 246
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.1503101782418917,
+            "observed_rate": 0.23353293413173654,
+            "count": 334
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24499458654764947,
+            "observed_rate": 0.28164556962025317,
+            "count": 316
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.33869761986809754,
+            "observed_rate": 0.20175438596491227,
+            "count": 114
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4418668862868738,
+            "observed_rate": 0.3076923076923077,
+            "count": 39
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5249576955198276,
+            "observed_rate": 0.38461538461538464,
+            "count": 13
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.646841734977114,
+            "observed_rate": 0.16666666666666666,
+            "count": 6
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          }
+        ]
+      },
+      {
+        "class": "A",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.03647059323860561,
+            "observed_rate": 0.05572755417956656,
+            "count": 323
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15186386314769224,
+            "observed_rate": 0.22674418604651161,
+            "count": 172
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24725582556102818,
+            "observed_rate": 0.18571428571428572,
+            "count": 140
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.34939372107736766,
+            "observed_rate": 0.42857142857142855,
+            "count": 105
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4516815376123139,
+            "observed_rate": 0.3855421686746988,
+            "count": 83
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5515287968303149,
+            "observed_rate": 0.5194805194805194,
+            "count": 77
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6475528022258104,
+            "observed_rate": 0.4807692307692308,
+            "count": 52
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7485317523502713,
+            "observed_rate": 0.6086956521739131,
+            "count": 46
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8525869860814459,
+            "observed_rate": 0.7407407407407407,
+            "count": 27
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9445894233064369,
+            "observed_rate": 0.9302325581395349,
+            "count": 43
+          }
+        ]
+      }
+    ],
+    "catboost": [
+      {
+        "class": "H",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.07150948264306754,
+            "observed_rate": 0.03278688524590164,
+            "count": 61
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15372751422242137,
+            "observed_rate": 0.1487603305785124,
+            "count": 121
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24597000780365647,
+            "observed_rate": 0.2556390977443609,
+            "count": 133
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.34523427153930053,
+            "observed_rate": 0.40540540540540543,
+            "count": 111
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.45262218179344993,
+            "observed_rate": 0.4307692307692308,
+            "count": 130
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5508880060434791,
+            "observed_rate": 0.5769230769230769,
+            "count": 130
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6477875116341609,
+            "observed_rate": 0.6228070175438597,
+            "count": 114
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7568035591889121,
+            "observed_rate": 0.7299270072992701,
+            "count": 137
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8390970596977938,
+            "observed_rate": 0.8583333333333333,
+            "count": 120
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9266462989194408,
+            "observed_rate": 0.9090909090909091,
+            "count": 11
+          }
+        ]
+      },
+      {
+        "class": "D",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.07693347549337849,
+            "observed_rate": 0.07936507936507936,
+            "count": 63
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.1514514923193715,
+            "observed_rate": 0.1769436997319035,
+            "count": 373
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24940848267913598,
+            "observed_rate": 0.27032136105860116,
+            "count": 529
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.32122125987051053,
+            "observed_rate": 0.2621359223300971,
+            "count": 103
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          }
+        ]
+      },
+      {
+        "class": "A",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.06030353011593536,
+            "observed_rate": 0.05622489959839357,
+            "count": 249
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15149198533740782,
+            "observed_rate": 0.10606060606060606,
+            "count": 198
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24728081046704156,
+            "observed_rate": 0.2046783625730994,
+            "count": 171
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.35084787730002065,
+            "observed_rate": 0.4074074074074074,
+            "count": 108
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4460513434035188,
+            "observed_rate": 0.42990654205607476,
+            "count": 107
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5484062133919877,
+            "observed_rate": 0.5280898876404494,
+            "count": 89
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6430303559760728,
+            "observed_rate": 0.6610169491525424,
+            "count": 59
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7513511731913284,
+            "observed_rate": 0.717391304347826,
+            "count": 46
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.839270869795401,
+            "observed_rate": 0.8205128205128205,
+            "count": 39
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9070512983688177,
+            "observed_rate": 1.0,
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "elo_poisson": [
+      {
+        "class": "H",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.07880550641001018,
+            "observed_rate": 0.0,
+            "count": 8
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.15386750718709463,
+            "observed_rate": 0.02702702702702703,
+            "count": 37
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.2570541505914023,
+            "observed_rate": 0.14666666666666667,
+            "count": 75
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.35649726245483165,
+            "observed_rate": 0.24031007751937986,
+            "count": 129
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.45277326825821773,
+            "observed_rate": 0.33727810650887574,
+            "count": 169
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5461108799666627,
+            "observed_rate": 0.4675925925925926,
+            "count": 216
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6468028274731157,
+            "observed_rate": 0.6052631578947368,
+            "count": 190
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7456984522589128,
+            "observed_rate": 0.7707006369426752,
+            "count": 157
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.8410549687951139,
+            "observed_rate": 0.8676470588235294,
+            "count": 68
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": 0.9410378193818171,
+            "observed_rate": 0.9473684210526315,
+            "count": 19
+          }
+        ]
+      },
+      {
+        "class": "D",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.06675462200139141,
+            "observed_rate": 0.025,
+            "count": 40
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.1619757305510635,
+            "observed_rate": 0.1912751677852349,
+            "count": 298
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24163163825725906,
+            "observed_rate": 0.25068493150684934,
+            "count": 730
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          }
+        ]
+      },
+      {
+        "class": "A",
+        "bins": [
+          {
+            "bin_start": 0.0,
+            "bin_end": 0.1,
+            "mean_predicted": 0.06456741872807799,
+            "observed_rate": 0.03260869565217391,
+            "count": 184
+          },
+          {
+            "bin_start": 0.1,
+            "bin_end": 0.2,
+            "mean_predicted": 0.14841717967972334,
+            "observed_rate": 0.12582781456953643,
+            "count": 302
+          },
+          {
+            "bin_start": 0.2,
+            "bin_end": 0.30000000000000004,
+            "mean_predicted": 0.24412806529277795,
+            "observed_rate": 0.3015267175572519,
+            "count": 262
+          },
+          {
+            "bin_start": 0.30000000000000004,
+            "bin_end": 0.4,
+            "mean_predicted": 0.34248064845882087,
+            "observed_rate": 0.48717948717948717,
+            "count": 156
+          },
+          {
+            "bin_start": 0.4,
+            "bin_end": 0.5,
+            "mean_predicted": 0.4431539276844544,
+            "observed_rate": 0.5714285714285714,
+            "count": 84
+          },
+          {
+            "bin_start": 0.5,
+            "bin_end": 0.6,
+            "mean_predicted": 0.5350532317980444,
+            "observed_rate": 0.7441860465116279,
+            "count": 43
+          },
+          {
+            "bin_start": 0.6000000000000001,
+            "bin_end": 0.7000000000000001,
+            "mean_predicted": 0.6464865248298014,
+            "observed_rate": 0.88,
+            "count": 25
+          },
+          {
+            "bin_start": 0.7000000000000001,
+            "bin_end": 0.8,
+            "mean_predicted": 0.7495570395264403,
+            "observed_rate": 1.0,
+            "count": 11
+          },
+          {
+            "bin_start": 0.8,
+            "bin_end": 0.9,
+            "mean_predicted": 0.831481416523112,
+            "observed_rate": 1.0,
+            "count": 1
+          },
+          {
+            "bin_start": 0.9,
+            "bin_end": 1.0,
+            "mean_predicted": null,
+            "observed_rate": null,
+            "count": 0
+          }
+        ]
+      }
+    ]
+  }
+}

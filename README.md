@@ -2,10 +2,11 @@
 
 A Next.js football analytics app that predicts World Cup-style matchups from historical FIFA World Cup match data and uses the OpenAI API only for short cached analyst explanations.
 
-The app now supports two prediction modes:
+The app now supports three prediction modes:
 
 - **Historical Local**: the original transparent heuristic model.
-- **Tournament ML**: a lightweight supervised ML model trained offline in Python and exported to JSON for the frontend.
+- **Experimental ML**: a lightweight Logistic Regression baseline trained offline in Python and exported to JSON for the frontend.
+- **Elo + Score**: a second-generation offline score model that builds chronological Elo-style ratings, predicts expected goals, then converts score distributions into win/draw/loss probabilities.
 
 It also includes an optional **Modern Squad Strength** adjustment layer. This toggle is off by default and applies a small curated squad-strength proxy after the selected base model has already produced its prediction.
 
@@ -69,6 +70,9 @@ Features are generated chronologically to avoid data leakage. For every match, t
 - goal difference per match before the match
 - recent form index
 - tournament experience
+- pre-match Elo-style team rating
+- host/co-host proxy
+- tournament stage importance
 - knockout match flag
 - final flag
 - strength, form, goal-balance, and experience differences
@@ -77,14 +81,16 @@ Features are generated chronologically to avoid data leakage. For every match, t
 
 The training script fits:
 
-- Logistic Regression as the explainable frontend-exported model.
+- Logistic Regression as the explainable experimental classifier.
 - Random Forest Classifier as a nonlinear comparison.
+- Calibrated Gradient Boosting as another classifier comparison.
+- Elo + Poisson Score Model as the second-generation frontend model.
 - Majority-class baseline.
 - Historical-strength baseline.
 
-Evaluation uses a chronological split: training before 2014 and testing on 2014-2022. Metrics include accuracy, macro F1, confusion matrix, and classification report.
+Evaluation uses a chronological split: training before 2014 and testing on 2014-2022. Metrics include accuracy, macro F1, log loss, Brier score, confusion matrix, and classification report where applicable.
 
-The current Logistic Regression model is intentionally documented as educational/experimental if it does not beat the historical-strength baseline. Its probabilities are model-estimated probabilities, not betting odds.
+The current Logistic Regression model is intentionally documented as educational/experimental because it does not beat the historical-strength baseline. The Elo + Score model is a better football-shaped approach because the scoreline and probabilities come from the same expected-goals distribution, but it is still not promoted to default unless it beats the historical baseline on macro F1 or probabilistic quality. Its probabilities are model-estimated probabilities, not betting odds.
 
 ### Frontend Export
 
@@ -95,7 +101,7 @@ The Next.js app does not train models at runtime. `ml/train_model.py` exports st
 - `team_features.json`
 - `prediction_examples.json`
 
-`src/lib/ml-prediction-model.ts` reads those JSON files and reproduces Logistic Regression probabilities in TypeScript.
+`src/lib/ml-prediction-model.ts` reads those JSON files and reproduces both Logistic Regression probabilities and the Elo + Score expected-goals model in TypeScript. No model training runs in Next.js or Vercel.
 
 ## Modern Squad Strength Layer
 
@@ -118,7 +124,7 @@ The export script computes a 0-100 `squad_strength_score` from normalized proxy 
 
 When the UI toggle is enabled, the app applies a capped display adjustment after the selected base model:
 
-- `Historical Local` or `Tournament ML` runs first.
+- `Historical Local`, `Experimental ML`, or `Elo + Score` runs first.
 - The squad layer shifts at most 8 percentage points between the two win probabilities.
 - Draw probability is reduced by at most 3 points for large squad-strength gaps.
 - The probabilities are normalized back to 100.

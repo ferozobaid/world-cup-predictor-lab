@@ -7,7 +7,8 @@
     "recent_form_index": 0.2,
     "tournament_experience": 4.0,
     "strength": 17.97871,
-    "matches_before": 13.0
+    "matches_before": 13.0,
+    "elo_rating": 1465.134138
   },
   "Angola": {
     "win_rate": 0.0,
@@ -17,7 +18,8 @@
     "recent_form_index": 0.222222,
     "tournament_experience": 1.0,
     "strength": 4.82555,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1488.249069
   },
   "Argentina": {
     "win_rate": 0.534091,
@@ -27,7 +29,8 @@
     "recent_form_index": 0.566667,
     "tournament_experience": 18.0,
     "strength": 55.097727,
-    "matches_before": 88.0
+    "matches_before": 88.0,
+    "elo_rating": 1655.340337
   },
   "Australia": {
     "win_rate": 0.2,
@@ -37,7 +40,8 @@
     "recent_form_index": 0.233333,
     "tournament_experience": 6.0,
     "strength": 12.933567,
-    "matches_before": 20.0
+    "matches_before": 20.0,
+    "elo_rating": 1452.931085
   },
   "Austria": {
     "win_rate": 0.413793,
@@ -47,7 +51,8 @@
     "recent_form_index": 0.3,
     "tournament_experience": 7.0,
     "strength": 34.086351,
-    "matches_before": 29.0
+    "matches_before": 29.0,
+    "elo_rating": 1497.404194
   },
   "Belgium": {
     "win_rate": 0.411765,
@@ -57,7 +62,8 @@
     "recent_form_index": 0.733333,
     "tournament_experience": 14.0,
     "strength": 43.838045,
-    "matches_before": 51.0
+    "matches_before": 51.0,
+    "elo_rating": 1562.957162
   },
   "Bolivia": {
     "win_rate": 0.0,
@@ -67,7 +73,8 @@
     "recent_form_index": 0.055556,
     "tournament_experience": 3.0,
     "strength": -24.828936,
-    "matches_before": 6.0
+    "matches_before": 6.0,
+    "elo_rating": 1431.009782
   },
   "Bosnia and Herzegovina": {
     "win_rate": 0.333333,
@@ -77,7 +84,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 1.0,
     "strength": 26.158883,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1491.896802
   },
   "Brazil": {
     "win_rate": 0.666667,
@@ -87,7 +95,8 @@
     "recent_form_index": 0.666667,
     "tournament_experience": 22.0,
     "strength": 69.550586,
-    "matches_before": 114.0
+    "matches_before": 114.0,
+    "elo_rating": 1683.543108
   },
   "Bulgaria": {
     "win_rate": 0.115385,
@@ -97,7 +106,8 @@
     "recent_form_index": 0.366667,
     "tournament_experience": 7.0,
     "strength": 10.102895,
-    "matches_before": 26.0
+    "matches_before": 26.0,
+    "elo_rating": 1416.419865
   },
   "Cameroon": {
     "win_rate": 0.192308,
@@ -107,7 +117,8 @@
     "recent_form_index": 0.133333,
     "tournament_experience": 8.0,
     "strength": 11.902895,
-    "matches_before": 26.0
+    "matches_before": 26.0,
+    "elo_rating": 1435.066582
   },
   "Canada": {
     "win_rate": 0.0,
@@ -117,7 +128,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 2.0,
     "strength": -10.828936,
-    "matches_before": 6.0
+    "matches_before": 6.0,
+    "elo_rating": 1441.571015
   },
   "Chile": {
     "win_rate": 0.333333,
@@ -127,7 +139,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 9.0,
     "strength": 32.251809,
-    "matches_before": 33.0
+    "matches_before": 33.0,
+    "elo_rating": 1510.31596
   },
   "China": {
     "win_rate": 0.0,
@@ -137,7 +150,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -25.841117,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1465.914405
   },
   "Colombia": {
     "win_rate": 0.409091,
@@ -147,7 +161,8 @@
     "recent_form_index": 0.633333,
     "tournament_experience": 6.0,
     "strength": 41.351937,
-    "matches_before": 22.0
+    "matches_before": 22.0,
+    "elo_rating": 1522.670697
   },
   "Costa Rica": {
     "win_rate": 0.285714,
@@ -157,7 +172,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 6.0,
     "strength": 20.892175,
-    "matches_before": 21.0
+    "matches_before": 21.0,
+    "elo_rating": 1478.221324
   },
   "Croatia": {
     "win_rate": 0.433333,
@@ -167,7 +183,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 6.0,
     "strength": 42.835295,
-    "matches_before": 30.0
+    "matches_before": 30.0,
+    "elo_rating": 1562.966435
   },
   "Cuba": {
     "win_rate": 0.333333,
@@ -177,7 +194,8 @@
     "recent_form_index": 0.444444,
     "tournament_experience": 1.0,
     "strength": 4.82555,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1478.272786
   },
   "Czech Republic": {
     "win_rate": 0.333333,
@@ -187,7 +205,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 1.0,
     "strength": 22.82555,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1492.375786
   },
   "Czechoslovakia": {
     "win_rate": 0.366667,
@@ -197,7 +216,8 @@
     "recent_form_index": 0.366667,
     "tournament_experience": 8.0,
     "strength": 34.168628,
-    "matches_before": 30.0
+    "matches_before": 30.0,
+    "elo_rating": 1514.855981
   },
   "Denmark": {
     "win_rate": 0.391304,
@@ -207,7 +227,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 6.0,
     "strength": 35.186335,
-    "matches_before": 23.0
+    "matches_before": 23.0,
+    "elo_rating": 1513.761359
   },
   "Dutch East Indies": {
     "win_rate": 0.0,
@@ -217,7 +238,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -57.920558,
-    "matches_before": 1.0
+    "matches_before": 1.0,
+    "elo_rating": 1473.153435
   },
   "East Germany": {
     "win_rate": 0.333333,
@@ -227,7 +249,8 @@
     "recent_form_index": 0.444444,
     "tournament_experience": 1.0,
     "strength": 29.83773,
-    "matches_before": 6.0
+    "matches_before": 6.0,
+    "elo_rating": 1505.548831
   },
   "Ecuador": {
     "win_rate": 0.384615,
@@ -237,7 +260,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 4.0,
     "strength": 34.77871,
-    "matches_before": 13.0
+    "matches_before": 13.0,
+    "elo_rating": 1509.812504
   },
   "Egypt": {
     "win_rate": 0.0,
@@ -247,7 +271,8 @@
     "recent_form_index": 0.095238,
     "tournament_experience": 3.0,
     "strength": -2.04739,
-    "matches_before": 7.0
+    "matches_before": 7.0,
+    "elo_rating": 1445.449965
   },
   "El Salvador": {
     "win_rate": 0.0,
@@ -257,7 +282,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 2.0,
     "strength": -29.16227,
-    "matches_before": 6.0
+    "matches_before": 6.0,
+    "elo_rating": 1415.172009
   },
   "England": {
     "win_rate": 0.432432,
@@ -267,7 +293,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 16.0,
     "strength": 46.974086,
-    "matches_before": 74.0
+    "matches_before": 74.0,
+    "elo_rating": 1594.827452
   },
   "France": {
     "win_rate": 0.534247,
@@ -277,7 +304,8 @@
     "recent_form_index": 0.833333,
     "tournament_experience": 16.0,
     "strength": 60.542332,
-    "matches_before": 73.0
+    "matches_before": 73.0,
+    "elo_rating": 1714.686495
   },
   "Germany": {
     "win_rate": 0.64,
@@ -287,7 +315,8 @@
     "recent_form_index": 0.633333,
     "tournament_experience": 10.0,
     "strength": 63.515477,
-    "matches_before": 50.0
+    "matches_before": 50.0,
+    "elo_rating": 1692.175258
   },
   "Ghana": {
     "win_rate": 0.333333,
@@ -297,7 +326,8 @@
     "recent_form_index": 0.3,
     "tournament_experience": 4.0,
     "strength": 26.384433,
-    "matches_before": 15.0
+    "matches_before": 15.0,
+    "elo_rating": 1488.181118
   },
   "Greece": {
     "win_rate": 0.2,
@@ -307,7 +337,8 @@
     "recent_form_index": 0.266667,
     "tournament_experience": 3.0,
     "strength": 6.593686,
-    "matches_before": 10.0
+    "matches_before": 10.0,
+    "elo_rating": 1450.893871
   },
   "Haiti": {
     "win_rate": 0.0,
@@ -317,7 +348,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -35.841117,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1455.74415
   },
   "Honduras": {
     "win_rate": 0.0,
@@ -327,7 +359,8 @@
     "recent_form_index": 0.111111,
     "tournament_experience": 3.0,
     "strength": -3.314467,
-    "matches_before": 9.0
+    "matches_before": 9.0,
+    "elo_rating": 1435.669767
   },
   "Hungary": {
     "win_rate": 0.46875,
@@ -337,7 +370,8 @@
     "recent_form_index": 0.233333,
     "tournament_experience": 9.0,
     "strength": 46.564523,
-    "matches_before": 32.0
+    "matches_before": 32.0,
+    "elo_rating": 1513.291972
   },
   "Iceland": {
     "win_rate": 0.0,
@@ -347,7 +381,8 @@
     "recent_form_index": 0.111111,
     "tournament_experience": 1.0,
     "strength": -3.841117,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1481.998527
   },
   "Iran": {
     "win_rate": 0.166667,
@@ -357,7 +392,8 @@
     "recent_form_index": 0.3,
     "tournament_experience": 6.0,
     "strength": 12.233317,
-    "matches_before": 18.0
+    "matches_before": 18.0,
+    "elo_rating": 1430.399807
   },
   "Iraq": {
     "win_rate": 0.0,
@@ -367,7 +403,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -5.841117,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1463.041316
   },
   "Israel": {
     "win_rate": 0.0,
@@ -377,7 +414,8 @@
     "recent_form_index": 0.222222,
     "tournament_experience": 1.0,
     "strength": 1.492216,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1494.20487
   },
   "Italy": {
     "win_rate": 0.542169,
@@ -387,7 +425,8 @@
     "recent_form_index": 0.5,
     "tournament_experience": 18.0,
     "strength": 54.461125,
-    "matches_before": 83.0
+    "matches_before": 83.0,
+    "elo_rating": 1648.603377
   },
   "Ivory Coast": {
     "win_rate": 0.333333,
@@ -397,7 +436,8 @@
     "recent_form_index": 0.37037,
     "tournament_experience": 3.0,
     "strength": 28.463311,
-    "matches_before": 9.0
+    "matches_before": 9.0,
+    "elo_rating": 1491.51481
   },
   "Jamaica": {
     "win_rate": 0.333333,
@@ -407,7 +447,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 1.0,
     "strength": 6.158883,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1486.389972
   },
   "Japan": {
     "win_rate": 0.28,
@@ -417,7 +458,8 @@
     "recent_form_index": 0.4,
     "tournament_experience": 7.0,
     "strength": 27.21429,
-    "matches_before": 25.0
+    "matches_before": 25.0,
+    "elo_rating": 1477.891166
   },
   "Kuwait": {
     "win_rate": 0.0,
@@ -427,7 +469,8 @@
     "recent_form_index": 0.111111,
     "tournament_experience": 1.0,
     "strength": -7.17445,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1476.249747
   },
   "Mexico": {
     "win_rate": 0.283333,
@@ -437,7 +480,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 17.0,
     "strength": 27.832622,
-    "matches_before": 60.0
+    "matches_before": 60.0,
+    "elo_rating": 1492.50708
   },
   "Morocco": {
     "win_rate": 0.217391,
@@ -447,7 +491,8 @@
     "recent_form_index": 0.4,
     "tournament_experience": 6.0,
     "strength": 24.125466,
-    "matches_before": 23.0
+    "matches_before": 23.0,
+    "elo_rating": 1488.687459
   },
   "Netherlands": {
     "win_rate": 0.545455,
@@ -457,7 +502,8 @@
     "recent_form_index": 0.733333,
     "tournament_experience": 11.0,
     "strength": 59.457873,
-    "matches_before": 55.0
+    "matches_before": 55.0,
+    "elo_rating": 1690.910337
   },
   "New Zealand": {
     "win_rate": 0.0,
@@ -467,7 +513,8 @@
     "recent_form_index": 0.166667,
     "tournament_experience": 2.0,
     "strength": -7.828936,
-    "matches_before": 6.0
+    "matches_before": 6.0,
+    "elo_rating": 1472.351864
   },
   "Nigeria": {
     "win_rate": 0.285714,
@@ -477,7 +524,8 @@
     "recent_form_index": 0.266667,
     "tournament_experience": 6.0,
     "strength": 24.45408,
-    "matches_before": 21.0
+    "matches_before": 21.0,
+    "elo_rating": 1458.395515
   },
   "North Korea": {
     "win_rate": 0.142857,
@@ -487,7 +535,8 @@
     "recent_form_index": 0.190476,
     "tournament_experience": 2.0,
     "strength": -4.904533,
-    "matches_before": 7.0
+    "matches_before": 7.0,
+    "elo_rating": 1450.436153
   },
   "Northern Ireland": {
     "win_rate": 0.230769,
@@ -497,7 +546,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 3.0,
     "strength": 17.301787,
-    "matches_before": 13.0
+    "matches_before": 13.0,
+    "elo_rating": 1468.121051
   },
   "Norway": {
     "win_rate": 0.25,
@@ -507,7 +557,8 @@
     "recent_form_index": 0.375,
     "tournament_experience": 3.0,
     "strength": 24.091674,
-    "matches_before": 8.0
+    "matches_before": 8.0,
+    "elo_rating": 1501.648105
   },
   "Panama": {
     "win_rate": 0.0,
@@ -517,7 +568,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -25.841117,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1459.085355
   },
   "Paraguay": {
     "win_rate": 0.259259,
@@ -527,7 +579,8 @@
     "recent_form_index": 0.4,
     "tournament_experience": 8.0,
     "strength": 26.678095,
-    "matches_before": 27.0
+    "matches_before": 27.0,
+    "elo_rating": 1477.841902
   },
   "Peru": {
     "win_rate": 0.277778,
@@ -537,7 +590,8 @@
     "recent_form_index": 0.266667,
     "tournament_experience": 5.0,
     "strength": 20.299984,
-    "matches_before": 18.0
+    "matches_before": 18.0,
+    "elo_rating": 1461.219687
   },
   "Poland": {
     "win_rate": 0.447368,
@@ -547,7 +601,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 9.0,
     "strength": 38.201211,
-    "matches_before": 38.0
+    "matches_before": 38.0,
+    "elo_rating": 1496.911123
   },
   "Portugal": {
     "win_rate": 0.485714,
@@ -557,7 +612,8 @@
     "recent_form_index": 0.566667,
     "tournament_experience": 8.0,
     "strength": 49.979128,
-    "matches_before": 35.0
+    "matches_before": 35.0,
+    "elo_rating": 1552.094158
   },
   "Qatar": {
     "win_rate": 0.0,
@@ -567,7 +623,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -15.841117,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1471.437764
   },
   "Republic of Ireland": {
     "win_rate": 0.153846,
@@ -577,7 +634,8 @@
     "recent_form_index": 0.366667,
     "tournament_experience": 3.0,
     "strength": 21.901787,
-    "matches_before": 13.0
+    "matches_before": 13.0,
+    "elo_rating": 1501.650788
   },
   "Romania": {
     "win_rate": 0.380952,
@@ -587,7 +645,8 @@
     "recent_form_index": 0.6,
     "tournament_experience": 7.0,
     "strength": 37.406461,
-    "matches_before": 21.0
+    "matches_before": 21.0,
+    "elo_rating": 1510.622827
   },
   "Russia": {
     "win_rate": 0.285714,
@@ -597,7 +656,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 4.0,
     "strength": 30.695579,
-    "matches_before": 14.0
+    "matches_before": 14.0,
+    "elo_rating": 1497.444956
   },
   "Saudi Arabia": {
     "win_rate": 0.210526,
@@ -607,7 +667,8 @@
     "recent_form_index": 0.233333,
     "tournament_experience": 6.0,
     "strength": 7.502986,
-    "matches_before": 19.0
+    "matches_before": 19.0,
+    "elo_rating": 1400.016864
   },
   "Scotland": {
     "win_rate": 0.173913,
@@ -617,7 +678,8 @@
     "recent_form_index": 0.2,
     "tournament_experience": 8.0,
     "strength": 14.525466,
-    "matches_before": 23.0
+    "matches_before": 23.0,
+    "elo_rating": 1454.23962
   },
   "Senegal": {
     "win_rate": 0.416667,
@@ -627,7 +689,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 3.0,
     "strength": 35.261515,
-    "matches_before": 12.0
+    "matches_before": 12.0,
+    "elo_rating": 1512.308586
   },
   "Serbia": {
     "win_rate": 0.222222,
@@ -637,7 +700,8 @@
     "recent_form_index": 0.259259,
     "tournament_experience": 3.0,
     "strength": 15.574422,
-    "matches_before": 9.0
+    "matches_before": 9.0,
+    "elo_rating": 1468.27883
   },
   "Serbia and Montenegro": {
     "win_rate": 0.0,
@@ -647,7 +711,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -22.507784,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1467.291175
   },
   "Slovakia": {
     "win_rate": 0.25,
@@ -657,7 +722,8 @@
     "recent_form_index": 0.333333,
     "tournament_experience": 1.0,
     "strength": 17.828314,
-    "matches_before": 4.0
+    "matches_before": 4.0,
+    "elo_rating": 1493.021256
   },
   "Slovenia": {
     "win_rate": 0.166667,
@@ -667,7 +733,8 @@
     "recent_form_index": 0.222222,
     "tournament_experience": 2.0,
     "strength": 9.504397,
-    "matches_before": 6.0
+    "matches_before": 6.0,
+    "elo_rating": 1469.701964
   },
   "South Africa": {
     "win_rate": 0.222222,
@@ -677,7 +744,8 @@
     "recent_form_index": 0.37037,
     "tournament_experience": 3.0,
     "strength": 18.685533,
-    "matches_before": 9.0
+    "matches_before": 9.0,
+    "elo_rating": 1490.29018
   },
   "South Korea": {
     "win_rate": 0.184211,
@@ -687,7 +755,8 @@
     "recent_form_index": 0.266667,
     "tournament_experience": 11.0,
     "strength": 14.369632,
-    "matches_before": 38.0
+    "matches_before": 38.0,
+    "elo_rating": 1421.96558
   },
   "Soviet Union": {
     "win_rate": 0.483871,
@@ -697,7 +766,8 @@
     "recent_form_index": 0.5,
     "tournament_experience": 7.0,
     "strength": 48.752046,
-    "matches_before": 31.0
+    "matches_before": 31.0,
+    "elo_rating": 1555.358436
   },
   "Spain": {
     "win_rate": 0.462687,
@@ -707,7 +777,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 16.0,
     "strength": 48.192851,
-    "matches_before": 67.0
+    "matches_before": 67.0,
+    "elo_rating": 1607.71224
   },
   "Sweden": {
     "win_rate": 0.372549,
@@ -717,7 +788,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 12.0,
     "strength": 39.508633,
-    "matches_before": 51.0
+    "matches_before": 51.0,
+    "elo_rating": 1541.056293
   },
   "Switzerland": {
     "win_rate": 0.341463,
@@ -727,7 +799,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 12.0,
     "strength": 31.613009,
-    "matches_before": 41.0
+    "matches_before": 41.0,
+    "elo_rating": 1474.552256
   },
   "Togo": {
     "win_rate": 0.0,
@@ -737,7 +810,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -12.507784,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1466.18222
   },
   "Trinidad and Tobago": {
     "win_rate": 0.0,
@@ -747,7 +821,8 @@
     "recent_form_index": 0.111111,
     "tournament_experience": 1.0,
     "strength": -7.17445,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1479.981251
   },
   "Tunisia": {
     "win_rate": 0.166667,
@@ -757,7 +832,8 @@
     "recent_form_index": 0.266667,
     "tournament_experience": 6.0,
     "strength": 14.96665,
-    "matches_before": 18.0
+    "matches_before": 18.0,
+    "elo_rating": 1447.563927
   },
   "Turkey": {
     "win_rate": 0.5,
@@ -767,7 +843,8 @@
     "recent_form_index": 0.533333,
     "tournament_experience": 2.0,
     "strength": 43.793686,
-    "matches_before": 10.0
+    "matches_before": 10.0,
+    "elo_rating": 1529.014537
   },
   "Ukraine": {
     "win_rate": 0.4,
@@ -777,7 +854,8 @@
     "recent_form_index": 0.466667,
     "tournament_experience": 1.0,
     "strength": 28.975278,
-    "matches_before": 5.0
+    "matches_before": 5.0,
+    "elo_rating": 1496.289009
   },
   "United Arab Emirates": {
     "win_rate": 0.0,
@@ -787,7 +865,8 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -25.841117,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1462.708584
   },
   "United States": {
     "win_rate": 0.243243,
@@ -797,7 +876,8 @@
     "recent_form_index": 0.4,
     "tournament_experience": 11.0,
     "strength": 22.761407,
-    "matches_before": 37.0
+    "matches_before": 37.0,
+    "elo_rating": 1430.842747
   },
   "Uruguay": {
     "win_rate": 0.423729,
@@ -807,7 +887,8 @@
     "recent_form_index": 0.633333,
     "tournament_experience": 14.0,
     "strength": 46.225407,
-    "matches_before": 59.0
+    "matches_before": 59.0,
+    "elo_rating": 1534.519466
   },
   "Wales": {
     "win_rate": 0.125,
@@ -817,7 +898,8 @@
     "recent_form_index": 0.291667,
     "tournament_experience": 2.0,
     "strength": 11.591674,
-    "matches_before": 8.0
+    "matches_before": 8.0,
+    "elo_rating": 1474.411821
   },
   "West Germany": {
     "win_rate": 0.580645,
@@ -827,7 +909,8 @@
     "recent_form_index": 0.7,
     "tournament_experience": 10.0,
     "strength": 61.610049,
-    "matches_before": 62.0
+    "matches_before": 62.0,
+    "elo_rating": 1667.470764
   },
   "Yugoslavia": {
     "win_rate": 0.432432,
@@ -837,7 +920,8 @@
     "recent_form_index": 0.666667,
     "tournament_experience": 9.0,
     "strength": 47.453299,
-    "matches_before": 37.0
+    "matches_before": 37.0,
+    "elo_rating": 1539.906401
   },
   "Zaire": {
     "win_rate": 0.0,
@@ -847,6 +931,7 @@
     "recent_form_index": 0.0,
     "tournament_experience": 1.0,
     "strength": -42.507784,
-    "matches_before": 3.0
+    "matches_before": 3.0,
+    "elo_rating": 1458.171584
   }
 }
