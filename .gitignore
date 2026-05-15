@@ -12,3 +12,6 @@ __pycache__/
 .playwright-mcp
 world-cup-predictor-*.png
 .DS_Store
+
+# Claude Code local files
+.claude/
