@@ -2714,6 +2714,32 @@ select:focus,
     opacity: 0.16;
   }
 
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255, 250, 237, 0.96);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    box-shadow: 0 6px 16px rgba(23, 33, 56, 0.08);
+  }
+
+  .tabs button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
   .control-panel {
     background: rgba(255, 250, 237, 0.86);
   }
@@ -2877,6 +2903,24 @@ select:focus,
   display: grid;
   grid-template-columns: minmax(220px, 1.4fr) repeat(5, minmax(132px, 1fr));
   gap: 10px;
+}
+
+@media (max-width: 1040px) {
+  .simulation-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  .simulation-card.featured {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 680px) {
+  .simulation-grid {
+    grid-template-columns: 1fr;
+  }
+  .simulation-card.featured {
+    grid-column: auto;
+  }
 }
 
 .simulation-card {
