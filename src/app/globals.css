@@ -2704,6 +2704,11 @@ select:focus,
   .city-poster-art img {
     min-height: 220px;
   }
+
+  .brand-visual {
+    flex-basis: 132px;
+    min-height: 152px;
+  }
 }
 
 @media (max-width: 680px) {
@@ -2718,6 +2723,8 @@ select:focus,
     flex-direction: column;
     gap: 10px;
     align-items: stretch;
+    height: auto;
+    margin: 0;
   }
 
   .tabs {
@@ -2745,17 +2752,17 @@ select:focus,
   }
 
   .brand-block {
-    padding: 10px;
+    padding: 14px;
   }
 
   .brand-visual {
-    flex-basis: 68px;
-    min-height: 74px;
+    flex-basis: 140px;
+    min-height: 160px;
   }
 
   .brand-visual .fifa-logo {
-    width: 36px;
-    margin-top: 26px;
+    width: 64px;
+    margin-top: 18px;
   }
 
   .control-stack {
