@@ -57,7 +57,7 @@ Single-match predictions read from `ml/model_outputs/matchup_predictions.json`. 
 - `train_model.py` — earlier-generation in-repo trainer (Logistic Regression / Random Forest / Calibrated Gradient Boosting / Elo + Poisson).
 - `squad_strength/` — curated CSV + script that produces the optional Modern Squad Strength adjustment layer.
 
-The **CatBoost training pipeline** lives in a separate Python project (`ml-pipeline/` — outside this repo). It ingests historical international match results, builds Elo + rolling-form features, trains and evaluates CatBoost / LightGBM / XGBoost / Logistic Regression / Random Forest / Elo+Poisson, calibrates the winning model, and exports the JSON artifacts that this repo ships in `ml/model_outputs/`.
+The **CatBoost training pipeline** lives in this repo at `ml/ml-pipeline/`. It is a self-contained Python project that ingests historical international match results, builds Elo + rolling-form features, trains and evaluates CatBoost / LightGBM / XGBoost / Logistic Regression / Random Forest / Elo+Poisson, calibrates the winning model, and exports the JSON artifacts that ship in `ml/model_outputs/`. See `ml/ml-pipeline/README.md` and `ml/ml-pipeline/requirements.txt` for setup. Trained model `.joblib` artifacts, the `.venv`, charts, and raw data are intentionally gitignored — re-running the pipeline regenerates them locally.
 
 ## Tech stack
 

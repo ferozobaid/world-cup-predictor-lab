@@ -1,0 +1,2 @@
+"""International football analytics pipeline."""
+
