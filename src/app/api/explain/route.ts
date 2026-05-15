@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 const model = process.env.OPENAI_MODEL ?? "gpt-5-nano";
-const analystBriefVersion = "2026-05-analyst-brief-v4";
+const analystBriefVersion = "2026-05-analyst-brief-v5-pundit";
 const maxOutputTokens = 700;
 type AnalystSections = {
   keyTakeaway: string;
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
   if (!client) {
     const sections = fallbackSections({
       keyTakeaway:
-        "AI analysis is ready to enable. Add OPENAI_API_KEY in your local .env.local or Vercel project settings; the prediction model itself is already running locally without API spend.",
+        "Analyst mode is offline, but the local read still stands: this match is being judged on team strength, chance quality, recent momentum and a neutral venue. Add OPENAI_API_KEY for the full football-style brief.",
       prediction,
       selectedModel: body?.selectedModel,
       squadProxy: body?.squadProxy
@@ -103,14 +103,30 @@ export async function POST(request: Request) {
           role: "system",
           content:
             [
-              "You are a concise football analyst. OpenAI explains the forecast but does not make or override the prediction.",
-              "Use only the supplied JSON context. Do not add external facts.",
-              "Return only valid JSON with keys: keyTakeaway, whyFavorite, riskFactor, upsetPath, modelLimitation.",
-              "Return the JSON object immediately and do not leave any value blank.",
-              "Keep each value to one concise sentence. State probabilities are model-estimated, not betting odds.",
-              "If selectedModel is Experimental ML, say it is an experimental offline Logistic Regression model trained on historical World Cup features.",
-              "If selectedModel is Elo + Score, say it is an offline Elo-style expected-goals model that derives probabilities from a Poisson score grid.",
-              "If squadProxy is enabled/applied, say it is a manually curated sample/proxy layer, not official squad data."
+              "You are a premium football pundit on a broadcast desk, translating a forecast model's read for a fan audience.",
+              "Tone: tactical, sharp, accessible, confident but never certain. Football-first, not data-science.",
+              "Use only the supplied JSON context — do not invent facts.",
+              "Return only valid JSON with these exact keys: keyTakeaway, whyFavorite, riskFactor, upsetPath, modelLimitation.",
+              "Return the JSON object immediately and never leave a value blank. Keep each value to one or two short sentences (max ~30 words).",
+              "Style guide per card:",
+              "- keyTakeaway: who has the edge in football terms, with the stage in mind. Avoid leading with raw percentages.",
+              "- whyFavorite: the tactical reason for the edge — chance quality, momentum, underlying strength — translated from the factors.",
+              "- riskFactor: a football reality that could swing it — finishing variance, set pieces, transitions, game state, low block, pressure.",
+              "- upsetPath: how the underdog wins tactically — keep it tight, attack space, clinical moments, set-piece break.",
+              "- modelLimitation: honest, fan-friendly: these are model estimates, not betting odds; football still swings on moments.",
+              "Translate technical signals when they appear in factors/context:",
+              "- Underlying-strength / Elo gap: tiny → 'almost level on long-term form'; medium → 'a noticeable underlying edge'; large → 'a clear quality gap, though football still turns on moments'.",
+              "- Expected goals → call it 'chance quality' (never use the term 'xG' or 'expected goals' verbatim in user-facing copy).",
+              "- Recent form → call it 'momentum'; small gaps are negligible, larger gaps mean 'trending better'.",
+              "- Neutral venue → 'no team gets a home-field boost'. Mention only if relevant; never invent weather/travel.",
+              "- Model identity: Calibrated ML = trained on recent senior international results; Legacy Historical = older World Cup patterns; ML Benchmark = simpler comparison model; Elo + Score = team-strength + expected-goals style. Translate, don't quote.",
+              "Hard guardrails (must obey):",
+              "- Never invent injuries, lineups, formations, player availability, live news, weather, or travel.",
+              "- Never give betting advice or call odds 'value'.",
+              "- Never call the model 'correct', 'certain', or 'right'.",
+              "- Never override the supplied probabilities.",
+              "- Never use the words 'calibrated', 'distribution', 'classifier', 'logistic regression', 'probability mass', or 'Poisson' in the user-facing copy. Translate them to football meaning.",
+              "- If squadProxy is enabled/applied, mention it briefly as a curated proxy signal, not official squad data."
             ].join(" ")
         },
         {
@@ -124,7 +140,7 @@ export async function POST(request: Request) {
   } catch {
     const sections = fallbackSections({
       keyTakeaway:
-        "OpenAI could not generate the analyst brief with the current API key or billing setup. The local prediction remains available.",
+        "Analyst voice is briefly offline, but the football read still stands from the model: weigh team strength, chance quality, momentum and the neutral stage in mind.",
       prediction,
       selectedModel: body?.selectedModel,
       squadProxy: body?.squadProxy
@@ -198,21 +214,24 @@ function fallbackSections({
 }): AnalystSections {
   const favorite = prediction?.favorite === "Toss-up" ? prediction?.teamA : prediction?.favorite;
   const riskTeam = favorite === prediction?.teamA ? prediction?.teamB : prediction?.teamA;
+  const modelLens =
+    selectedModel === "Legacy Historical"
+      ? "The Legacy Historical view leans on older World Cup patterns, so treat tight gaps with extra skepticism — these are model estimates, not betting odds."
+      : selectedModel === "ML Benchmark"
+        ? "ML Benchmark is a simpler comparison read — useful for sanity-checking the headline model. These are model estimates, not betting odds."
+        : selectedModel === "Elo + Score"
+          ? "Elo + Score combines team-strength with an expected-chance-quality scoreline — these are model estimates, not betting odds; football still swings on moments."
+          : squadProxy?.enabled || squadProxy?.status === "applied"
+            ? "The modern squad layer is a curated proxy signal, not official squad data — these are model estimates, not betting odds."
+            : "Calibrated ML is trained on recent senior international results — these are model estimates, not betting odds; football still swings on moments.";
   return {
     keyTakeaway,
     whyFavorite:
       prediction?.favorite === "Toss-up"
-        ? "The forecast is narrow, so match state and finishing variance carry extra weight."
-        : `${favorite} is favored by the selected model's probabilities, scoreline, and key factors.`,
-    riskFactor: `${riskTeam ?? "The opponent"} can keep this close if tempo drops or set-piece pressure changes the game state.`,
-    upsetPath: "The underdog path is defensive control, transition chances, and forcing the favorite away from its normal scoring rhythm.",
-    modelLimitation:
-      selectedModel === "Experimental ML"
-        ? "Experimental ML is an offline Logistic Regression baseline trained on historical World Cup features; probabilities are model-estimated, not betting odds."
-        : selectedModel === "Elo + Score"
-          ? "Elo + Score is an offline Elo-style expected-goals model using a Poisson score grid; probabilities are model-estimated, not betting odds."
-        : squadProxy?.enabled || squadProxy?.status === "applied"
-          ? "The modern squad proxy is manually curated sample data, not official squad data; probabilities are model-estimated, not betting odds."
-          : "This is an explanatory brief for a local forecast; probabilities are model-estimated, not betting odds."
+        ? "It's almost a coin flip on the underlying signals, so finishing, set pieces and the first goal will likely settle it."
+        : `${favorite} has the edge here on chance quality and underlying strength — not a runaway, but a real lean.`,
+    riskFactor: `${riskTeam ?? "The underdog"} stays in this if they keep it tight, win the set-piece battle, and force the favourite away from a clean rhythm.`,
+    upsetPath: "The route for the underdog is defensive control, sharp transitions, and turning a low-volume chance into a decisive moment.",
+    modelLimitation: modelLens
   };
 }

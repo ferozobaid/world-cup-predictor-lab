@@ -46,7 +46,8 @@ h4,
   isolation: isolate;
   min-width: 98px;
   min-height: 132px;
-  border-color: rgba(255, 255, 255, 0.92);
+  border-radius: 22px;
+  border: 1px solid rgba(214, 173, 90, 0.18);
   background: #fff8e8;
 }
 
@@ -301,8 +302,8 @@ h4,
 
 @media (max-width: 680px) {
   .brand-visual {
-    flex-basis: 86px;
-    min-height: 82px;
+    flex-basis: 108px;
+    min-height: 128px;
   }
 
   .main-panel > .mini-module {
@@ -341,6 +342,10 @@ h4,
   }
 
   .final-bracket .bracket-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .semi-final-bracket .bracket-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -424,14 +429,25 @@ a {
 
 .brand-block {
   display: grid;
-  gap: 10px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.brand-block h1 {
+  font-size: 26px;
+  line-height: 1.05;
 }
 
 .brand-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brand-row > div {
+  min-width: 0;
 }
 
 .eyebrow {
@@ -483,6 +499,10 @@ h3 {
 
 .intro {
   margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
 }
 
 .fifa-logo {
@@ -497,8 +517,8 @@ h3 {
   position: relative;
   display: grid;
   place-items: center;
-  flex: 0 0 96px;
-  min-height: 112px;
+  flex: 0 0 108px;
+  min-height: 152px;
 }
 
 .brand-poster-strip {
@@ -1235,23 +1255,29 @@ select:focus,
 
 .brief-grid {
   display: grid;
-  gap: 9px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
   margin-bottom: 16px;
+}
+
+.brief-grid .brief-item:nth-child(5) {
+  grid-column: 1 / -1;
 }
 
 .brief-item {
   border: 1px solid rgba(214, 173, 90, 0.16);
-  border-radius: 8px;
+  border-radius: 10px;
   background: rgba(0, 0, 0, 0.34);
-  padding: 10px;
+  padding: 14px;
 }
 
 .brief-item span {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: #fff1bd;
   font-size: 11px;
   font-weight: 950;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
@@ -1259,7 +1285,67 @@ select:focus,
   margin: 0;
   color: var(--muted);
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.55;
+}
+
+.factors-panel {
+  grid-column: 1 / -1;
+}
+
+.factors-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.factor-translation {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.factor-translation h4 {
+  margin: 0 0 2px;
+  color: #5a3d10;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.factor-translation ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.factor-translation li {
+  border-left: 3px solid rgba(214, 173, 90, 0.45);
+  border-radius: 8px;
+  background: rgba(255, 248, 232, 0.55);
+  padding: 12px 14px;
+}
+
+.factor-translation li span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.factor-translation li p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
 }
 
 .model-details-panel {
@@ -2498,8 +2584,12 @@ select:focus,
 }
 
 .brief-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.brief-grid .brief-item:nth-child(5) {
+  grid-column: 1 / -1;
 }
 
 .brief-item {
@@ -2599,6 +2689,12 @@ select:focus,
     rgba(255, 255, 249, 0.84);
 }
 
+@media (max-width: 880px) {
+  .factors-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 1040px) {
   .brief-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2688,6 +2784,10 @@ select:focus,
     grid-template-columns: 1fr;
   }
 
+  .brief-grid .brief-item:nth-child(5) {
+    grid-column: auto;
+  }
+
   .tabs {
     background: rgba(255, 255, 249, 0.9);
   }
@@ -2729,9 +2829,48 @@ select:focus,
 }
 
 .simulation-panel {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 249, 0.92), rgba(255, 229, 241, 0.86) 44%, rgba(190, 244, 231, 0.86)),
-    url("/world-cup-posters/can-mex-usa-2026-logo.png") right 26px center / 110px auto no-repeat;
+  background: linear-gradient(135deg, rgba(255, 255, 249, 0.92), rgba(255, 229, 241, 0.86) 44%, rgba(190, 244, 231, 0.86));
+}
+
+.simulation-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.simulation-header-text {
+  max-width: 60ch;
+}
+
+.simulation-header h3 {
+  margin-top: 4px;
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.2;
+}
+
+.simulation-subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.simulation-runs-pill {
+  padding: 7px 14px;
+  border: 1px solid rgba(214, 173, 90, 0.3);
+  border-radius: 999px;
+  background: rgba(255, 248, 232, 0.85);
+  color: #5a3d10;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .simulation-grid {
@@ -3114,8 +3253,8 @@ select:focus,
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 132px;
-  padding: 10px;
+  min-height: 152px;
+  padding: 16px;
   background:
     radial-gradient(circle at 85% 80%, rgba(255, 204, 77, 0.24), transparent 36%),
     linear-gradient(135deg, rgba(255, 255, 249, 0.94), rgba(228, 243, 255, 0.82));
@@ -3128,10 +3267,10 @@ select:focus,
 .brand-logo-image {
   position: relative;
   z-index: 1;
-  width: min(100%, 110px);
+  width: min(78%, 70px);
   height: auto;
-  max-height: 132px;
-  border-radius: 16px;
+  max-height: 108px;
+  border-radius: 10px;
   object-fit: contain;
   box-shadow: 0 14px 34px rgba(23, 33, 56, 0.18);
 }
@@ -3262,27 +3401,30 @@ select:focus,
 
 .final-bracket::before {
   position: absolute;
-  right: clamp(16px, 5vw, 64px);
-  top: 18px;
-  width: clamp(90px, 14vw, 150px);
+  right: clamp(20px, 2.5vw, 36px);
+  top: clamp(22px, 2.5vw, 32px);
+  width: clamp(64px, 9vw, 100px);
   aspect-ratio: 588 / 886;
   border-radius: 18px;
   background: url("/world-cup-posters/can-mex-usa-2026-logo.png") center / contain no-repeat;
   content: "";
-  opacity: 0.18;
+  opacity: 0.1;
   pointer-events: none;
 }
 
 .final-bracket .section-heading {
   position: relative;
   z-index: 1;
+  justify-content: center;
   margin-bottom: 22px;
+  text-align: center;
 }
 
 .final-bracket .section-heading h3 {
   color: #111a38;
-  font-size: clamp(36px, 6vw, 72px);
-  line-height: 0.92;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
 }
 
 .final-bracket .bracket-grid {
@@ -3331,6 +3473,18 @@ select:focus,
   background: linear-gradient(135deg, #ff3d22, #ff9c1a 32%, #ff75b9 68%, #244cff);
   color: #fff;
   box-shadow: 0 14px 32px rgba(255, 94, 45, 0.25);
+}
+
+.semi-final-bracket .bracket-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.semi-final-bracket .bracket-card {
+  padding: clamp(20px, 3vw, 30px);
+  border-radius: 22px;
 }
 
 @media (max-width: 760px) {

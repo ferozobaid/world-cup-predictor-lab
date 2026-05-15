@@ -895,6 +895,10 @@ function PredictionView({
   ];
   const activeProbabilityDetail = probabilities.find((probability) => probability.label === activeProbability)?.detail;
   const lensTeam = factorLens === "teamA" ? prediction.teamA : prediction.teamB;
+  const factorTranslations = useMemo(
+    () => buildFactorTranslations(prediction.factors, predictionModel, displayPrediction),
+    [prediction.factors, predictionModel, displayPrediction]
+  );
   const displayedFactors =
     factorLens === "teamA"
       ? prediction.factors
@@ -1017,13 +1021,26 @@ function PredictionView({
           </div>
         </div>
         <p className="lens-note">{lensTeam} lens</p>
-        <div className="factor-list">
-          {displayedFactors.map((factor) => (
-            <div className={`factor ${factor.impact}`} key={factor.label}>
-              <span>{factor.label}</span>
-              <p>{factor.value}</p>
-            </div>
-          ))}
+        <div className="factors-layout">
+          <div className="factor-list">
+            {displayedFactors.map((factor) => (
+              <div className={`factor ${factor.impact}`} key={factor.label}>
+                <span>{factor.label}</span>
+                <p>{factor.value}</p>
+              </div>
+            ))}
+          </div>
+          <aside className="factor-translation" aria-label="Football translation">
+            <h4>Football translation</h4>
+            <ul>
+              {factorTranslations.map(({ label, copy }) => (
+                <li key={label}>
+                  <span>{label}</span>
+                  <p>{copy}</p>
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
       </section>
 
@@ -1353,10 +1370,16 @@ function TournamentSimulationPanel({ prediction }: { prediction: Prediction }) {
 
   return (
     <section className="panel wide-panel simulation-panel">
-      <div className="section-heading">
-        <h3>Monte Carlo tournament outlook</h3>
-        <span>{runs.toLocaleString()} offline runs</span>
-      </div>
+      <header className="simulation-header">
+        <div className="simulation-header-text">
+          <p className="eyebrow">Monte Carlo tournament outlook</p>
+          <h3>The 2026 World Cup Simulated</h3>
+          <p className="simulation-subtitle">
+            After {runs.toLocaleString()} offline tournament simulations, here is the projected outlook for the strongest contenders.
+          </p>
+        </div>
+        <span className="simulation-runs-pill">{runs.toLocaleString()} offline runs</span>
+      </header>
       <div className="simulation-grid">
         <div className="simulation-card featured">
           <span>Current matchup</span>
@@ -1550,7 +1573,9 @@ function BracketView({
   }
 
   return (
-    <section className={`panel wide-panel bracket-panel ${scenarioTab === "Final" ? "final-bracket" : ""}`}>
+    <section
+      className={`panel wide-panel bracket-panel${scenarioTab === "Final" ? " final-bracket" : ""}${scenarioTab === "Semi-final" ? " semi-final-bracket" : ""}`}
+    >
       <div className="section-heading">
         <h3>{scenarioTab === "Final" ? "The Final" : `${scenarioTab} bracket`}</h3>
         {scenarioTab !== "Final" && <span>{matchups.length} {matchups.length === 1 ? "matchup" : "matchups"}</span>}
@@ -1810,6 +1835,86 @@ function applyWhatIf(prediction: Prediction, whatIf: WhatIfState): Prediction {
     favorite,
     confidence
   };
+}
+
+type FactorTranslation = { label: string; copy: string };
+
+function buildFactorTranslations(
+  factors: PredictionFactor[],
+  predictionModel: PredictionModelMode,
+  prediction: Prediction
+): FactorTranslation[] {
+  const out: FactorTranslation[] = [];
+  const fav = prediction.favorite;
+  const favouriteName = fav && fav !== "Toss-up" ? fav : null;
+  const find = (needle: string) =>
+    factors.find((f) => f.label.toLowerCase().includes(needle));
+
+  const strength =
+    find("elo") ?? find("strength") ?? find("rating") ?? find("historical") ?? find("difference");
+  if (strength) {
+    out.push({
+      label: "Underlying strength",
+      copy:
+        strength.impact === "neutral"
+          ? "The model sees very little separation between the two sides on long-term form."
+          : favouriteName
+            ? `${favouriteName} carries a noticeable underlying-strength edge, though football can still swing on moments.`
+            : "There is a real underlying-strength edge in this matchup, but football can still swing on moments.",
+    });
+  }
+
+  const goals = find("goal") ?? find("attack") ?? find("profile");
+  if (goals) {
+    out.push({
+      label: "Chance quality",
+      copy:
+        goals.impact === "neutral"
+          ? "Both sides project to create chances at a similar quality — expect a tight game in front of goal."
+          : favouriteName
+            ? `${favouriteName} is expected to produce the slightly better looks; the underdog will need a more clinical night to bridge that gap.`
+            : "One side is projected to create slightly better chances, but neither is dominant.",
+    });
+  }
+
+  const form = find("form") ?? find("momentum");
+  if (form) {
+    out.push({
+      label: "Momentum",
+      copy:
+        form.impact === "neutral"
+          ? "No real momentum edge — recent form is roughly level."
+          : favouriteName
+            ? `Recent form points to ${favouriteName} trending a bit better coming in.`
+            : "Recent form gives one side a slight lift, but it's marginal.",
+    });
+  }
+
+  out.push({
+    label: "Stage context",
+    copy:
+      prediction.stage === "Group stage"
+        ? "Group stage allows more variance — a single result can still come from a low-volume chance."
+        : "Knockout football tightens up — single moments matter more than over a group phase.",
+  });
+
+  const modelCopy: Record<PredictionModelMode, string> = {
+    calibrated:
+      "Calibrated ML — trained on recent senior international results, weighted toward modern form.",
+    legacy:
+      "Legacy Historical — leans on older World Cup patterns; treat tight gaps with more skepticism.",
+    benchmark:
+      "ML Benchmark — a simpler comparison read; useful for sanity-checking the headline model.",
+    elo:
+      "Elo + Score — team-strength rating combined with an expected-chance-quality scoreline.",
+  };
+  out.push({ label: "Model lens", copy: modelCopy[predictionModel] });
+  out.push({
+    label: "Venue",
+    copy: "Neutral venue — no team gets a home-field boost in this match.",
+  });
+
+  return out;
 }
 
 function mirrorPredictionFactors(factors: PredictionFactor[], teamA: string, teamB: string): PredictionFactor[] {

@@ -2,351 +2,358 @@
   "metadata": {
     "schema_version": "1.0.0",
     "model_version": "ml-pipeline-v1",
-    "generated_at": "2026-05-13T23:00:45.201196+00:00",
+    "generated_at": "2026-05-14T15:33:15.854979+00:00",
     "artifact": "worldcup_simulation.json",
+    "runs": 100000,
+    "seed": 42,
+    "wall_clock_seconds": 39.25,
+    "runs_per_second": 2547.78,
     "source": {
-      "fixture": "offline-ml-pipeline/data/raw/worldcup_2026/worldcup.json"
+      "fixture": "ml/data/worldcup_2026/worldcup.json",
+      "strengths": "ml/model_outputs/team_strengths.json",
+      "probability_model": "elo-team-strength",
+      "notes": "Tournament Monte Carlo is Elo/team-strength-based. Single-match predictions in the UI use the Calibrated ML (CatBoost) model \u2014 see matchup_predictions.json."
     }
   },
   "data": {
     "status": "complete",
-    "runs": 1000,
+    "runs": 100000,
     "probabilities": {
       "Algeria": {
-        "knockout_probability": 0.714,
-        "quarterfinal_probability": 0.37,
-        "semifinal_probability": 0.207,
-        "finalist_probability": 0.102,
-        "champion_probability": 0.022
+        "knockout_probability": 0.71198,
+        "quarterfinal_probability": 0.37976,
+        "semifinal_probability": 0.1996,
+        "finalist_probability": 0.10294,
+        "champion_probability": 0.02615
       },
       "Argentina": {
-        "knockout_probability": 0.83,
-        "quarterfinal_probability": 0.507,
-        "semifinal_probability": 0.284,
-        "finalist_probability": 0.178,
-        "champion_probability": 0.057
+        "knockout_probability": 0.82038,
+        "quarterfinal_probability": 0.49693,
+        "semifinal_probability": 0.29615,
+        "finalist_probability": 0.17524,
+        "champion_probability": 0.05818
       },
       "Australia": {
-        "knockout_probability": 0.74,
-        "quarterfinal_probability": 0.359,
-        "semifinal_probability": 0.179,
-        "finalist_probability": 0.087,
-        "champion_probability": 0.023
+        "knockout_probability": 0.74284,
+        "quarterfinal_probability": 0.38418,
+        "semifinal_probability": 0.19618,
+        "finalist_probability": 0.09821,
+        "champion_probability": 0.02336
       },
       "Austria": {
-        "knockout_probability": 0.559,
-        "quarterfinal_probability": 0.27,
-        "semifinal_probability": 0.132,
-        "finalist_probability": 0.07,
-        "champion_probability": 0.015
+        "knockout_probability": 0.58867,
+        "quarterfinal_probability": 0.27724,
+        "semifinal_probability": 0.12706,
+        "finalist_probability": 0.05811,
+        "champion_probability": 0.01195
       },
       "Belgium": {
-        "knockout_probability": 0.678,
-        "quarterfinal_probability": 0.346,
-        "semifinal_probability": 0.16,
-        "finalist_probability": 0.082,
-        "champion_probability": 0.02
+        "knockout_probability": 0.68347,
+        "quarterfinal_probability": 0.33943,
+        "semifinal_probability": 0.16722,
+        "finalist_probability": 0.08212,
+        "champion_probability": 0.01877
       },
       "Bosnia and Herzegovina": {
-        "knockout_probability": 0.469,
-        "quarterfinal_probability": 0.163,
-        "semifinal_probability": 0.04,
-        "finalist_probability": 0.013,
-        "champion_probability": 0.004
+        "knockout_probability": 0.47177,
+        "quarterfinal_probability": 0.15779,
+        "semifinal_probability": 0.0518,
+        "finalist_probability": 0.01642,
+        "champion_probability": 0.00136
       },
       "Brazil": {
-        "knockout_probability": 0.723,
-        "quarterfinal_probability": 0.41,
-        "semifinal_probability": 0.221,
-        "finalist_probability": 0.124,
-        "champion_probability": 0.028
+        "knockout_probability": 0.75314,
+        "quarterfinal_probability": 0.40143,
+        "semifinal_probability": 0.21216,
+        "finalist_probability": 0.1097,
+        "champion_probability": 0.02804
       },
       "Canada": {
-        "knockout_probability": 0.772,
-        "quarterfinal_probability": 0.38,
-        "semifinal_probability": 0.171,
-        "finalist_probability": 0.073,
-        "champion_probability": 0.017
+        "knockout_probability": 0.78673,
+        "quarterfinal_probability": 0.38997,
+        "semifinal_probability": 0.1886,
+        "finalist_probability": 0.09093,
+        "champion_probability": 0.02079
       },
       "Cape Verde": {
-        "knockout_probability": 0.547,
-        "quarterfinal_probability": 0.219,
-        "semifinal_probability": 0.09,
-        "finalist_probability": 0.024,
-        "champion_probability": 0.001
+        "knockout_probability": 0.50986,
+        "quarterfinal_probability": 0.20605,
+        "semifinal_probability": 0.08155,
+        "finalist_probability": 0.03175,
+        "champion_probability": 0.00468
       },
       "Colombia": {
-        "knockout_probability": 0.683,
-        "quarterfinal_probability": 0.355,
-        "semifinal_probability": 0.181,
-        "finalist_probability": 0.09,
-        "champion_probability": 0.022
+        "knockout_probability": 0.69214,
+        "quarterfinal_probability": 0.36047,
+        "semifinal_probability": 0.18361,
+        "finalist_probability": 0.09327,
+        "champion_probability": 0.02283
       },
       "Congo DR": {
-        "knockout_probability": 0.585,
-        "quarterfinal_probability": 0.289,
-        "semifinal_probability": 0.145,
-        "finalist_probability": 0.066,
-        "champion_probability": 0.018
+        "knockout_probability": 0.58842,
+        "quarterfinal_probability": 0.27345,
+        "semifinal_probability": 0.12575,
+        "finalist_probability": 0.05612,
+        "champion_probability": 0.01033
       },
       "Croatia": {
-        "knockout_probability": 0.716,
-        "quarterfinal_probability": 0.377,
-        "semifinal_probability": 0.196,
-        "finalist_probability": 0.102,
-        "champion_probability": 0.022
+        "knockout_probability": 0.70907,
+        "quarterfinal_probability": 0.36265,
+        "semifinal_probability": 0.18407,
+        "finalist_probability": 0.09161,
+        "champion_probability": 0.02089
       },
       "Cura\u00e7ao": {
-        "knockout_probability": 0.513,
-        "quarterfinal_probability": 0.215,
-        "semifinal_probability": 0.1,
-        "finalist_probability": 0.04,
-        "champion_probability": 0.007
+        "knockout_probability": 0.52413,
+        "quarterfinal_probability": 0.21231,
+        "semifinal_probability": 0.08442,
+        "finalist_probability": 0.03225,
+        "champion_probability": 0.00434
       },
       "Czech Republic": {
-        "knockout_probability": 0.552,
-        "quarterfinal_probability": 0.223,
-        "semifinal_probability": 0.089,
-        "finalist_probability": 0.036,
-        "champion_probability": 0.006
+        "knockout_probability": 0.54079,
+        "quarterfinal_probability": 0.21862,
+        "semifinal_probability": 0.08722,
+        "finalist_probability": 0.03362,
+        "champion_probability": 0.00477
       },
       "Ecuador": {
-        "knockout_probability": 0.701,
-        "quarterfinal_probability": 0.362,
-        "semifinal_probability": 0.172,
-        "finalist_probability": 0.089,
-        "champion_probability": 0.021
+        "knockout_probability": 0.70282,
+        "quarterfinal_probability": 0.35063,
+        "semifinal_probability": 0.17223,
+        "finalist_probability": 0.08341,
+        "champion_probability": 0.01789
       },
       "Egypt": {
-        "knockout_probability": 0.721,
-        "quarterfinal_probability": 0.393,
-        "semifinal_probability": 0.182,
-        "finalist_probability": 0.089,
-        "champion_probability": 0.012
+        "knockout_probability": 0.71508,
+        "quarterfinal_probability": 0.36635,
+        "semifinal_probability": 0.18647,
+        "finalist_probability": 0.09241,
+        "champion_probability": 0.02202
       },
       "England": {
-        "knockout_probability": 0.814,
-        "quarterfinal_probability": 0.461,
-        "semifinal_probability": 0.26,
-        "finalist_probability": 0.151,
-        "champion_probability": 0.045
+        "knockout_probability": 0.80778,
+        "quarterfinal_probability": 0.46473,
+        "semifinal_probability": 0.26665,
+        "finalist_probability": 0.14989,
+        "champion_probability": 0.04469
       },
       "France": {
-        "knockout_probability": 0.782,
-        "quarterfinal_probability": 0.471,
-        "semifinal_probability": 0.279,
-        "finalist_probability": 0.174,
-        "champion_probability": 0.058
+        "knockout_probability": 0.78247,
+        "quarterfinal_probability": 0.47048,
+        "semifinal_probability": 0.27743,
+        "finalist_probability": 0.16217,
+        "champion_probability": 0.05253
       },
       "Germany": {
-        "knockout_probability": 0.727,
-        "quarterfinal_probability": 0.373,
-        "semifinal_probability": 0.199,
-        "finalist_probability": 0.084,
-        "champion_probability": 0.026
+        "knockout_probability": 0.75376,
+        "quarterfinal_probability": 0.39888,
+        "semifinal_probability": 0.2077,
+        "finalist_probability": 0.1066,
+        "champion_probability": 0.02688
       },
       "Ghana": {
-        "knockout_probability": 0.468,
-        "quarterfinal_probability": 0.17,
-        "semifinal_probability": 0.07,
-        "finalist_probability": 0.031,
-        "champion_probability": 0.002
+        "knockout_probability": 0.4625,
+        "quarterfinal_probability": 0.18342,
+        "semifinal_probability": 0.0709,
+        "finalist_probability": 0.02675,
+        "champion_probability": 0.00351
       },
       "Haiti": {
-        "knockout_probability": 0.572,
-        "quarterfinal_probability": 0.252,
-        "semifinal_probability": 0.105,
-        "finalist_probability": 0.042,
-        "champion_probability": 0.01
+        "knockout_probability": 0.57746,
+        "quarterfinal_probability": 0.25677,
+        "semifinal_probability": 0.11092,
+        "finalist_probability": 0.04718,
+        "champion_probability": 0.00799
       },
       "Iran": {
-        "knockout_probability": 0.728,
-        "quarterfinal_probability": 0.366,
-        "semifinal_probability": 0.181,
-        "finalist_probability": 0.093,
-        "champion_probability": 0.032
+        "knockout_probability": 0.73565,
+        "quarterfinal_probability": 0.39129,
+        "semifinal_probability": 0.20317,
+        "finalist_probability": 0.10446,
+        "champion_probability": 0.02665
       },
       "Iraq": {
-        "knockout_probability": 0.581,
-        "quarterfinal_probability": 0.279,
-        "semifinal_probability": 0.135,
-        "finalist_probability": 0.061,
-        "champion_probability": 0.014
+        "knockout_probability": 0.56209,
+        "quarterfinal_probability": 0.2666,
+        "semifinal_probability": 0.12414,
+        "finalist_probability": 0.05853,
+        "champion_probability": 0.01175
       },
       "Ivory Coast": {
-        "knockout_probability": 0.708,
-        "quarterfinal_probability": 0.362,
-        "semifinal_probability": 0.178,
-        "finalist_probability": 0.082,
-        "champion_probability": 0.016
+        "knockout_probability": 0.69645,
+        "quarterfinal_probability": 0.34307,
+        "semifinal_probability": 0.16847,
+        "finalist_probability": 0.08047,
+        "champion_probability": 0.01721
       },
       "Japan": {
-        "knockout_probability": 0.802,
-        "quarterfinal_probability": 0.455,
-        "semifinal_probability": 0.253,
-        "finalist_probability": 0.142,
-        "champion_probability": 0.042
+        "knockout_probability": 0.79129,
+        "quarterfinal_probability": 0.44646,
+        "semifinal_probability": 0.24811,
+        "finalist_probability": 0.13682,
+        "champion_probability": 0.0392
       },
       "Jordan": {
-        "knockout_probability": 0.552,
-        "quarterfinal_probability": 0.254,
-        "semifinal_probability": 0.114,
-        "finalist_probability": 0.052,
-        "champion_probability": 0.007
+        "knockout_probability": 0.5372,
+        "quarterfinal_probability": 0.23906,
+        "semifinal_probability": 0.10465,
+        "finalist_probability": 0.04483,
+        "champion_probability": 0.00839
       },
       "Mexico": {
-        "knockout_probability": 0.802,
-        "quarterfinal_probability": 0.401,
-        "semifinal_probability": 0.215,
-        "finalist_probability": 0.111,
-        "champion_probability": 0.031
+        "knockout_probability": 0.79475,
+        "quarterfinal_probability": 0.42788,
+        "semifinal_probability": 0.22377,
+        "finalist_probability": 0.11712,
+        "champion_probability": 0.02976
       },
       "Morocco": {
-        "knockout_probability": 0.82,
-        "quarterfinal_probability": 0.48,
-        "semifinal_probability": 0.288,
-        "finalist_probability": 0.153,
-        "champion_probability": 0.044
+        "knockout_probability": 0.81171,
+        "quarterfinal_probability": 0.46675,
+        "semifinal_probability": 0.26312,
+        "finalist_probability": 0.14646,
+        "champion_probability": 0.04356
       },
       "Netherlands": {
-        "knockout_probability": 0.75,
-        "quarterfinal_probability": 0.408,
-        "semifinal_probability": 0.208,
-        "finalist_probability": 0.115,
-        "champion_probability": 0.036
+        "knockout_probability": 0.76076,
+        "quarterfinal_probability": 0.41091,
+        "semifinal_probability": 0.22041,
+        "finalist_probability": 0.11449,
+        "champion_probability": 0.03022
       },
       "New Zealand": {
-        "knockout_probability": 0.548,
-        "quarterfinal_probability": 0.24,
-        "semifinal_probability": 0.099,
-        "finalist_probability": 0.04,
-        "champion_probability": 0.007
+        "knockout_probability": 0.53804,
+        "quarterfinal_probability": 0.23043,
+        "semifinal_probability": 0.09679,
+        "finalist_probability": 0.04011,
+        "champion_probability": 0.00701
       },
       "Norway": {
-        "knockout_probability": 0.593,
-        "quarterfinal_probability": 0.288,
-        "semifinal_probability": 0.132,
-        "finalist_probability": 0.066,
-        "champion_probability": 0.02
+        "knockout_probability": 0.6117,
+        "quarterfinal_probability": 0.30925,
+        "semifinal_probability": 0.1528,
+        "finalist_probability": 0.07405,
+        "champion_probability": 0.01712
       },
       "Panama": {
-        "knockout_probability": 0.68,
-        "quarterfinal_probability": 0.35,
-        "semifinal_probability": 0.181,
-        "finalist_probability": 0.08,
-        "champion_probability": 0.017
+        "knockout_probability": 0.68215,
+        "quarterfinal_probability": 0.34131,
+        "semifinal_probability": 0.16908,
+        "finalist_probability": 0.08168,
+        "champion_probability": 0.01786
       },
       "Paraguay": {
-        "knockout_probability": 0.53,
-        "quarterfinal_probability": 0.227,
-        "semifinal_probability": 0.098,
-        "finalist_probability": 0.042,
-        "champion_probability": 0.007
+        "knockout_probability": 0.5468,
+        "quarterfinal_probability": 0.22779,
+        "semifinal_probability": 0.09347,
+        "finalist_probability": 0.03744,
+        "champion_probability": 0.00608
       },
       "Portugal": {
-        "knockout_probability": 0.738,
-        "quarterfinal_probability": 0.425,
-        "semifinal_probability": 0.261,
-        "finalist_probability": 0.141,
-        "champion_probability": 0.03
+        "knockout_probability": 0.75355,
+        "quarterfinal_probability": 0.42076,
+        "semifinal_probability": 0.22993,
+        "finalist_probability": 0.12397,
+        "champion_probability": 0.03458
       },
       "Qatar": {
-        "knockout_probability": 0.654,
-        "quarterfinal_probability": 0.258,
-        "semifinal_probability": 0.117,
-        "finalist_probability": 0.048,
-        "champion_probability": 0.004
+        "knockout_probability": 0.64154,
+        "quarterfinal_probability": 0.26554,
+        "semifinal_probability": 0.10767,
+        "finalist_probability": 0.04279,
+        "champion_probability": 0.0063
       },
       "Saudi Arabia": {
-        "knockout_probability": 0.531,
-        "quarterfinal_probability": 0.212,
-        "semifinal_probability": 0.093,
-        "finalist_probability": 0.033,
-        "champion_probability": 0.004
+        "knockout_probability": 0.55255,
+        "quarterfinal_probability": 0.23647,
+        "semifinal_probability": 0.09952,
+        "finalist_probability": 0.04151,
+        "champion_probability": 0.00645
       },
       "Scotland": {
-        "knockout_probability": 0.538,
-        "quarterfinal_probability": 0.225,
-        "semifinal_probability": 0.073,
-        "finalist_probability": 0.025,
-        "champion_probability": 0.004
+        "knockout_probability": 0.52772,
+        "quarterfinal_probability": 0.21947,
+        "semifinal_probability": 0.08962,
+        "finalist_probability": 0.03513,
+        "champion_probability": 0.00551
       },
       "Senegal": {
-        "knockout_probability": 0.718,
-        "quarterfinal_probability": 0.396,
-        "semifinal_probability": 0.217,
-        "finalist_probability": 0.107,
-        "champion_probability": 0.032
+        "knockout_probability": 0.71063,
+        "quarterfinal_probability": 0.39767,
+        "semifinal_probability": 0.21793,
+        "finalist_probability": 0.11703,
+        "champion_probability": 0.03257
       },
       "South Africa": {
-        "knockout_probability": 0.591,
-        "quarterfinal_probability": 0.245,
-        "semifinal_probability": 0.104,
-        "finalist_probability": 0.041,
-        "champion_probability": 0.007
+        "knockout_probability": 0.5889,
+        "quarterfinal_probability": 0.2484,
+        "semifinal_probability": 0.1031,
+        "finalist_probability": 0.04165,
+        "champion_probability": 0.00607
       },
       "South Korea": {
-        "knockout_probability": 0.734,
-        "quarterfinal_probability": 0.369,
-        "semifinal_probability": 0.178,
-        "finalist_probability": 0.075,
-        "champion_probability": 0.014
+        "knockout_probability": 0.75032,
+        "quarterfinal_probability": 0.38235,
+        "semifinal_probability": 0.19177,
+        "finalist_probability": 0.09435,
+        "champion_probability": 0.02277
       },
       "Spain": {
-        "knockout_probability": 0.905,
-        "quarterfinal_probability": 0.571,
-        "semifinal_probability": 0.358,
-        "finalist_probability": 0.225,
-        "champion_probability": 0.088
+        "knockout_probability": 0.90132,
+        "quarterfinal_probability": 0.58772,
+        "semifinal_probability": 0.37998,
+        "finalist_probability": 0.24441,
+        "champion_probability": 0.09848
       },
       "Sweden": {
-        "knockout_probability": 0.495,
-        "quarterfinal_probability": 0.186,
-        "semifinal_probability": 0.074,
-        "finalist_probability": 0.03,
-        "champion_probability": 0.006
+        "knockout_probability": 0.49521,
+        "quarterfinal_probability": 0.20218,
+        "semifinal_probability": 0.08086,
+        "finalist_probability": 0.03152,
+        "champion_probability": 0.00472
       },
       "Switzerland": {
-        "knockout_probability": 0.802,
-        "quarterfinal_probability": 0.414,
-        "semifinal_probability": 0.195,
-        "finalist_probability": 0.106,
-        "champion_probability": 0.023
+        "knockout_probability": 0.77883,
+        "quarterfinal_probability": 0.38168,
+        "semifinal_probability": 0.1851,
+        "finalist_probability": 0.08766,
+        "champion_probability": 0.01931
       },
       "Tunisia": {
-        "knockout_probability": 0.632,
-        "quarterfinal_probability": 0.292,
-        "semifinal_probability": 0.128,
-        "finalist_probability": 0.054,
-        "champion_probability": 0.016
+        "knockout_probability": 0.6252,
+        "quarterfinal_probability": 0.29486,
+        "semifinal_probability": 0.13575,
+        "finalist_probability": 0.06214,
+        "champion_probability": 0.01227
       },
       "Turkey": {
-        "knockout_probability": 0.739,
-        "quarterfinal_probability": 0.372,
-        "semifinal_probability": 0.19,
-        "finalist_probability": 0.088,
-        "champion_probability": 0.019
+        "knockout_probability": 0.71635,
+        "quarterfinal_probability": 0.36144,
+        "semifinal_probability": 0.17914,
+        "finalist_probability": 0.08818,
+        "champion_probability": 0.01982
       },
       "United States": {
-        "knockout_probability": 0.661,
-        "quarterfinal_probability": 0.31,
-        "semifinal_probability": 0.133,
-        "finalist_probability": 0.067,
-        "champion_probability": 0.011
+        "knockout_probability": 0.67117,
+        "quarterfinal_probability": 0.32237,
+        "semifinal_probability": 0.15125,
+        "finalist_probability": 0.06984,
+        "champion_probability": 0.01463
       },
       "Uruguay": {
-        "knockout_probability": 0.665,
-        "quarterfinal_probability": 0.325,
-        "semifinal_probability": 0.176,
-        "finalist_probability": 0.099,
-        "champion_probability": 0.018
+        "knockout_probability": 0.66236,
+        "quarterfinal_probability": 0.31998,
+        "semifinal_probability": 0.15442,
+        "finalist_probability": 0.07218,
+        "champion_probability": 0.01539
       },
       "Uzbekistan": {
-        "knockout_probability": 0.637,
-        "quarterfinal_probability": 0.325,
-        "semifinal_probability": 0.159,
-        "finalist_probability": 0.077,
-        "champion_probability": 0.015
+        "knockout_probability": 0.6305,
+        "quarterfinal_probability": 0.30677,
+        "semifinal_probability": 0.14829,
+        "finalist_probability": 0.07048,
+        "champion_probability": 0.01437
       }
     }
   }
