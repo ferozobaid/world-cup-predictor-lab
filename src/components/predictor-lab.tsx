@@ -931,7 +931,7 @@ function PredictionView({
               type="button"
               className="score-info-chip"
               aria-label="How the scoreline is calculated"
-              title="Most likely scoreline projected from each team's expected goals using a Poisson grid, conditional on the predicted result class. The win probabilities above are the model's actual prediction; this scoreline is a derived display."
+              data-tooltip="Most likely scoreline projected from each team's expected goals using a Poisson grid, conditional on the predicted result class. The win probabilities above are the model's actual prediction; this scoreline is a derived display."
             >
               ?
             </button>
