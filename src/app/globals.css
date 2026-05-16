@@ -979,10 +979,39 @@ select:focus,
 }
 
 .score-core {
+  position: relative;
   display: grid;
   grid-template-columns: 78px 34px 78px;
   align-items: center;
   justify-content: center;
+}
+
+.score-info-chip {
+  position: absolute;
+  top: -4px;
+  right: -22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid rgba(23, 33, 56, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 249, 0.78);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: help;
+}
+
+.score-info-chip:hover,
+.score-info-chip:focus-visible {
+  border-color: rgba(214, 173, 90, 0.5);
+  background: rgba(255, 248, 232, 0.96);
+  color: #5a3d10;
+  outline: none;
 }
 
 .score-core strong,

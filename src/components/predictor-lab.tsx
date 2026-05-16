@@ -927,6 +927,14 @@ function PredictionView({
             <strong>{displayPrediction.likelyScore.teamA}</strong>
             <span>-</span>
             <strong>{displayPrediction.likelyScore.teamB}</strong>
+            <button
+              type="button"
+              className="score-info-chip"
+              aria-label="How the scoreline is calculated"
+              title="Most likely scoreline projected from each team's expected goals using a Poisson grid, conditional on the predicted result class. The win probabilities above are the model's actual prediction; this scoreline is a derived display."
+            >
+              ?
+            </button>
           </div>
           <TeamIdentity team={displayPrediction.teamB} align="right" />
         </div>
