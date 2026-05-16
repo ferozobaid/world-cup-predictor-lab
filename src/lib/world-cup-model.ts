@@ -86,6 +86,55 @@ function roundPercent(value: number) {
   return Math.round(value * 100);
 }
 
+function poissonProb(lambda: number, k: number): number {
+  let result = Math.exp(-lambda);
+  for (let i = 1; i <= k; i++) result *= lambda / i;
+  return result;
+}
+
+function mostLikelyScoreFromPoisson(
+  lambdaA: number,
+  lambdaB: number,
+  isKnockout: boolean,
+  favoriteSide: "A" | "B" | "D"
+): [number, number] {
+  const MAX = 6;
+  let bestA = 0;
+  let bestB = 0;
+  let bestP = -Infinity;
+  for (let a = 0; a <= MAX; a++) {
+    const pa = poissonProb(lambdaA, a);
+    for (let b = 0; b <= MAX; b++) {
+      const p = pa * poissonProb(lambdaB, b);
+      if (p > bestP) {
+        bestP = p;
+        bestA = a;
+        bestB = b;
+      }
+    }
+  }
+  if (isKnockout && bestA === bestB) {
+    let nextA = bestA;
+    let nextB = bestB;
+    let nextP = -Infinity;
+    for (let a = 0; a <= MAX; a++) {
+      for (let b = 0; b <= MAX; b++) {
+        if (a === b) continue;
+        if (favoriteSide === "A" && a <= b) continue;
+        if (favoriteSide === "B" && b <= a) continue;
+        const p = poissonProb(lambdaA, a) * poissonProb(lambdaB, b);
+        if (p > nextP) {
+          nextP = p;
+          nextA = a;
+          nextB = b;
+        }
+      }
+    }
+    return [nextA, nextB];
+  }
+  return [bestA, bestB];
+}
+
 function matchTeams(match: WorldCupMatch, team: string) {
   return match.homeTeam === team || match.awayTeam === team;
 }
@@ -186,17 +235,14 @@ export function predictMatch(teamA: string, teamB: string, stage: MatchStage): P
 
   const expectedA = clamp(1.18 + (statsA.attack - statsB.defense) * 0.42 + ratingDiff / 85, 0.2, 3.7);
   const expectedB = clamp(1.18 + (statsB.attack - statsA.defense) * 0.42 - ratingDiff / 85, 0.2, 3.7);
-  let scoreA = Math.round(expectedA);
-  let scoreB = Math.round(expectedB);
-
-  if (isKnockout && scoreA === scoreB) {
-    if (teamAWin > teamBWin) scoreA += 1;
-    if (teamBWin > teamAWin) scoreB += 1;
-    if (teamAWin === teamBWin) {
-      if (statsA.rating >= statsB.rating) scoreA += 1;
-      else scoreB += 1;
-    }
-  }
+  const favoriteSide: "A" | "B" | "D" =
+    Math.abs(teamAWin - teamBWin) < 0.05 ? "D" : teamAWin > teamBWin ? "A" : "B";
+  const [scoreA, scoreB] = mostLikelyScoreFromPoisson(
+    expectedA,
+    expectedB,
+    isKnockout,
+    favoriteSide
+  );
 
   const favorite =
     Math.abs(teamAWin - teamBWin) < 0.05 ? "Toss-up" : teamAWin > teamBWin ? teamA : teamB;

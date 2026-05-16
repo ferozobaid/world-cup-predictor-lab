@@ -1968,17 +1968,19 @@ function alignScoreline(prediction: Prediction): Prediction {
   }
 
   if (favorite === teamA && likelyScore.teamA <= likelyScore.teamB) {
-    return setOneGoalScore(prediction, teamA, highScore, lowScore);
+    return swapToFavoriteWin(prediction, teamA);
   }
 
   if (favorite === teamB && likelyScore.teamB <= likelyScore.teamA) {
-    return setOneGoalScore(prediction, teamB, highScore, lowScore);
+    return swapToFavoriteWin(prediction, teamB);
   }
 
   return prediction;
 }
 
 function setOneGoalScore(prediction: Prediction, winningTeam: string, highScore: number, lowScore: number): Prediction {
+  // Used for Toss-up knockouts: the model produced no clear leader, so nudge
+  // by a single goal to the side with the slight probability edge.
   const winnerScore = Math.max(highScore, lowScore + 1, 1);
   const loserScore = Math.max(0, Math.min(lowScore, winnerScore - 1));
 
@@ -1994,6 +1996,23 @@ function setOneGoalScore(prediction: Prediction, winningTeam: string, highScore:
             teamA: loserScore,
             teamB: winnerScore
           }
+  };
+}
+
+function swapToFavoriteWin(prediction: Prediction, winningTeam: string): Prediction {
+  // Preserve the model's goal differential; only ensure the favourite holds
+  // the higher count. This stops the old behaviour of flattening every
+  // favourite-wins matchup to a 1-goal margin (which produced the
+  // 2-1-for-everything artefact).
+  const { teamA, likelyScore } = prediction;
+  const high = Math.max(likelyScore.teamA, likelyScore.teamB);
+  const low = Math.min(likelyScore.teamA, likelyScore.teamB);
+  return {
+    ...prediction,
+    likelyScore:
+      winningTeam === teamA
+        ? { teamA: high, teamB: low }
+        : { teamA: low, teamB: high }
   };
 }
 
