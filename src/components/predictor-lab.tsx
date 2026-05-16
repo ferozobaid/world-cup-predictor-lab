@@ -729,7 +729,7 @@ function QuickScenarios({ onApply }: { onApply: (scenario: string) => void }) {
   const scenarios = [
     ["random", "Random matchup"],
     ["final", "2026 Final"],
-    ["upset", "Underdog upset"],
+    ["upset", "David vs Goliath"],
     ["heavyweight", "Classic heavyweight clash"],
     ["group", "Group stage test"]
   ];
