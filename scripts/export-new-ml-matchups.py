@@ -119,28 +119,13 @@ def main() -> None:
           )
           model_payloads = {}
           expected_goals = neutral_expected_goals(row_ab, row_ba, elo_model)
-          is_knockout = stage != "Group stage"
+          base_score = likely_score_from_xg(expected_goals["teamA"], expected_goals["teamB"])
 
           for mode, artifact in models.items():
               probabilities = neutral_probabilities(artifact["model"], row_ab, row_ba, feature_columns)
               rounded = rounded_probabilities(probabilities)
               favorite = favorite_from_probabilities(team_a, team_b, rounded)
-              # Conditional Poisson argmax: pick the scoreline within the result class
-              # implied by the probabilities so the rendered score is always consistent.
-              if favorite == "Toss-up":
-                  if is_knockout:
-                      favorite_side = "A" if rounded["teamAWin"] >= rounded["teamBWin"] else "B"
-                  else:
-                      favorite_side = "D"
-              elif favorite == team_a:
-                  favorite_side = "A"
-              else:
-                  favorite_side = "B"
-              aligned_score = likely_score_from_xg(
-                  expected_goals["teamA"],
-                  expected_goals["teamB"],
-                  favorite_side,
-              )
+              aligned_score = align_scoreline(base_score, favorite, stage, rounded, team_a, team_b)
               model_payloads[mode] = {
                   "probabilities": rounded,
                   "likelyScore": aligned_score,
@@ -360,42 +345,20 @@ def expected_goals_for_row(row: dict[str, float], elo_model: Any) -> tuple[float
     return home_lambda, away_lambda
 
 
-def likely_score_from_xg(
-    team_a_xg: float,
-    team_b_xg: float,
-    favorite_side: str = "D",
-    max_goals: int = 6,
-) -> dict[str, int]:
-    """Most likely scoreline projected from expected-goals, conditional on result class.
+def likely_score_from_xg(team_a_xg: float, team_b_xg: float) -> dict[str, int]:
+    """Round expected goals to integers as the base scoreline.
 
-    ``favorite_side`` filters the Poisson grid to the appropriate outcome subset so the
-    displayed scoreline is always consistent with the probability ranking:
-
-    * ``"A"``: most likely scoreline where ``team_a`` outscores ``team_b``.
-    * ``"B"``: most likely scoreline where ``team_b`` outscores ``team_a``.
-    * ``"D"``: most likely draw.
-
-    Without this filter, Poisson argmax over closely-matched teams collapses to 1-1 for
-    ~80% of matchups (the most likely *single* outcome is a draw whenever both rates are
-    around 1.0-1.3). That's mathematically right but produces a uniform 1-1 / 2-1
-    rendering on the UI; the result-class filter restores football-realistic variety.
+    A pundit watching Argentina (xG 1.6) play Saudi Arabia (xG 0.8) would say
+    "Argentina win 2-1" — that's the rounded-xG framing. The actual mode of the
+    joint Poisson distribution (most likely single scoreline) tends to be 1-0 for
+    typical international xG values, which is technically correct but reads as
+    boring and unrealistic. We round here and let ``align_scoreline`` handle the
+    tie-break when both teams round to the same integer.
     """
-    best = {"teamA": 0, "teamB": 0}
-    best_probability = -1.0
-    for goals_a in range(max_goals + 1):
-        pa = poisson_pmf(goals_a, team_a_xg)
-        for goals_b in range(max_goals + 1):
-            if favorite_side == "A" and goals_a <= goals_b:
-                continue
-            if favorite_side == "B" and goals_b <= goals_a:
-                continue
-            if favorite_side == "D" and goals_a != goals_b:
-                continue
-            probability = pa * poisson_pmf(goals_b, team_b_xg)
-            if probability > best_probability:
-                best_probability = probability
-                best = {"teamA": goals_a, "teamB": goals_b}
-    return best
+    return {
+        "teamA": max(0, round(team_a_xg)),
+        "teamB": max(0, round(team_b_xg)),
+    }
 
 
 def poisson_pmf(k: int, rate: float) -> float:
@@ -425,31 +388,56 @@ def align_scoreline(
     team_a: str,
     team_b: str,
 ) -> dict[str, int]:
-    """Ensure the favourite's score >= underdog's score, preserving the goal differential.
+    """Normalise a rounded-xG scoreline so it matches the probability story.
 
-    Previous version forced ``winner = loser + 1`` which flattened the Poisson-argmax
-    output to a uniform 1-goal margin (the "every scoreline is 2-1" artifact). Now we
-    only swap which team holds the higher count; the gap from ``likely_score_from_xg``
-    is left intact.
+    Rules:
+
+    * Toss-up + group stage: keep a draw, cap at 2-2.
+    * Toss-up + knockout: nudge the side with the slight probability edge to win by 1.
+    * Clear favourite + draw argmax: escalate the favourite by 1 goal
+      (1-1 → 2-1, 2-2 → 3-2). This produces football-recognisable scorelines
+      instead of 1-0 dominance.
+    * Clear favourite + non-draw + wrong direction: swap so the favourite holds
+      the higher count, preserving the goal differential.
+    * Clear favourite + non-draw + correct direction: return as-is.
     """
     is_knockout = stage != "Group stage"
-    high = max(score["teamA"], score["teamB"], 1 if is_knockout else 0)
-    low = max(0, min(score["teamA"], score["teamB"]))
+    a = max(0, score["teamA"])
+    b = max(0, score["teamB"])
+    high = max(a, b, 1 if is_knockout else 0)
 
     if favorite == "Toss-up":
         if not is_knockout:
-            # Group-stage toss-up: draws are realistic. Cap at 2-2 so we don't show
-            # unrealistic 4-4 draws when both xG are high.
             draw_score = min(high, 2)
             return {"teamA": draw_score, "teamB": draw_score}
-        # Knockouts can't end as draws — pick the side with the slight probability edge.
-        favorite = team_a if probabilities["teamAWin"] >= probabilities["teamBWin"] else team_b
+        # Knockout toss-up: pick side with slight edge.
+        edge = team_a if probabilities["teamAWin"] >= probabilities["teamBWin"] else team_b
+        return _escalate_favorite_by_one(edge, team_a, high)
 
-    if favorite == team_a and score["teamA"] <= score["teamB"]:
+    if a == b:
+        # Draw argmax but clear favourite → escalate favourite by 1 goal.
+        return _escalate_favorite_by_one(favorite, team_a, high)
+
+    # Non-draw: ensure favourite holds the higher count, preserve differential.
+    low = min(a, b)
+    if favorite == team_a and a < b:
         return {"teamA": high, "teamB": low}
-    if favorite == team_b and score["teamB"] <= score["teamA"]:
+    if favorite == team_b and b < a:
         return {"teamA": low, "teamB": high}
     return score
+
+
+def _escalate_favorite_by_one(favorite_name: str, team_a: str, baseline: int) -> dict[str, int]:
+    """Return a 1-goal win for ``favorite_name`` rooted at ``baseline``.
+
+    Baseline is whatever score the draw landed on (1 for 1-1, 2 for 2-2, etc.).
+    Winner gets ``baseline + 1``, loser keeps ``baseline``.
+    """
+    winner = baseline + 1
+    loser = baseline
+    if favorite_name == team_a:
+        return {"teamA": winner, "teamB": loser}
+    return {"teamA": loser, "teamB": winner}
 
 
 def build_factors(mode: str, team_a: str, team_b: str, row: dict[str, float], expected_goals: dict[str, float]) -> list[dict[str, str]]:

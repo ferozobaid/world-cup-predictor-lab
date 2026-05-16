@@ -1975,11 +1975,27 @@ function alignScoreline(prediction: Prediction): Prediction {
     return setOneGoalScore(prediction, edgeTeam, highScore, lowScore);
   }
 
-  if (favorite === teamA && likelyScore.teamA <= likelyScore.teamB) {
+  // Draw argmax but clear favourite → escalate the favourite by 1 goal.
+  // (1-1 → 2-1, 2-2 → 3-2). Mirrors the Python pipeline behaviour.
+  if (likelyScore.teamA === likelyScore.teamB) {
+    const baseline = highScore;
+    const winner = baseline + 1;
+    const loser = baseline;
+    return {
+      ...prediction,
+      likelyScore:
+        favorite === teamA
+          ? { teamA: winner, teamB: loser }
+          : { teamA: loser, teamB: winner }
+    };
+  }
+
+  // Non-draw but favourite is on the wrong side → swap, preserving the differential.
+  if (favorite === teamA && likelyScore.teamA < likelyScore.teamB) {
     return swapToFavoriteWin(prediction, teamA);
   }
 
-  if (favorite === teamB && likelyScore.teamB <= likelyScore.teamA) {
+  if (favorite === teamB && likelyScore.teamB < likelyScore.teamA) {
     return swapToFavoriteWin(prediction, teamB);
   }
 

@@ -86,53 +86,16 @@ function roundPercent(value: number) {
   return Math.round(value * 100);
 }
 
-function poissonProb(lambda: number, k: number): number {
-  let result = Math.exp(-lambda);
-  for (let i = 1; i <= k; i++) result *= lambda / i;
-  return result;
-}
-
-function mostLikelyScoreFromPoisson(
-  lambdaA: number,
-  lambdaB: number,
-  isKnockout: boolean,
-  favoriteSide: "A" | "B" | "D"
-): [number, number] {
-  const MAX = 6;
-  let bestA = 0;
-  let bestB = 0;
-  let bestP = -Infinity;
-  for (let a = 0; a <= MAX; a++) {
-    const pa = poissonProb(lambdaA, a);
-    for (let b = 0; b <= MAX; b++) {
-      const p = pa * poissonProb(lambdaB, b);
-      if (p > bestP) {
-        bestP = p;
-        bestA = a;
-        bestB = b;
-      }
-    }
-  }
-  if (isKnockout && bestA === bestB) {
-    let nextA = bestA;
-    let nextB = bestB;
-    let nextP = -Infinity;
-    for (let a = 0; a <= MAX; a++) {
-      for (let b = 0; b <= MAX; b++) {
-        if (a === b) continue;
-        if (favoriteSide === "A" && a <= b) continue;
-        if (favoriteSide === "B" && b <= a) continue;
-        const p = poissonProb(lambdaA, a) * poissonProb(lambdaB, b);
-        if (p > nextP) {
-          nextP = p;
-          nextA = a;
-          nextB = b;
-        }
-      }
-    }
-    return [nextA, nextB];
-  }
-  return [bestA, bestB];
+function roundedScoreFromExpectedGoals(lambdaA: number, lambdaB: number): [number, number] {
+  // Mirror the Python pipeline: pundit-style rounded expected goals. The
+  // joint-Poisson argmax over typical international xG values picks 1-0 for the
+  // single most likely scoreline, which reads as sterile. Rounding to the nearest
+  // integer and letting alignScoreline escalate draws produces football-recognisable
+  // 2-1 / 2-0 / 3-1 outputs.
+  return [
+    Math.max(0, Math.round(lambdaA)),
+    Math.max(0, Math.round(lambdaB)),
+  ];
 }
 
 function matchTeams(match: WorldCupMatch, team: string) {
@@ -235,14 +198,7 @@ export function predictMatch(teamA: string, teamB: string, stage: MatchStage): P
 
   const expectedA = clamp(1.18 + (statsA.attack - statsB.defense) * 0.42 + ratingDiff / 85, 0.2, 3.7);
   const expectedB = clamp(1.18 + (statsB.attack - statsA.defense) * 0.42 - ratingDiff / 85, 0.2, 3.7);
-  const favoriteSide: "A" | "B" | "D" =
-    Math.abs(teamAWin - teamBWin) < 0.05 ? "D" : teamAWin > teamBWin ? "A" : "B";
-  const [scoreA, scoreB] = mostLikelyScoreFromPoisson(
-    expectedA,
-    expectedB,
-    isKnockout,
-    favoriteSide
-  );
+  const [scoreA, scoreB] = roundedScoreFromExpectedGoals(expectedA, expectedB);
 
   const favorite =
     Math.abs(teamAWin - teamBWin) < 0.05 ? "Toss-up" : teamAWin > teamBWin ? teamA : teamB;
