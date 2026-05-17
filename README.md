@@ -4,6 +4,30 @@ A Next.js football analytics lab for the **2026 FIFA World Cup**. Build any matc
 
 The frontend runs entirely on **pre-computed static JSON** exported from an offline Python ML pipeline — no training, no Python, no `.joblib` files are loaded at request time. OpenAI is used **only** for short cached explanations and never overrides model probabilities.
 
+**Live:** [world-cup-predictor-lab.vercel.app](https://world-cup-predictor-lab.vercel.app)
+
+## App preview
+
+### Matchup prediction view
+Pick two teams and a match context. The app returns a calibrated win / draw / win probability split, an expected scoreline, the active model lens (Calibrated ML, ML Benchmark, Elo + Score, or Legacy Historical), key tactical factors, and the on-demand OpenAI analyst brief.
+
+![Matchup prediction — desktop](assets/screenshots/app-matchup-desktop.png)
+
+### 2026 Scenario view — Host City Fixtures
+Stage-by-stage bracket simulator with a 16-city host map. Each card surfaces the fixtures scheduled at that venue; click a city to drill into its match list.
+
+![Host City Fixtures — desktop](assets/screenshots/app-host-cities-desktop.png)
+
+### Mobile
+
+<table>
+<tr>
+<td><img src="assets/screenshots/app-matchup-mobile.png" alt="Matchup view — mobile" width="280"/></td>
+<td><img src="assets/screenshots/app-host-cities-mobile.png" alt="Host cities — mobile" width="280"/></td>
+<td><img src="assets/screenshots/app-host-cities-mobile-selected.png" alt="Host cities — city selected" width="280"/></td>
+</tr>
+</table>
+
 ## Overview
 
 Pick two teams, pick a match context (Group Stage → Final), pick a model lens, and the app returns a calibrated win/draw/win probability split, an expected scoreline, the key tactical factors, and a football-language translation of those factors. A separate panel below shows the projected tournament-wide outlook from 100,000 offline Monte Carlo simulations of the 2026 bracket.
@@ -25,6 +49,35 @@ Built as a portfolio piece to demonstrate end-to-end ML productisation: offline 
 - **Host City Energy** — 16 venues with poster art, fixtures, and one-click "load this match" buttons.
 - **2026 Scenario view** — stage-by-stage bracket simulator with custom matchups.
 - **Validated metrics panel** — shows accuracy, macro F1, and a historical-baseline comparison for the active model.
+
+## Model results
+
+All charts below are regenerated directly from the offline pipeline's JSON outputs (`ml/model_outputs/*.json`) — same artifacts the frontend reads at runtime.
+
+### Held-out model comparison
+Logistic Regression, Random Forest, and the final **CatBoost** model evaluated on the same held-out international-match split. CatBoost ties LR on accuracy/F1 but does it with better calibration (Brier 0.513) — and it's the one that survived calibration + cross-validation as the production lens.
+
+![Model comparison](assets/model/model_comparison.png)
+
+### Probability calibration — Calibrated ML (CatBoost)
+Reliability curves for Home win / Draw / Away win. After isotonic calibration the predicted probabilities track the observed match outcomes closely along the diagonal — the property the UI's probability bars actually rely on.
+
+![Probability calibration](assets/model/probability_calibration.png)
+
+### Top features driving the model
+The `elo_difference`, both teams' rolling expected-points form, and the per-team expected-goals proxy dominate. Tournament importance (group stage vs knockout) and recent-form weights round out the top of the list.
+
+![Feature importance](assets/model/feature_importance.png)
+
+### Confusion matrix — held-out set
+Most misclassifications are between draws and one of the win classes — a known difficulty in 3-way match-outcome prediction.
+
+![Confusion matrix](assets/model/confusion_matrix.png)
+
+### Monte Carlo tournament outlook (100,000 runs)
+End-to-end bracket simulation seeded with team-strength ratings. The chart shows the top 10 teams by champion probability with finalist and semifinalist rates layered on for context — same data feeding the in-app tournament outlook panel.
+
+![Monte Carlo champion probabilities](assets/model/monte_carlo_champions.png)
 
 ## Model architecture
 
